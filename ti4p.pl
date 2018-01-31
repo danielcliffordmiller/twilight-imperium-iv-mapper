@@ -56,27 +56,17 @@ sub horizontals {
     my $until = max( map { scalar @$_ } @hmaps );
 
     my $ws = D_BLANK . H_BLANK;
-    #my $ws = ' 'x(D_LENGTH);
-#    my $ws = $even ?
-#	' ' x (D_LENGTH*2) . ' ' x H_WIDTH :
-#	' ' x (D_LENGTH);
     my $ret = "";
-    for (my $i=0; $i <= $until; $i++) {
+    my $i = 0;
+    for ($i=0; $i < $until; $i++) {
 	$ret .= $hmaps[1][$i] || $i > 0 && $hmaps[2][$i-1] ? LEFT : D_BLANK;
 	$ret .= H_BLANK;
-	if ( $hmaps[1][$i] || $hmaps[2][$i] ) {
-	    $ret .= RIGHT;
-	} else {
-	    $ret .= D_BLANK;
-	}
+	$ret .= $hmaps[1][$i] || $hmaps[2][$i] ? RIGHT : D_BLANK;
 	$ret .= $hmaps[0][$i] || $hmaps[2][$i] ? H_LINE : H_BLANK;
-	#$ret .= ' 'x(H_WIDTH);
-	#$ret .= LEFT;
     }
-    say '"'.$ret.'"';
-    return $ws.join $ws x 2, map {
-	$_ ? H_LINE : H_BLANK
-    } @{$hmaps[0]};
+    $ret .= LEFT if $hmaps[2][$i-1];
+
+    return $ret;
 }
 
 #say horizontals([0], [], [], 0);
