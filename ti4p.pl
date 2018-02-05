@@ -69,6 +69,19 @@ sub horizontals {
     return $ret;
 }
 
+sub diagonals {
+    my ($opening, $closing, $even) = @_;
+
+
+    my @hmaps = map {
+	my $ret = [];
+	for my $val (@$_) { $ret->[$val] = 1 }
+	$ret;
+    } ($opening, $open, $closing);
+
+    my $until = max( map { scalar @$_ } @hmaps );
+}
+
 #say horizontals([0], [], [], 0);
 say horizontals([0], [1], [1], 1);
 
