@@ -1,10 +1,5 @@
 % use SvgHex;
 %
-% my $hex = begin
-% my ($x, $y) = @_;
-<use xlink:href="#svg_hex" transform="translate(<%= $x %>,<%= $y %>)"/>
-% end
-%
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +14,9 @@
 </defs>
 % for my $ring (0..3) {
 %     for my $n (0..(hex_num_tiles($ring)-1)) {
-<%= $hex->(@{hex_coords($ring, $n)}) %>
+%	  my ($dx, $dy) = hex_coords( $ring, $n );
+<use xlink:href="#svg_hex" transform="translate(<%= "$dx,$dy" %>)"/>
 %     }
 % }
 </svg>
-<!--<img class="tile" src="graphics/hex.svg" />-->
 </html>
