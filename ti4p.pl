@@ -2,6 +2,7 @@
 #
 use strict;
 
+use lib 'lib';
 use feature qw(say);
 
 use Mojolicious::Lite;
