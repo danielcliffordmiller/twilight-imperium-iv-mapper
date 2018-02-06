@@ -1,27 +1,4 @@
-#!/usr/bin/perl -w
-#
-use strict;
-
-use feature qw(say);
-
-use Mojolicious::Lite;
-
-get '/' => sub {
-    my $c = shift;
-    $c->render(template => 'test');
-};
-
-app->start();
-__DATA__
-
-@@ test.html.ep
-
 % use SvgHex;
-%
-% my $hex = begin
-% my ($x, $y) = @_;
-<use xlink:href="#svg_hex" transform="translate(<%= $x %>,<%= $y %>)"/>
-% end
 %
 <!DOCTYPE html>
 <html>
@@ -37,9 +14,9 @@ __DATA__
 </defs>
 % for my $ring (0..3) {
 %     for my $n (0..(hex_num_tiles($ring)-1)) {
-<%= $hex->(@{hex_coords($ring, $n)}) %>
+%	  my ($dx, $dy) = hex_coords( $ring, $n );
+<use xlink:href="#svg_hex" transform="translate(<%= "$dx,$dy" %>)"/>
 %     }
 % }
 </svg>
-<!--<img class="tile" src="graphics/hex.svg" />-->
 </html>
