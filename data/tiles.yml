@@ -1,5 +1,6 @@
 tiles:
   - name: AbyzFria
+    type: Standard
     planets:
       - name: Abyz
         resources: 3
@@ -10,6 +11,7 @@ tiles:
         influence: 0
         trait: Hazardous
   - name: ArinamMeer
+    type: Standard
     planets:
       - name: Arinam
         resources: 1
@@ -21,6 +23,7 @@ tiles:
         trait: Hazardous
         tech: Red
   - name: ArnorLor
+    type: Standard
     planets:
       - name: Arnor
         resources: 2
@@ -31,6 +34,7 @@ tiles:
         influence: 2
         trait: Industrial
   - name: BeregLirta
+    type: Standard
     planets:
       - name: Bereg
         resources: 3
@@ -41,6 +45,7 @@ tiles:
         influence: 3
         trait: Hazardous
   - name: CentauriGral
+    type: Standard
     planets:
       - name: Centauri
         resources: 1
@@ -52,6 +57,7 @@ tiles:
         trait: Industrial
         tech: Blue
   - name: CoorneeqResculon
+    type: Standard
     planets:
       - name: Coorneeq
         resources: 1
@@ -62,6 +68,7 @@ tiles:
         influence: 0
         trait: Cultural
   - name: DalBoothaXXehan
+    type: Standard
     planets:
       - name: Dal Bootha
         resources: 0
@@ -72,6 +79,7 @@ tiles:
         influence: 1
         trait: Cultural
   - name: LazarSakulag
+    type: Standard
     planets:
       - name: Lazar
         resources: 1
@@ -83,6 +91,7 @@ tiles:
         influence: 1
         trait: Hazardous
   - name: LodorAlpha
+    type: Standard
     wormhole: Alpha
     planets:
       - name: Lodor
@@ -90,6 +99,7 @@ tiles:
         influence: 1
         trait: Cultural
   - name: MeharXull
+    type: Standard
     planets:
       - name: Mehar Xull
         resources: 1
@@ -97,6 +107,7 @@ tiles:
         trait: Hazardous
         tech: Red
   - name: MellonZohbat
+    type: Standard
     planets:
       - name: Mellon
         resources: 0
@@ -107,6 +118,7 @@ tiles:
         influence: 1
         trait: Hazardous
   - name: NewAlbionStarpoint
+    type: Standard
     planets:
       - name: New Albion
         resources: 1
@@ -118,6 +130,7 @@ tiles:
         influence: 1
         trait: Hazardous
   - name: QuannBeta
+    type: Standard
     wormhole: Beta
     planets:
       - name: Quann
@@ -125,6 +138,7 @@ tiles:
         influence: 1
         trait: Cultural
   - name: QuecennRarron
+    type: Standard
     planets:
       - name: Quecen'n
         resources: 1
@@ -135,12 +149,14 @@ tiles:
         influence: 3
         trait: Cultural
   - name: Saudor
+    type: Standard
     planets:
       - name: Saudor
         resources: 2
         influence: 2
         trait: Industrial
   - name: Tarmann
+    type: Standard
     planets:
       - name: Tar'Mann
         resources: 1
@@ -148,6 +164,7 @@ tiles:
         trait: Industrial
         tech: Green
   - name: TequranTorkan
+    type: Standard
     planets:
       - name: Tequ'Ran
         resources: 2
@@ -158,6 +175,7 @@ tiles:
         influence: 3
         trait: Cultural
   - name: Thibah
+    type: Standard
     planets:
       - name: Thibah
         resources: 1
@@ -165,12 +183,14 @@ tiles:
         trait: Industrial
         tech: Blue
   - name: Vefut
+    type: Standard
     planets:
       - name: Vefut II
         resources: 2
         influence: 2
         trait: Hazardous
   - name: Wellon
+    type: Standard
     planets:
       - name: Wellon
         resources: 1
@@ -178,6 +198,7 @@ tiles:
         trait: Industrial
         tech: Yellow
   - name: MecatolRex
+    type: Standard
     planets:
       - name: Mecatol Rex
         resources: 1
@@ -187,10 +208,15 @@ tiles:
   - name: Asteroid Field
     type: Anomoly
   - name: Space
+    type: Standard
   - name: Space
+    type: Standard
   - name: Space
+    type: Standard
   - name: Space
+    type: Standard
   - name: Space
+    type: Standard
   - name: Gravity Rift
     type: Anomoly
   - name: Nebula
@@ -198,8 +224,10 @@ tiles:
   - name: Supernova
     type: Anomoly
   - name: Alpha
+    type: Standard
     wormhole: Alpha
   - name: Beta
+    type: Standard
     wormhole: Beta
   - name: Arborec
     type: Home
