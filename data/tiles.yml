@@ -1,30 +1,332 @@
 tiles:
-  - planets:
+  - name: AbyzFria
+    planets:
       - name: Abyz
+        resources: 3
         influence: 0
-        resource: 3
+        trait: Hazardous
       - name: Fria
+        resources: 2
         influence: 0
-        resource: 2
-    type: planet
-  - planets:
-      - name: Mecatol Rex
-        influence: 6
-        resource: 1
-    type: planet
-  - name: Asteroid Field
-    type: anomaly
-  - name: Gravity Rift
-    type: anomaly
-  - name: Nebula
-    type: anomaly
-  - name: Nebula
-    type: anomaly
-  - name: Supernova
-    type: anomaly
-  - type: planet+wormhole
+        trait: Hazardous
+  - name: ArinamMeer
+    planets:
+      - name: Arinam
+        resources: 1
+        influence: 2
+        trait: Industrial
+      - name: Meer
+        resources: 0
+        influence: 4
+        trait: Hazardous
+        tech: Red
+  - name: ArnorLor
+    planets:
+      - name: Arnor
+        resources: 2
+        influence: 1
+        trait: Industrial
+      - name: Lor
+        resources: 1
+        influence: 2
+        trait: Industrial
+  - name: BeregLirta
+    planets:
+      - name: Bereg
+        resources: 3
+        influence: 1
+        trait: Hazardous
+      - name: Lirta IV
+        resources: 2
+        influence: 3
+        trait: Hazardous
+  - name: CentauriGral
+    planets:
+      - name: Centauri
+        resources: 1
+        influence: 3
+        trait: Cultural
+      - name: Gral
+        resources: 1
+        influence: 1
+        trait: Industrial
+        tech: Blue
+  - name: CoorneeqResculon
+    planets:
+      - name: Coorneeq
+        resources: 1
+        influence: 2
+        trait: Cultural
+      - name: Resculon
+        resources: 2
+        influence: 0
+        trait: Cultural
+  - name: DalBoothaXXehan
+    planets:
+      - name: Dal Bootha
+        resources: 0
+        influence: 2
+        trait: Cultural
+      - name: XXehan
+        resources: 1
+        influence: 1
+        trait: Cultural
+  - name: LazarSakulag
+    planets:
+      - name: Lazar
+        resources: 1
+        influence: 0
+        trait: Industrial
+        tech: Yellow
+      - name: Sakulag
+        resources: 2
+        influence: 1
+        trait: Hazardous
+  - name: LodorAlpha
+    wormhole: Alpha
+    planets:
+      - name: Lodor
+        resources: 3
+        influence: 1
+        trait: Cultural
+  - name: MeharXull
+    planets:
+      - name: Mehar Xull
+        resources: 1
+        influence: 3
+        trait: Hazardous
+        tech: Red
+  - name: MellonZohbat
+    planets:
+      - name: Mellon
+        resources: 0
+        influence: 2
+        trait: Cultural
+      - name: Zohbat
+        resources: 3
+        influence: 1
+        trait: Hazardous
+  - name: NewAlbionStarpoint
+    planets:
+      - name: New Albion
+        resources: 1
+        influence: 1
+        trait: Industrial
+        tech: Green
+      - name: Starpoint
+        resources: 3
+        influence: 1
+        trait: Hazardous
+  - name: QuannBeta
+    wormhole: Beta
     planets:
       - name: Quann
+        resources: 2
         influence: 1
-        resource: 2
-    wormhole: beta
+        trait: Cultural
+  - name: QuecennRarron
+    planets:
+      - name: Quecen'n
+        resources: 1
+        influence: 2
+        trait: Industrial
+      - name: Rarron
+        resources: 0
+        influence: 3
+        trait: Cultural
+  - name: Saudor
+    planets:
+      - name: Saudor
+        resources: 2
+        influence: 2
+        trait: Industrial
+  - name: Tarmann
+    planets:
+      - name: Tar'Mann
+        resources: 1
+        influence: 1
+        trait: Industrial
+        tech: Green
+  - name: TequranTorkan
+    planets:
+      - name: Tequ'Ran
+        resources: 2
+        influence: 0
+        trait: Hazardous
+      - name: Torkan
+        resources: 0
+        influence: 3
+        trait: Cultural
+  - name: Thibah
+    planets:
+      - name: Thibah
+        resources: 1
+        influence: 1
+        trait: Industrial
+        tech: Blue
+  - name: Vefut
+    planets:
+      - name: Vefut II
+        resources: 2
+        influence: 2
+        trait: Hazardous
+  - name: Wellon
+    planets:
+      - name: Wellon
+        resources: 1
+        influence: 2
+        trait: Industrial
+        tech: Yellow
+  - name: MecatolRex
+    planets:
+      - name: Mecatol Rex
+        resources: 1
+        influence: 6
+  - name: Asteroid Field
+    type: Anomoly
+  - name: Asteroid Field
+    type: Anomoly
+  - name: Space
+  - name: Space
+  - name: Space
+  - name: Space
+  - name: Space
+  - name: Gravity Rift
+    type: Anomoly
+  - name: Nebula
+    type: Anomoly
+  - name: Supernova
+    type: Anomoly
+  - name: Alpha
+    wormhole: Alpha
+  - name: Beta
+    wormhole: Beta
+  - name: Arborec
+    type: Home
+    planets:
+      - name: NestPhar
+        resources: 3
+        influence: 2
+  - name: Creuss
+    type: Home
+    planets:
+      - name: Creuss
+        resources: 4
+        influence: 2
+  - name: Hacan
+    type: Home
+    planets:
+      - name: Hercant
+        resources: 1
+        influence: 1
+      - name: Arretze
+        resources: 2
+        influence: 0
+      - name: Kamdorn
+        resources: 0
+        influence: 1
+  - name: JolNar
+    type: Home
+    planets:
+      - name: Jol
+        resources: 1
+        influence: 2
+      - name: Nar
+        resources: 2
+        influence: 3
+  - name: L1Z1X
+    type: Home
+    planets:
+      - name: [0.0.0]
+        resources: 5
+        influence: 0
+  - name: Letnev
+    type: Home
+    planets:
+      - name: Arc Prime
+        resources: 4
+        influence: 0
+      - name: Wren Terra
+        resources: 2
+        influence: 1
+  - name: Mentak
+    type: Home
+    planets:
+      - name: Moll Primus
+        resources: 4
+        influence: 1
+  - name: Muaat
+    type: Home
+    planets:
+      - name: Muaat
+        resources: 4
+        influence: 1
+  - name: Naalu
+    type: Home
+    planets:
+      - name: Druaa
+        resources: 3
+        influence: 1
+      - name: Maaluuk
+        resources: 0
+        influence: 2
+  - name: NekroVirus
+    type: Home
+    planets:
+      - name: Mordai II
+        resources: 4
+        influence: 0
+  - name: Saar
+    type: Home
+    planets:
+      - name: Lisis II
+        resources: 1
+        influence: 0
+      - name: Ragh
+        resources: 2
+        influence: 1
+  - name: SardakkNorr
+    type: Home
+    planets:
+      - name: Tren'Lak
+        resources: 1
+        influence: 0
+      - name: Quinarra
+        resources: 3
+        influence: 1
+  - name: Sol
+    type: Home
+    planets:
+      - name: Jord
+        resources: 4
+        influence: 2
+  - name: Winnu
+    type: Home
+    planets:
+      - name: Winnu
+        resources: 3
+        influence: 4
+  - name: Xxcha
+    type: Home
+    planets:
+      - name: Archon Wren
+        resources: 2
+        influence: 3
+      - name: Archon Tau
+        resources: 1
+        influence: 1
+  - name: Yin
+    type: Home
+    planets:
+      - name: Darien
+        resources: 4
+        influence: 4
+  - name: Yssaril
+    type: Home
+    planets:
+      - name: Retillion
+        resources: 2
+        influence: 3
+      - name: Shalloq
+        resources: 1
+        influence: 2
