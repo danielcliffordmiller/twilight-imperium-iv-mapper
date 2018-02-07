@@ -7,4 +7,7 @@ $(document).ready(function() {
 	$("."+this.id).addClass("selected");
 	$(this).addClass("selected");
     });
+    $(".map").click(function(event) {
+        if ($(this).hasClass("selected")) alert("click on: "+this.id);
+    });
 });
