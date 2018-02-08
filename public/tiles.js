@@ -8,6 +8,9 @@ $(document).ready(function() {
 	$(this).addClass("selected");
     });
     $(".map").click(function(event) {
-        if ($(this).hasClass("selected")) alert("click on: "+this.id);
+        if ($(this).hasClass("selected")) Intercooler.triggerRequest(this);
+    });
+    $(document).on("beforeAjaxSend.ic", function(event, ajaxSetup, elt) {
+	ajaxSetup.data = ajaxSetup.data + "&hand=" + $(".hand.selected")[0].id;
     });
 });

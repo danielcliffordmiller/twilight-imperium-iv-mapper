@@ -23,8 +23,14 @@ for (@$map_data) {
 
 get '/' => sub {
     my $c = shift;
-    #$c->stash(
+    #$c->stash( # <- this is how we'll pass the map to the 'main' template
     $c->render(template => 'main');
+};
+
+post '/' => sub {
+    my $c = shift;
+    say $c->param("hand")." wants to be placed at ".$c->param('ic-trigger-id');
+    $c->render( text => '' ); # <- empty response stops ics from rerendering the page
 };
 
 app->start();
