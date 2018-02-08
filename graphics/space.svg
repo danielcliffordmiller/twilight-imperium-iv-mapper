@@ -1,0 +1,4 @@
+<pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
+    <image xlink:href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
+</pattern>
+<path id="test" class="test tile" d="M 100 100 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="2" stroke="black"/>
