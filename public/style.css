@@ -1,2 +1,28 @@
 .tile:hover { fill: blue; fill-opacity: 1.0; }
 .selected { fill: cyan; fill-opacity: 0.6; }
+#confirm {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  filter: opacity(0);
+}
+#confirm.active {
+  background: rgba(0,0,0,50%);
+  filter: opacity(100%);
+  z-index: 1;
+}
+#confirm > div {
+  position: relative;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  height: 12em;
+  color: black;
+  width: 20em;
+  padding: 2em;
+  top: 40%;
+  width: 20em;
+}
