@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
-<pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
-    <image xlink:href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
-</pattern>
-<path id="test" class="test tile" d="M 100 100 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="2" stroke="black"/>
+<svg xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,420)">
+        <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
+        </pattern>
+
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="8" stroke="red" transform="scale(.90)"/>
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
+        <text x="-18" y="0" font-size="14" fill="white">Space</text>
+    </g>
 </svg>
