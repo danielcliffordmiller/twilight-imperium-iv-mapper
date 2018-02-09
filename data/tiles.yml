@@ -204,9 +204,9 @@ tiles:
         resources: 1
         influence: 6
   - name: Asteroid Field
-    type: Anomoly
+    type: Anomaly
   - name: Asteroid Field
-    type: Anomoly
+    type: Anomaly
   - name: Space
     type: Standard
   - name: Space
@@ -218,11 +218,11 @@ tiles:
   - name: Space
     type: Standard
   - name: Gravity Rift
-    type: Anomoly
+    type: Anomaly
   - name: Nebula
-    type: Anomoly
+    type: Anomaly
   - name: Supernova
-    type: Anomoly
+    type: Anomaly
   - name: Alpha
     type: Standard
     wormhole: Alpha
