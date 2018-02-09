@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(500,420)">
+<path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
+<path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="7" stroke="red" transform="scale(.90)"/>
+</g>
+<g transform="translate(390,420)">
+<path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
+<path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="7" stroke="royalblue" transform="scale(.90)"/>
+</g>
+<path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black" transform="translate(445, 310)"/>
+</svg>
