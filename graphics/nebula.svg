@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
-<pattern id="img1" width="100" height="71" x="0" y="0" preserveAspectRatio="true">
-    <image xlink:href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
-</pattern>
-<path id="test" class="test tile" d="M 100 100 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="2" stroke="black"/>
+<svg xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,420)">
+        <pattern id="img1" width="100" height="71" x="0" y="0" preserveAspectRatio="true">
+            <image xlink:href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
+        </pattern>
+
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="8" stroke="red" transform="scale(.90)"/>
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
+        <text x="-23" y="0" font-size="14" fill="white">Nebula</text>
+    </g>
 </svg>
