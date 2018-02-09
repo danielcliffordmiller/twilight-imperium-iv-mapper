@@ -18,7 +18,7 @@ sub partition {
     my @res = ( map { [] } @subs, [] );
 
     item: foreach my $item (@_) {
-	for (my $i = 0; $i < scalar(@subs); $i++) {
+	for my $i (0 .. $#subs) {
 	    if ( $subs[$i]($item) ) {
 	        push @{ $res[$i] }, $item;
 	        next item;
