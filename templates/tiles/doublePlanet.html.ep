@@ -1,0 +1,12 @@
+% my $planet1 = $tile->{planets}[0];
+% my $planet2 = $tile->{planets}[1];
+%
+<svg xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,420)">
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" stroke="blue" transform="scale(.90)"/>
+        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
+	<%= $tile->{planets}[0]{name} %>
+	<text x="-12" y="-8" font-size="14" fill="black"><%= $planet1->{resources} %> / <%= $planet1->{influence} %></text>
+	<text x="-12" y="12" font-size="14" fill="black"><%= res $planet2 %> / <%= inf $planet2 %></text>
+    </g>
+</svg>
