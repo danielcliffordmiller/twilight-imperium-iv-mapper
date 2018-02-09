@@ -24,7 +24,7 @@ for (@$map_data) {
 get '/' => sub {
     my $c = shift;
     #$c->stash( # <- this is how we'll pass the map to the 'main' template
-    $c->render(template => 'main');
+    $c->render(template => 'map', layout => 'main');
 };
 
 post '/' => sub {

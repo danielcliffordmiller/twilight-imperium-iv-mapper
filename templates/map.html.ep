@@ -1,15 +1,5 @@
 % use SvgHex;
 %
-<!DOCTYPE html>
-<html>
-<head>
-<title>Twilight Imperium IV Mapper</title>
-<link href="/style.css" rel="stylesheet" />
-<script src="/jquery-3.3.1.min.js"></script>
-<script src="/intercooler-1.2.1.min.js"></script>
-<script src="/tiles.js"></script>
-</head>
-<body>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
     <!--<defs>
     <path id="svg_hex" class="tile" d="M 500 350 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
@@ -32,5 +22,3 @@
     <button id="c-no">No</button>
 </div>
 </div>
-</body>
-</html>
