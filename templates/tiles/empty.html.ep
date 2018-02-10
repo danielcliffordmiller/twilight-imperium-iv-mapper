@@ -1,0 +1,4 @@
+% use SvgHex;
+%
+% my ($dx, $dy) = hex_coords( $ring, $n );
+<path ic-trigger-on="" ic-post-to="/" id="<%= "$ring,$n" %>" class="<%= "t$ring " if $ring >= 1 %>tile map" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" transform="translate(<%= "$dx,$dy" %>)" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
