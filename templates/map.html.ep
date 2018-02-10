@@ -1,4 +1,5 @@
 % use SvgHex;
+% use Tiles;
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
     <!--<defs>
@@ -8,12 +9,20 @@
 % for my $i (0..4) {
 <path id="t<%= $i+1 %>" class="hand tile" d="M <%= $offset + ($i*130)." 40" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
 % }
+<g transform="translate(525,463)">
 % for my $ring (0..3) {
 %     for my $n (0..(hex_num_tiles($ring)-1)) {
 %	  my ($dx, $dy) = hex_coords( $ring, $n );
-<path ic-trigger-on="" ic-post-to="/" id="<%= "$ring,$n" %>" class="<%= "t$ring " if $ring >= 1 %>tile map" d="M 500 420 l 50 0 25 43 -25 43 -50 0 -25 -43 z" transform="translate(<%= "$dx,$dy" %>)" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
+%	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
+%	  next if $map_tile && !defined $map_tile->[2];
+%	  if ($map_tile) {
+<%= include 'tiles/'.Tiles::template($map_tile->[2]), map_tile => $map_tile %>
+%	  } else {
+<%= include 'tiles/empty', ring => $ring, n => $n %>
+%	  }
 %     }
 % }
+</g>
 </svg>
 <div id="confirm">
 <div>
