@@ -67,4 +67,19 @@ sub draw_tiles {
     return $hand, $tiles;
 }
 
+my %template_rules = (
+    asteroids	    => sub { $_[0]{name} eq "Asteroid Field" },
+    gravityRift	    => sub { $_[0]{name} eq "Gravity Rift" },
+    nebula	    => sub { $_[0]{name} eq "Nebula" },
+    space	    => sub { $_[0]{name} eq "Space" },
+    supernova	    => sub { $_[0]{name} eq "Supernova" },
+    singlePlanet    => sub { $_[0]{planets} && scalar @{$_[0]{planets}} == 1 },
+    doublePlanet    => sub { $_[0]{planets} && scalar @{$_[0]{planets}} == 2 },
+);
+
+sub template {
+    my $tile = shift;
+    return (grep { $template_rules{$_}($tile) } keys %template_rules)[0];
+}
+
 1;
