@@ -51,7 +51,7 @@ helper inf => sub {
 get '/' => sub {
     my $c = shift;
     $c->stash( { tile => $tiles->[0] } );
-    $c->render( template => "tiles/doublePlanet" );
+    $c->render( template => "tiles/doublePlanet", format => "svg" );
 };
 
 app->start();
