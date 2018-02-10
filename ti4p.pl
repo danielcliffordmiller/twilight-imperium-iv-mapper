@@ -8,7 +8,17 @@ use feature qw(say);
 use Mojolicious::Lite;
 use YAML ();
 
+use Tiles;
+use Utils;
+
 my $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
+
+my @tiles = partition( \&Tiles::standard, \&Tiles::anomaly, \&Tiles::home, @$tile_data );
+
+my ($t, $r) = Tiles::draw($tiles[1]);
+
+my ($h, $ts) = Tiles::draw_tiles(2, $tiles[1]);
+
 my $map_data = [];
 
 push @$map_data, [ 0, 0, grep { $_->{name} eq 'MecatolRex' } @$tile_data ];

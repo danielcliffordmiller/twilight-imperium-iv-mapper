@@ -4,6 +4,8 @@ use v5.12;
 use strict;
 use warnings;
 
+use Utils;
+
 no warnings "experimental::smartmatch";
 
 my @anomaly_tiles = ("Gravity Rift", "Asteroid Field", "Supernova", "Nebula");
@@ -44,6 +46,25 @@ sub type {
 		   home($tile) ? "home"     : "unknown";
     warn qq(tile "$tile->{name}" is of unknown type!) if $type eq "unknown";
     return $type;
+}
+
+sub draw {
+    my $tiles = shift;
+    my $tile = $tiles->[int(rand(@$tiles))];
+    return $tile, [ grep { $_ != $tile } @$tiles ];
+}
+
+sub draw_tiles {
+    my ($n, $tiles) = @_;
+    my $hand = [];
+
+    my $t;
+
+    for my $i (0 .. $n-1) {
+	($t, $tiles) = draw($tiles);
+	push @$hand, $t;
+    }
+    return $hand, $tiles;
 }
 
 1;
