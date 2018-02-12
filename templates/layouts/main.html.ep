@@ -7,5 +7,5 @@
 <script src="/intercooler-1.2.1.min.js"></script>
 <script src="/tiles.js"></script>
 </head>
-<body><%= content %></body>
+<body><div id="map"><%= content %></div></body>
 </html>

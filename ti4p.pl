@@ -48,8 +48,11 @@ get '/' => sub {
 
 post '/' => sub {
     my $c = shift;
-    say $c->param("hand")." wants to be placed at ".$c->param('ic-trigger-id');
-    $c->render( text => '' ); # <- empty response stops ics from rerendering the page
+    my $tile = splice( @$hand, $c->param("hand") =~ s/hand//r, 1 );
+    my ($r, $n) = split /,/, $c->param('ic-trigger-id');
+    push @$map_data, [ $r, $n, $tile ];
+    $c->stash( map => $map_data, hand => $hand );
+    $c->render( template => 'map' );
 };
 
 app->start();

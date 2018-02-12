@@ -1,7 +1,7 @@
 
 "use strict";
 
-$(document).ready(function() {
+function handleReady() {
     $(".hand").click(function(event) {
 	$(".selected").removeClass("selected");
 	$("."+this.id).addClass("selected");
@@ -24,4 +24,6 @@ $(document).ready(function() {
     $("#c-no").click(function(event){
         $("#confirm").removeClass("active");
     });
-});
+    Intercooler.ready(function(elt){ handleReady() });
+}
+$(document).ready(handleReady);
