@@ -1,12 +1,7 @@
-%
-% use SvgHex;
-%
-% my ($r, $n, $tile) = @$map_tile;
-% my ($dx, $dy) = hex_coords($r, $n);
 % 
 % my @p = @{$tile->{planets}};
 %
-<g transform="translate(<%= "$dx,$dy" %>)">
+<g transform="translate(<%= "$x,$y" %>)">
     <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" stroke="royalblue" transform="scale(.90)"/>
     <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
     <text x="-12" y="-8" font-size="14" fill="black"><%= $p[0]->{resources} %> / <%= $p[0]->{influence} %></text>
