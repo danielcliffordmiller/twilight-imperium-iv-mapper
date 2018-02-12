@@ -1,4 +1,4 @@
-.tile:hover { fill: blue; fill-opacity: 0.4; }
+.map.selected:hover, .hand:hover { fill: blue; fill-opacity: 0.4; }
 .selected { fill: cyan; fill-opacity: 0.4; }
 #confirm {
   position: fixed;
