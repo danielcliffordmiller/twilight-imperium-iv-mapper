@@ -13,9 +13,9 @@
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
 <%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
-<%= include 'tiles/outline', x => $dx, y => $dy, type => undef %>\
+<%= include 'tiles/outline', d => { x => $dx, y => $dy }%>\
 %	  } else {
-<%= include 'tiles/outline', x => $dx, y => $dy, type => 'map', id => "$ring,$n" %>\
+<%= include 'tiles/outline', d => { x => $dx, y => $dy, type => 'map', id => "$ring,$n" } %>\
 %	  }
 %     }
 % }
