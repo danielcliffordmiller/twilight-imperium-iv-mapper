@@ -6,9 +6,11 @@
     <path id="svg_hex" class="tile" d="M 500 350 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
     </defs>-->
 % my $offset = 240;
+<g transform="translate(240, 83)">\
 % for my $i (0 .. $#$hand) {
-<path id="hand<%= $i %>" class="hand tile" d="M <%= $offset + ($i*130)." 40" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
+<path id="hand<%= $i %>" class="hand tile" d="M <%= ($i*130)." -43" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
 % }
+</g>\
 <g transform="translate(525,463)">
 % for my $ring (0..3) {
 %     for my $n (0..(hex_num_tiles($ring)-1)) {
