@@ -11,7 +11,7 @@ use constant LENGTH => 50;
 
 our @ISA= qw(Exporter);
 
-our @EXPORT = qw(hex_move hex_num_tiles hex_coords);
+our @EXPORT = qw(hex_num_tiles hex_coords);
 
 sub hex_num_tiles {
     my ($ring) = @_;
@@ -24,13 +24,6 @@ sub hex_direction {
 	cos( 0.5236 + 1.0472 * $direction * -1 ) * 1.732 * LENGTH, 
 	- sin( 0.5236 + 1.0472 * $direction * -1 ) * 1.732 * LENGTH 
     );
-}
-
-sub hex_move {
-    my ($x, $y, $direction) = @_;
-    
-    my ($dx, $dy) = hex_direction( $direction );
-    return ( $x + $dx, $y + $dy );
 }
 
 sub hex_path {
