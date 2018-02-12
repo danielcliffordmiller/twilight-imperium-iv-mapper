@@ -67,6 +67,13 @@ sub draw_tiles {
     return $hand, $tiles;
 }
 
+sub draw_tile {
+    my ($name, $tiles) = @_;
+
+    my @tiles = partition( sub { $_[0]{name} eq $name }, @$tiles );
+    return ($tiles[0][0], $tiles[1]);
+}
+
 my %template_rules = (
     asteroids	    => sub { $_[0]{name} eq "Asteroid Field" },
     gravityRift	    => sub { $_[0]{name} eq "Gravity Rift" },
