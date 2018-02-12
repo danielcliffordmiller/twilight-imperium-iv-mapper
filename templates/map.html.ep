@@ -3,10 +3,7 @@
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
 <g transform="translate(265, 83)">\
-% for my $i (0 .. $#$hand) {
-<%= include 'tiles/'.Tiles::template($hand->[$i]), x => ($i*130), y => 0, tile => $hand->[$i] %>
-<%= include 'tiles/outline', x => ($i*130), y => 0, type => 'hand', id => "hand$i" %>
-% }
+<%= include 'hand', hand => $hand %>
 </g>\
 <g transform="translate(525,463)">
 % for my $ring (0..3) {
