@@ -6,8 +6,8 @@
     <path id="svg_hex" class="tile" d="M 500 350 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
     </defs>-->
 % my $offset = 240;
-% for my $i (0..4) {
-<path id="t<%= $i+1 %>" class="hand tile" d="M <%= $offset + ($i*130)." 40" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
+% for my $i (0 .. $#$hand) {
+<path id="hand<%= $i %>" class="hand tile" d="M <%= $offset + ($i*130)." 40" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
 % }
 <g transform="translate(525,463)">
 % for my $ring (0..3) {
@@ -16,9 +16,9 @@
 %	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
-<%= include 'tiles/'.Tiles::template($map_tile->[2]), map_tile => $map_tile %>
+<%= include 'tiles/'.Tiles::template($map_tile->[2]), map_tile => $map_tile %>\
 %	  } else {
-<%= include 'tiles/empty', ring => $ring, n => $n %>
+<%= include 'tiles/empty', ring => $ring, n => $n %>\
 %	  }
 %     }
 % }
