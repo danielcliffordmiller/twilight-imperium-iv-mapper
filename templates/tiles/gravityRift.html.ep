@@ -1,5 +1,4 @@
 <g transform="translate(<%= "$x,$y" %>)">
     <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" stroke="red" transform="scale(.90)"/>
-    <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
     <text x="-35" y="0" font-size="14" fill="black">Gravity Rift</text>
 </g>

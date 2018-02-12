@@ -1,0 +1,15 @@
+%
+% my @classes = ($type);
+%
+<path \
+ic-trigger-on="" \
+ic-post-to="/" \
+% if (defined stash 'id') {
+%     my ($r, $n) = split /,/, stash 'id';
+id="<%= stash 'id' %>" \
+%     push @classes, map { "hand$_" } (0 .. 5) if $r == 1;
+% }
+class="<%= join ' ', @classes %>" \
+d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" \
+transform="translate(<%= "$x,$y" %>)" \
+fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>

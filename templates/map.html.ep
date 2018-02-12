@@ -8,7 +8,9 @@
 % my $offset = 240;
 <g transform="translate(240, 83)">\
 % for my $i (0 .. $#$hand) {
-<path id="hand<%= $i %>" class="hand tile" d="M <%= ($i*130)." -43" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
+<%= include 'tiles/'.Tiles::template($hand->[$i]), x => ($i*130), y => -43, tile => $hand->[$i] %>
+<%= include 'tiles/outline', x => ($i*130), y => -43, type => 'hand', id => "hand$i" %>
+<!--<path id="hand<%= $i %>" class="hand tile" d="M <%= ($i*130)." -43" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>-->
 % }
 </g>\
 <g transform="translate(525,463)">
@@ -18,9 +20,10 @@
 %	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
-<%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>
+<%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
+<%= include 'tiles/outline', x => $dx, y => $dy, type => undef %>\
 %	  } else {
-<%= include 'tiles/empty', x => $dx, y => $dy, id => "$ring,$n" %>
+<%= include 'tiles/outline', x => $dx, y => $dy, type => 'map', id => "$ring,$n" %>\
 %	  }
 %     }
 % }
