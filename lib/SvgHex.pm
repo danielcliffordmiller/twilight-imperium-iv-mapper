@@ -21,8 +21,8 @@ sub hex_num_tiles {
 sub hex_direction {
     my $direction = shift;
     return (
-	cos( 0.5236 + 1.0472 * $direction * -1 ) * 1.732 * LENGTH, 
-	- sin( 0.5236 + 1.0472 * $direction * -1 ) * 1.732 * LENGTH 
+	cos( 0.5236 - 1.0472 * $direction ) * 1.732 * LENGTH,
+	- sin( 0.5236 - 1.0472 * $direction ) * 1.732 * LENGTH
     );
 }
 
