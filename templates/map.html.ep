@@ -18,9 +18,9 @@
 %	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
-<%= include 'tiles/'.Tiles::template($map_tile->[2]), map_tile => $map_tile %>\
+<%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>
 %	  } else {
-<%= include 'tiles/empty', ring => $ring, n => $n %>\
+<%= include 'tiles/empty', x => $dx, y => $dy, id => "$ring,$n" %>
 %	  }
 %     }
 % }
