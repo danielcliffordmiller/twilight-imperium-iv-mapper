@@ -3,7 +3,7 @@ package SvgHex;
 require Exporter;
 use strict;
 
-use feature qw(say switch);
+use feature qw(say);
 
 use constant RINGS => 3;
 
@@ -59,21 +59,9 @@ sub hex_coords {
     for my $d (@path) {
 	($dx, $dy) = hex_direction( $d );
 	$x += $dx; $y += $dy;
-	#( $dx, $dy ) = @{ hex_move( $dx, $dy, $d ) };
     }
 
     return map { sprintf "%.1f", $_ } ($x, $y);
-    #return sprintf "%.1f, %.1f", $x, $y;
 }
-
-#my ($r, $n) = (1, 5);
-#say "($r, $n): [".( join ', ', @{ hex_path( $r, $n ) } )."]";
-#say "($r, $n): ".hex_coords( $r, $n );
-#
-#for my $ring (0..3) {
-#    for my $n (0..(hex_num_tiles($ring)-1)) {
-#	say "($ring, $n): [".( join ', ', @{ hex_path( $ring, $n ) } )."]";
-#    }
-#}
 
 1;
