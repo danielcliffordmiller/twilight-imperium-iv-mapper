@@ -1,9 +1,11 @@
-#!/usr/bin/perl -w
-#
+#!/usr/bin/perl
+
 use strict;
+use warnings;
+
+use v5.18;
 
 use lib 'lib';
-use feature qw(say);
 
 use Mojolicious::Lite;
 use YAML ();

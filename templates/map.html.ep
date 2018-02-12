@@ -2,15 +2,10 @@
 % use Tiles;
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
-    <!--<defs>
-    <path id="svg_hex" class="tile" d="M 500 350 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
-    </defs>-->
-% my $offset = 240;
-<g transform="translate(240, 83)">\
+<g transform="translate(265, 83)">\
 % for my $i (0 .. $#$hand) {
-<%= include 'tiles/'.Tiles::template($hand->[$i]), x => ($i*130), y => -43, tile => $hand->[$i] %>
-<%= include 'tiles/outline', x => ($i*130), y => -43, type => 'hand', id => "hand$i" %>
-<!--<path id="hand<%= $i %>" class="hand tile" d="M <%= ($i*130)." -43" %> l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>-->
+<%= include 'tiles/'.Tiles::template($hand->[$i]), x => ($i*130), y => 0, tile => $hand->[$i] %>
+<%= include 'tiles/outline', x => ($i*130), y => 0, type => 'hand', id => "hand$i" %>
 % }
 </g>\
 <g transform="translate(525,463)">
