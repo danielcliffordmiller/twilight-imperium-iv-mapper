@@ -17,6 +17,9 @@ class="<%= join ' ', @classes %>" \
 % if (defined $d->{id}) {
 id="<%= $d->{id} %>" \
 % }
+% if (defined $d->{type}) {
+tile-type="<%= $d->{type} %>" \
+% }
 d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" \
 transform="translate(<%= "$x,$y" %>)" \
 fill="black" fill-opacity="0.0" stroke-width="2" stroke="black"/>
