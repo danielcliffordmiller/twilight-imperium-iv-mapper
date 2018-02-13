@@ -13,6 +13,8 @@ use YAML ();
 use Tiles;
 use Utils;
 
+srand(6); # delete this to get actually random deck draws
+
 my $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
 
 my $deck = [ @$tile_data ];
