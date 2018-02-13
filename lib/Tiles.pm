@@ -13,10 +13,9 @@ my @anomaly_tiles = ("Gravity Rift", "Asteroid Field", "Supernova", "Nebula");
 my @standard_tiles = qw(
     AbyzFria	    ArinamMeer		ArnorLor	BeregLirta
     CentauriGral    CoorneeqResculon	DalBoothaXXehan	LazarSakulag
-    LodorAlpha	    MeharXull		MellonZohbat	NewAlbionStarpoint
-    QuannBeta	    QuecennRarron	Saudor		Tarmann
+    Space	    MeharXull		MellonZohbat	NewAlbionStarpoint
+    MecatolRex	    QuecennRarron	Saudor		Tarmann
     TequranTorkan   Thibah		Vefut		Wellon
-    MecatolRex	    Space		Alpha		Beta
 );
 
 my @home_tiles = qw(
@@ -26,6 +25,8 @@ my @home_tiles = qw(
     Sol	    Winnu	Xxcha	Yin
     Yssaril
 );
+
+my @wormhole_tiles = qw(Alpha Beta LodorAlpha QuannBeta);
 
 sub anomaly {
     return $_[0]->{name} ~~ @anomaly_tiles;
@@ -39,11 +40,16 @@ sub home {
     return $_[0]->{name} ~~ @home_tiles;
 }
 
+sub wormhole {
+    return $_[0]->{name} ~~ @wormhole_tiles;
+}
+
 sub type {
     my $tile = shift;
     my $type = standard($tile) ? "standard" :
 		anomaly($tile) ? "anomaly"  :
-		   home($tile) ? "home"     : "unknown";
+		   home($tile) ? "home"     :
+	       wormhole($tile) ? "wormhle"  : "unknown";
     warn qq(tile "$tile->{name}" is of unknown type!) if $type eq "unknown";
     return $type;
 }

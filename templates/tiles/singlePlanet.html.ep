@@ -6,7 +6,7 @@
 <g transform="translate(<%= "$x,$y" %>)">
     <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" \
 % my $t = Tiles::type($tile);
-stroke="<%= $t eq 'standard' ? 'royalblue' : 'forestgreen' %>" \
+stroke="<%= $t eq 'home' ? 'forestgreen' : 'royalblue' %>" \
 transform="scale(.90)"/>
     <text x="-12" y="0" font-size="14" fill="black">\
 <%= $planet->{resources}." / ".$planet->{influence} %>\
