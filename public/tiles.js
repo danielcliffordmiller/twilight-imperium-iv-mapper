@@ -4,7 +4,7 @@
 function handleReady() {
     $(".hand").click(function(event) {
 	$(".selected").removeClass("selected");
-	$("."+this.id).addClass("selected");
+	$("."+this.getAttribute("tile-type")).addClass("selected");
 	$(this).addClass("selected");
     });
     $(".map").click(function(event) {
