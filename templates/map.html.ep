@@ -15,7 +15,7 @@
 <%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
 <%= include 'tiles/outline', d => { x => $dx, y => $dy }%>\
 %	  } else {
-<%= include 'tiles/outline', d => { x => $dx, y => $dy, type => 'map', id => "$ring,$n" } %>\
+<%= include 'tiles/outline', d => { x => $dx, y => $dy, class => 'map', id => "$ring,$n" } %>\
 %	  }
 %     }
 % }
