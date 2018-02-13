@@ -24,6 +24,6 @@ function handleReady() {
     $("#c-no").click(function(event){
         $("#confirm").removeClass("active");
     });
-    Intercooler.ready(function(elt){ handleReady() });
 }
 $(document).ready(handleReady);
+Intercooler.ready(function(elt){ handleReady() });
