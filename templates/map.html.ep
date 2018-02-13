@@ -1,5 +1,6 @@
 % use SvgHex;
 % use Tiles;
+% use TileMap;
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
 <g transform="translate(265, 83)">\
@@ -15,7 +16,9 @@
 <%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
 <%= include 'tiles/outline', d => { x => $dx, y => $dy }%>\
 %	  } else {
-<%= include 'tiles/outline', d => { x => $dx, y => $dy, class => 'map', id => "$ring,$n" } %>\
+%#	      'a' is for "allowed_types"
+%	      my @a = TileMap::allowed_types($map, $ring, $n);
+<%= include 'tiles/outline', d => { x => $dx, y => $dy, class => (join ' ', "map", @a) , id => "$ring,$n" } %>\
 %	  }
 %     }
 % }

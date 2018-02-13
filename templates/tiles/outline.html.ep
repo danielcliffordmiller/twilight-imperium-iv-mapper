@@ -4,12 +4,12 @@
 %
 <path \
 % if (defined $d->{class}) {
-%     if ($d->{class} eq "map") {
+%     if ($d->{class} =~ /map/) {
 ic-trigger-on="" \
 ic-post-to="/" \
 ic-target="#map" \
 %	  my ($r, $n) = split /,/, $d->{id};
-%	  push @classes, qw(standard anomaly) if $r == 1;
+%#	  push @classes, qw(standard anomaly) if $r == 1;
 %     }
 %     push @classes, $d->{class};
 class="<%= join ' ', @classes %>" \
