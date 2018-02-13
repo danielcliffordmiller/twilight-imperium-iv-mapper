@@ -27,7 +27,7 @@ my $deck = [ @$tile_data ];
 
 (undef, $deck, undef) = partition( \&Tiles::home, sub {
 	my $t = Tiles::template( shift );
-	my @a = qw(gravityRift singlePlanet doublePlanet);
+	my @a = qw(gravityRift singlePlanet doublePlanet nebula asteroids supernova space);
 	return $t ~~ @a;
     }, @$deck );
 
