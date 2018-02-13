@@ -23,7 +23,7 @@ my $deck = [ @$tile_data ];
 
 (my $mecatol, $deck) = Tiles::draw_tile( "MecatolRex", $tile_data );
 
-($deck, undef) = partition( sub {
+(undef, $deck, undef) = partition( \&Tiles::home, sub {
 	my $t = Tiles::template( shift );
 	my @a = qw(gravityRift singlePlanet doublePlanet);
 	return $t ~~ @a;
