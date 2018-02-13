@@ -31,7 +31,8 @@ my $deck = [ @$tile_data ];
 	return $t ~~ @a;
     }, @$deck );
 
-(my $hand, $deck) = Tiles::draw_tiles(5, $deck);
+#(my $hand, $deck) = Tiles::draw_tiles(5, $deck);
+my $hand = $deck;
 
 my $map_data = [];
 

@@ -1,0 +1,21 @@
+% use Tiles;
+% use SvgHex;
+%
+<% sub init_coords {
+    my $i = -1;
+    return sub {
+	$i++;
+	{ use integer;
+	    return [ ($i+2)/3, $i ];
+	}
+    };
+} %>
+% my $coords = init_coords();
+<g transform="translate(750, 50)">
+% for my $i (0 .. $#$hand) {
+%     my ($r, $n) = @{ $coords->() };
+%     my ($x, $y) = hex_coords($r, $n);
+<%= include 'tiles/'.Tiles::template($hand->[$i]), x => $x, y => $y, tile => $hand->[$i] %>
+<%= include 'tiles/outline', d => { x => $x, y => $y, class => 'hand', id => "hand$i", type => Tiles::type($hand->[$i]) } %>
+% }
+</g>
