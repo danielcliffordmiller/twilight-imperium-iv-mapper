@@ -53,7 +53,7 @@ get '/' => sub {
 
 post '/' => sub {
     my $c = shift;
-    my $tile = splice( @$hand, $c->param("hand") =~ s/hand//r, 1 );
+    my $tile = splice( @$hand, $c->param("hand") =~ s/hand//r, 1, (undef) );
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
     push @$map_data, [ $r, $n, $tile ];
     $c->stash( map => $map_data, hand => $hand );
