@@ -1,8 +1,4 @@
 <g transform="translate(<%= "$x,$y" %>)">
-    <pattern id="img1" width="100" height="71" x="0" y="0" preserveAspectRatio="true">
-	<image xlink:href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
-    </pattern>
-
-    <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#img1)" stroke-width="8" stroke="red" transform="scale(.90)"/>
+    <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#nebula-pattern)" stroke-width="8" stroke="red" transform="scale(.90)"/>
     <text x="-23" y="0" font-size="14" fill="white">Nebula</text>
 </g>
