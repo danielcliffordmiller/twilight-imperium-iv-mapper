@@ -26,7 +26,9 @@ my @home_tiles = qw(
     Yssaril
 );
 
-my @wormhole_tiles = qw(Alpha Beta LodorAlpha QuannBeta);
+my @alpha_tiles = qw(Alpha LodorAlpha);
+
+my @beta_tiles = qw(Beta QuannBeta);
 
 sub anomaly {
     return $_[0]->{name} ~~ @anomaly_tiles;
@@ -40,8 +42,12 @@ sub home {
     return $_[0]->{name} ~~ @home_tiles;
 }
 
-sub wormhole {
-    return $_[0]->{name} ~~ @wormhole_tiles;
+sub alpha {
+    return $_[0]->{name} ~~ @alpha_tiles;
+}
+
+sub beta {
+    return $_[0]->{name} ~~ @beta_tiles;
 }
 
 sub type {
@@ -49,7 +55,8 @@ sub type {
     my $type = standard($tile) ? "standard" :
 		anomaly($tile) ? "anomaly"  :
 		   home($tile) ? "home"     :
-	       wormhole($tile) ? "wormhle"  : "unknown";
+		   beta($tile) ? "beta"     :
+		  alpha($tile) ? "alpha"    : "unknown";
     warn qq(tile "$tile->{name}" is of unknown type!) if $type eq "unknown";
     return $type;
 }
