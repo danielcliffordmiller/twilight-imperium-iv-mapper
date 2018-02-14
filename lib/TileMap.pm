@@ -13,6 +13,13 @@ sub ring_full {
     return $r*6 == grep { $_->[0] == $r } @$map_data;
 }
 
+sub get_tile {
+    my ($map_data, $r, $n) = @_;
+
+    my @a = grep { $_->[0] == $r && $_->[1] == $n } @$map_data;
+    return @a ? $a[0][2] : undef;
+}
+
 sub neighbor_coords {
     my ($r, $n) = @_;
     my @res = map { [$r, $_ % ($r*6)] } ($n-1, $n+1);
@@ -29,10 +36,20 @@ sub neighbor_coords {
 sub get_neighbors {
     my $map_data = shift;
 
-    return map {
-	my $c = $_;
-	(grep { $_->[0] == $c->[0] && $_->[1] == $c->[1]; } @$map_data)[0];
-    } neighbor_coords(@_);
+    my @res;
+    for my $c (neighbor_coords(@_)) {
+	my $t = get_tile( $map_data, @$c );
+	push @res, $t if $t;
+    }
+    return @res;
+}
+
+sub any_neighbor {
+    my ($map_data, $r, $n, $fn) = @_;
+
+    my @a = get_neighbors($map_data, $r, $n);
+
+    return grep { $fn->($_) } get_neighbors($map_data, $r, $n);
 }
 
 sub allowed_types {
@@ -41,7 +58,9 @@ sub allowed_types {
     my @allowed;
     if ($r == 1 || ring_full( $map_data, $r-1 ) ) {
 	push @allowed, 'standard';
-	push @allowed, 'anomaly' unless grep { Tiles::type($_->[2]) eq "anomaly" } get_neighbors(@_);
+	push @allowed, 'anomaly' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'anomaly' } );
+	push @allowed, 'beta' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'beta' } );
+	push @allowed, 'alpha' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'alpha' } );
     }
     return @allowed;
 }
