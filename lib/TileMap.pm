@@ -3,6 +3,8 @@ package TileMap;
 use strict;
 use warnings;
 
+use constant RINGS => 3;
+
 use v5.18;
 
 use Tiles;
@@ -52,15 +54,38 @@ sub any_neighbor {
     return grep { $fn->($_) } get_neighbors($map_data, $r, $n);
 }
 
+sub empty_in_ring {
+    my ($map_data, $r) = @_;
+
+    my @res;
+    for my $n (0 .. $r * 6 - 1) {
+	push @res, [ $r, $n ] unless grep { $_->[0] == $r && $_->[1] == $n } @$map_data;
+    }
+    return @res;
+}
+
+sub can_be_placed {
+    my ($map_data, $r, $n, $type) = @_;
+
+    return 1 unless any_neighbor( $map_data, $r, $n, sub { Tiles::type($_[0]) eq $type } );
+
+    return 0 unless $r == RINGS;
+
+    for my $c (empty_in_ring($map_data, $r)) {
+	return 0 unless any_neighbor( $map_data, $c->[0], $c->[1], sub { Tiles::type($_[0]) eq $type } );
+    }
+    return 1;
+}
+
 sub allowed_types {
     my ($map_data, $r, $n) = @_;
 
     my @allowed;
     if ($r == 1 || ring_full( $map_data, $r-1 ) ) {
 	push @allowed, 'standard';
-	push @allowed, 'anomaly' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'anomaly' } );
-	push @allowed, 'beta' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'beta' } );
-	push @allowed, 'alpha' unless any_neighbor( @_, sub { Tiles::type($_[0]) eq 'alpha' } );
+	push @allowed, 'anomaly'    if can_be_placed( @_, 'anomaly' );
+	push @allowed, 'beta'	    if can_be_placed( @_, 'beta'    );
+	push @allowed, 'alpha'	    if can_be_placed( @_, 'alpha'   );
     }
     return @allowed;
 }
