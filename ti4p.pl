@@ -40,13 +40,6 @@ my $map_data = [];
 
 push @$map_data, [ 0, 0, $mecatol ];
 
-#push @$map_data, [ 0, 0, grep { $_->{name} eq 'MecatolRex' } @$tile_data ];
-#push @$map_data, [ 1, 0, grep { $_->{name} eq 'Vefut' } @$tile_data ];
-#push @$map_data, [ 1, 1, grep { $_->{name} eq 'Gravity Rift' } @$tile_data ];
-##push @$map_data, [ 1, 1, grep { $_->{name} eq 'Saudor' } @$tile_data ];
-#push @$map_data, [ 1, 3, grep { $_->{name} eq 'Tarmann' } @$tile_data ];
-#push @$map_data, [ 1, 5, grep { $_->{name} eq 'QuecennRarron' } @$tile_data ];
-
 get '/' => sub {
     my $c = shift;
     $c->stash( map => $map_data, hand => $hand );
