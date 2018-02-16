@@ -1,3 +1,6 @@
 # vim swap files
 *.swp
 *.swo
+
+# var directory
+var/
