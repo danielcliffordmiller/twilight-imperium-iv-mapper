@@ -62,11 +62,24 @@ post '/' => sub {
     $c->render( template => 'map' );
 };
 
+# load and save endpoints are for debugging, remove later
 get '/save/#file' => sub {
     my $c = shift;
     my $file = $c->stash('file');
-    store $map_data, "var/".$file;
-    $c->render( text => 'success!' );
+    mkdir 'var' unless (-d 'var');
+    store { map => $map_data, hand => $hand }, "var/".$file;
+    $c->redirect_to('/');
+};
+
+# remove later
+get '/load/#file' => sub {
+    my $c = shift;
+    my $file = $c->stash('file');
+    eval {
+	my $d = retrieve( "var/".$file );
+	($map_data, $hand) = @$d{'map','hand'};
+    };
+    $c->redirect_to('/');
 };
 
 app->start();
