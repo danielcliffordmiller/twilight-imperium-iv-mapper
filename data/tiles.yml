@@ -1,233 +1,233 @@
 tiles:
   - name: AbyzFria
-    type: Standard
+    type: standard
     planets:
       - name: Abyz
         resources: 3
         influence: 0
-        trait: Hazardous
+        trait: hazardous
       - name: Fria
         resources: 2
         influence: 0
-        trait: Hazardous
+        trait: hazardous
   - name: ArinamMeer
-    type: Standard
+    type: standard
     planets:
       - name: Arinam
         resources: 1
         influence: 2
-        trait: Industrial
+        trait: industrial
       - name: Meer
         resources: 0
         influence: 4
-        trait: Hazardous
-        tech: Red
+        trait: hazardous
+        tech: red
   - name: ArnorLor
-    type: Standard
+    type: standard
     planets:
       - name: Arnor
         resources: 2
         influence: 1
-        trait: Industrial
+        trait: industrial
       - name: Lor
         resources: 1
         influence: 2
-        trait: Industrial
+        trait: industrial
   - name: BeregLirta
-    type: Standard
+    type: standard
     planets:
       - name: Bereg
         resources: 3
         influence: 1
-        trait: Hazardous
+        trait: hazardous
       - name: Lirta IV
         resources: 2
         influence: 3
-        trait: Hazardous
+        trait: hazardous
   - name: CentauriGral
-    type: Standard
+    type: standard
     planets:
       - name: Centauri
         resources: 1
         influence: 3
-        trait: Cultural
+        trait: cultural
       - name: Gral
         resources: 1
         influence: 1
-        trait: Industrial
-        tech: Blue
+        trait: industrial
+        tech: blue
   - name: CoorneeqResculon
-    type: Standard
+    type: standard
     planets:
       - name: Coorneeq
         resources: 1
         influence: 2
-        trait: Cultural
+        trait: cultural
       - name: Resculon
         resources: 2
         influence: 0
-        trait: Cultural
+        trait: cultural
   - name: DalBoothaXXehan
-    type: Standard
+    type: standard
     planets:
       - name: Dal Bootha
         resources: 0
         influence: 2
-        trait: Cultural
+        trait: cultural
       - name: XXehan
         resources: 1
         influence: 1
-        trait: Cultural
+        trait: cultural
   - name: LazarSakulag
-    type: Standard
+    type: standard
     planets:
       - name: Lazar
         resources: 1
         influence: 0
-        trait: Industrial
+        trait: industrial
         tech: Yellow
       - name: Sakulag
         resources: 2
         influence: 1
-        trait: Hazardous
+        trait: hazardous
   - name: LodorAlpha
-    type: Standard
+    type: standard
     wormhole: Alpha
     planets:
       - name: Lodor
         resources: 3
         influence: 1
-        trait: Cultural
+        trait: cultural
   - name: MeharXull
-    type: Standard
+    type: standard
     planets:
       - name: Mehar Xull
         resources: 1
         influence: 3
-        trait: Hazardous
-        tech: Red
+        trait: hazardous
+        tech: red
   - name: MellonZohbat
-    type: Standard
+    type: standard
     planets:
       - name: Mellon
         resources: 0
         influence: 2
-        trait: Cultural
+        trait: cultural
       - name: Zohbat
         resources: 3
         influence: 1
-        trait: Hazardous
+        trait: hazardous
   - name: NewAlbionStarpoint
-    type: Standard
+    type: standard
     planets:
       - name: New Albion
         resources: 1
         influence: 1
-        trait: Industrial
-        tech: Green
+        trait: industrial
+        tech: green
       - name: Starpoint
         resources: 3
         influence: 1
-        trait: Hazardous
+        trait: hazardous
   - name: QuannBeta
-    type: Standard
+    type: standard
     wormhole: Beta
     planets:
       - name: Quann
         resources: 2
         influence: 1
-        trait: Cultural
+        trait: cultural
   - name: QuecennRarron
-    type: Standard
+    type: standard
     planets:
       - name: Quecen'n
         resources: 1
         influence: 2
-        trait: Industrial
+        trait: industrial
       - name: Rarron
         resources: 0
         influence: 3
-        trait: Cultural
+        trait: cultural
   - name: Saudor
-    type: Standard
+    type: standard
     planets:
       - name: Saudor
         resources: 2
         influence: 2
-        trait: Industrial
+        trait: industrial
   - name: Tarmann
-    type: Standard
+    type: standard
     planets:
       - name: Tar'Mann
         resources: 1
         influence: 1
-        trait: Industrial
-        tech: Green
+        trait: industrial
+        tech: green
   - name: TequranTorkan
-    type: Standard
+    type: standard
     planets:
       - name: Tequ'Ran
         resources: 2
         influence: 0
-        trait: Hazardous
+        trait: hazardous
       - name: Torkan
         resources: 0
         influence: 3
-        trait: Cultural
+        trait: cultural
   - name: Thibah
-    type: Standard
+    type: standard
     planets:
       - name: Thibah
         resources: 1
         influence: 1
-        trait: Industrial
-        tech: Blue
+        trait: industrial
+        tech: blue
   - name: Vefut
-    type: Standard
+    type: standard
     planets:
       - name: Vefut II
         resources: 2
         influence: 2
-        trait: Hazardous
+        trait: hazardous
   - name: Wellon
-    type: Standard
+    type: standard
     planets:
       - name: Wellon
         resources: 1
         influence: 2
-        trait: Industrial
+        trait: industrial
         tech: Yellow
   - name: MecatolRex
-    type: Standard
+    type: standard
     planets:
       - name: Mecatol Rex
         resources: 1
         influence: 6
   - name: Asteroid Field
-    type: Anomaly
+    type: anomaly
   - name: Asteroid Field
-    type: Anomaly
+    type: anomaly
   - name: Space
-    type: Standard
+    type: standard
   - name: Space
-    type: Standard
+    type: standard
   - name: Space
-    type: Standard
+    type: standard
   - name: Space
-    type: Standard
+    type: standard
   - name: Space
-    type: Standard
+    type: standard
   - name: Gravity Rift
-    type: Anomaly
+    type: anomaly
   - name: Nebula
-    type: Anomaly
+    type: anomaly
   - name: Supernova
-    type: Anomaly
+    type: anomaly
   - name: Alpha
-    type: Standard
+    type: standard
     wormhole: Alpha
   - name: Beta
-    type: Standard
+    type: standard
     wormhole: Beta
   - name: Arborec
     type: Home
