@@ -8,7 +8,7 @@
 % my $t = Tiles::type($tile);
 stroke="<%= $t eq 'home' ? 'forestgreen' : 'royalblue' %>" \
 transform="scale(.90)"/>
-    <text x="-12" y="0" font-size="14" fill="black">\
+    <text text-anchor="middle" y="2" font-size="14" fill="black">\
 <%= $planet->{resources}." / ".$planet->{influence} %>\
 </text>
 </g>
