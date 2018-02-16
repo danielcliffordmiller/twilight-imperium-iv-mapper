@@ -10,6 +10,8 @@ use lib 'lib';
 use Mojolicious::Lite;
 use YAML ();
 
+use Storable;
+
 use Tiles;
 use Utils;
 
@@ -58,6 +60,13 @@ post '/' => sub {
     push @$map_data, [ $r, $n, $tile ];
     $c->stash( map => $map_data, hand => $hand );
     $c->render( template => 'map' );
+};
+
+get '/save/#file' => sub {
+    my $c = shift;
+    my $file = $c->stash('file');
+    store $map_data, "var/".$file;
+    $c->render( text => 'success!' );
 };
 
 app->start();
