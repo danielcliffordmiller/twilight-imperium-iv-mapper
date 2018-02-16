@@ -32,4 +32,11 @@ sub partition {
     return @res;
 }
 
+sub cache {
+    my $fn = shift;
+    my %data;
+    my $m = shift || sub { join '.' => @_ };
+    return sub { $data{ $m->(@_) } ||= $fn->(@_) };
+}
+
 1;
