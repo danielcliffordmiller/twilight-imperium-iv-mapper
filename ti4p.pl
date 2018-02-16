@@ -34,7 +34,7 @@ my $deck = [ @$tile_data ];
     }, @$deck );
 
 #(my $hand, $deck) = Tiles::draw_tiles(5, $deck);
-my $hand = $deck;
+my $hand = [ @$deck ];
 
 my $map_data = [];
 
@@ -79,6 +79,14 @@ get '/load/#file' => sub {
 	my $d = retrieve( "var/".$file );
 	($map_data, $hand) = @$d{'map','hand'};
     };
+    $c->redirect_to('/');
+};
+
+# remove later
+get '/reset' => sub {
+    my $c = shift;
+    $map_data = [ [0, 0, $mecatol] ];
+    $hand = [ @$deck ];
     $c->redirect_to('/');
 };
 
