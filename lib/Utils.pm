@@ -39,4 +39,18 @@ sub cache {
     return sub { $data{ $m->(@_) } ||= $fn->(@_) };
 }
 
+sub to_string {
+    return '('.(join ',' => map { to_string($_) } @_).')' if scalar @_ > 1;
+    my $var = shift;
+    given(ref $var) {
+	when('ARRAY') {
+	    return '['.(join ',' => map { to_string($_) } @$var).']';
+	}
+	when('HASH') {
+	    return '{'.(join ',' => map { $_.'=>"'.$var->{$_}.'"' } keys %$var).'}';
+	}
+    }
+    return $var;
+}
+
 1;
