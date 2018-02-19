@@ -1,0 +1,12 @@
+% use TileSvg;
+<defs>
+    <pattern id="space-pattern" patternUnits="userSpaceOnUse" width="100" height="100">
+	<image xlink:href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
+    </pattern>
+    <pattern id="nebula-pattern" width="100" height="71" x="0" y="0" preserveAspectRatio="true">
+	<image xlink:href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
+    </pattern>
+<% foreach my $a (values %{ TileSvg::ring_colors() }) { my ($id, $color) = @$a; %>\
+   <path id="<%= $id %>" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" stroke="<%= $color %>" transform="scale(.90)"/>
+<% } %>
+</defs>

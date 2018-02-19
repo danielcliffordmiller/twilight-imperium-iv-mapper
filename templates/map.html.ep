@@ -3,14 +3,7 @@
 % use TileMap;
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
-<defs>
-    <pattern id="space-pattern" patternUnits="userSpaceOnUse" width="100" height="100">
-	<image xlink:href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
-    </pattern>
-    <pattern id="nebula-pattern" width="100" height="71" x="0" y="0" preserveAspectRatio="true">
-	<image xlink:href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
-    </pattern>
-</defs>
+<%= include 'svg_defs' %>\
 <g transform="translate(265, 83)">\
 <%= include 'test_hand', hand => $hand %>
 </g>\
