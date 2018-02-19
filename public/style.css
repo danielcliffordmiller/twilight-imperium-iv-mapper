@@ -1,5 +1,6 @@
 .map.selected:hover, .hand:hover { fill: blue; fill-opacity: 0.4; }
 .selected { fill: cyan; fill-opacity: 0.4; }
+svg text { font-family: sans-serif; }
 #confirm {
   position: fixed;
   top: 0;

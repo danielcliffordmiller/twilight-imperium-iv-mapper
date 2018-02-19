@@ -18,4 +18,14 @@ sub ring_id {
     return $ring_colors{$tile->{type}}[0];
 }
 
+my %trait_colors = (
+    industrial	=> "forestgreen",
+    hazardous	=> "red",
+    cultural	=> "royalblue"
+);
+
+sub trait_color {
+    return $trait_colors{$_[0]};
+}
+
 1;

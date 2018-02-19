@@ -2,9 +2,10 @@
 % use TileSvg;
 %
 % my @p = @{$tile->{planets}};
+% my @c = map { TileSvg::trait_color($_->{trait}) || "black" } @p;
 %
 <g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
-<text text-anchor="middle" y="-8" font-size="14" fill="black"><%= $p[0]->{resources} %> / <%= $p[0]->{influence} %></text>
-<text text-anchor="middle" y="12" font-size="14" fill="black"><%= $p[1]->{resources} %> / <%= $p[1]->{influence} %></text>
+<text text-anchor="middle" y="-8" font-size="14" fill="<%= $c[0] %>"><%= $p[0]->{resources} %> / <%= $p[0]->{influence} %></text>
+<text text-anchor="middle" y="12" font-size="14" fill="<%= $c[1] %>"><%= $p[1]->{resources} %> / <%= $p[1]->{influence} %></text>
 </g>

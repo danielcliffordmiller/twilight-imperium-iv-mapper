@@ -2,10 +2,11 @@
 % use TileSvg;
 %
 % my $planet = $tile->{planets}[0];
+% my $color = TileSvg::trait_color($planet->{trait}) || "black";
 % 
 <g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
-<text text-anchor="middle" y="2" font-size="14" fill="black">\
+<text text-anchor="middle" y="2" font-size="14" fill="<%= $color %>">\
 <%= $planet->{resources}." / ".$planet->{influence} %>\
 </text>
 </g>
