@@ -21,7 +21,7 @@
 %	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
-<%= include 'tiles/'.Tiles::template($map_tile->[2]), ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
+<%= include 'tiles/'.$map_tile->[2]{template}, ( x => $dx, y => $dy, tile => $map_tile->[2] ) %>\
 <%= include 'tiles/outline', d => { x => $dx, y => $dy }%>\
 %	  } else {
 %#	      'a' is for "allowed_types"

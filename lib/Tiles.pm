@@ -6,61 +6,6 @@ use warnings;
 
 use Utils;
 
-no warnings "experimental::smartmatch";
-
-my @anomaly_tiles = ("Gravity Rift", "Asteroid Field", "Supernova", "Nebula");
-
-my @standard_tiles = qw(
-    AbyzFria	    ArinamMeer		ArnorLor	BeregLirta
-    CentauriGral    CoorneeqResculon	DalBoothaXXehan	LazarSakulag
-    Space	    MeharXull		MellonZohbat	NewAlbionStarpoint
-    MecatolRex	    QuecennRarron	Saudor		Tarmann
-    TequranTorkan   Thibah		Vefut		Wellon
-);
-
-my @home_tiles = qw(
-    Arborec Creuss	Hacan	JolNar
-    L1Z1X   Letnev	Mentak	Muaat
-    Naalu   NekroVirus	Saar	SardakkNorr
-    Sol	    Winnu	Xxcha	Yin
-    Yssaril
-);
-
-my @alpha_tiles = qw(Alpha LodorAlpha);
-
-my @beta_tiles = qw(Beta QuannBeta);
-
-sub anomaly {
-    return $_[0]->{name} ~~ @anomaly_tiles;
-}
-
-sub standard {
-    return $_[0]->{name} ~~ @standard_tiles;
-}
-
-sub home {
-    return $_[0]->{name} ~~ @home_tiles;
-}
-
-sub alpha {
-    return $_[0]->{name} ~~ @alpha_tiles;
-}
-
-sub beta {
-    return $_[0]->{name} ~~ @beta_tiles;
-}
-
-sub type {
-    my $tile = shift;
-    my $type = standard($tile) ? "standard" :
-		anomaly($tile) ? "anomaly"  :
-		   home($tile) ? "home"     :
-		   beta($tile) ? "beta"     :
-		  alpha($tile) ? "alpha"    : "unknown";
-    warn qq(tile "$tile->{name}" is of unknown type!) if $type eq "unknown";
-    return $type;
-}
-
 sub draw {
     my $tiles = shift;
     my $tile = $tiles->[int(rand(@$tiles))];
@@ -85,21 +30,6 @@ sub draw_tile {
 
     my @tiles = partition( sub { $_[0]{name} eq $name }, @$tiles );
     return ($tiles[0][0], $tiles[1]);
-}
-
-my %template_rules = (
-    asteroids	    => sub { $_[0]{name} eq "Asteroid Field" },
-    gravityRift	    => sub { $_[0]{name} eq "Gravity Rift" },
-    nebula	    => sub { $_[0]{name} eq "Nebula" },
-    space	    => sub { $_[0]{name} eq "Space" },
-    supernova	    => sub { $_[0]{name} eq "Supernova" },
-    singlePlanet    => sub { $_[0]{planets} && scalar @{$_[0]{planets}} == 1 },
-    doublePlanet    => sub { $_[0]{planets} && scalar @{$_[0]{planets}} == 2 },
-);
-
-sub template {
-    my $tile = shift;
-    return (grep { $template_rules{$_}($tile) } keys %template_rules)[0];
 }
 
 1;

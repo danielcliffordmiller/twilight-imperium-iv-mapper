@@ -21,16 +21,12 @@ my $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
 
 my $deck = [ @$tile_data ];
 
-#my @tiles = partition( \&Tiles::standard, \&Tiles::anomaly, \&Tiles::home, @$tile_data );
-#my ($t, $r) = Tiles::draw($tiles[1]);
-#my ($h, $ts) = Tiles::draw_tiles(2, $tiles[1]);
+(my $mecatol, $deck) = Tiles::draw_tile( "mecatolrex", $tile_data );
 
-(my $mecatol, $deck) = Tiles::draw_tile( "MecatolRex", $tile_data );
-
-(undef, $deck, undef) = partition( \&Tiles::home, sub {
-	my $t = Tiles::template( shift );
+(undef, $deck, undef) = partition( sub { $_[0]{type} eq 'home' }, sub {
+	my $t = shift;
 	my @a = qw(gravityRift singlePlanet doublePlanet nebula asteroids supernova space);
-	return $t ~~ @a;
+	return $t->{template} ~~ @a;
     }, @$deck );
 
 #(my $hand, $deck) = Tiles::draw_tiles(5, $deck);

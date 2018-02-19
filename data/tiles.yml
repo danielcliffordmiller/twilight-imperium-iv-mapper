@@ -1,248 +1,290 @@
 tiles:
-  - name: AbyzFria
+  - name: abyz_fria
     type: standard
     planets:
-      - name: Abyz
+      - text: Abyz
         resources: 3
         influence: 0
         trait: hazardous
-      - name: Fria
+      - text: Fria
         resources: 2
         influence: 0
         trait: hazardous
-  - name: ArinamMeer
+    template: doublePlanet
+  - name: arinam_meer
     type: standard
     planets:
-      - name: Arinam
+      - text: Arinam
         resources: 1
         influence: 2
         trait: industrial
-      - name: Meer
+      - text: Meer
         resources: 0
         influence: 4
         trait: hazardous
-        tech: red
-  - name: ArnorLor
+        tech: warfare
+    template: doublePlanet
+  - name: arnor_lor
     type: standard
     planets:
-      - name: Arnor
+      - text: Arnor
         resources: 2
         influence: 1
         trait: industrial
-      - name: Lor
+      - text: Lor
         resources: 1
         influence: 2
         trait: industrial
-  - name: BeregLirta
+    template: doublePlanet
+  - name: bereg_lirta
     type: standard
     planets:
-      - name: Bereg
+      - text: Bereg
         resources: 3
         influence: 1
         trait: hazardous
-      - name: Lirta IV
+      - text: Lirta IV
         resources: 2
         influence: 3
         trait: hazardous
-  - name: CentauriGral
+    template: doublePlanet
+  - name: centauri_gral
     type: standard
     planets:
-      - name: Centauri
+      - text: Centauri
         resources: 1
         influence: 3
         trait: cultural
-      - name: Gral
+      - text: Gral
         resources: 1
         influence: 1
         trait: industrial
-        tech: blue
-  - name: CoorneeqResculon
+        tech: propulsion
+    template: doublePlanet
+  - name: coorneeq_resculon
     type: standard
     planets:
-      - name: Coorneeq
+      - text: Coorneeq
         resources: 1
         influence: 2
         trait: cultural
-      - name: Resculon
+      - text: Resculon
         resources: 2
         influence: 0
         trait: cultural
-  - name: DalBoothaXXehan
+    template: doublePlanet
+  - name: dalbootha_xxehan
     type: standard
     planets:
-      - name: Dal Bootha
+      - text: Dal Bootha
         resources: 0
         influence: 2
         trait: cultural
-      - name: XXehan
+      - text: XXehan
         resources: 1
         influence: 1
         trait: cultural
-  - name: LazarSakulag
+    template: doublePlanet
+  - name: lazar_sakulag
     type: standard
     planets:
-      - name: Lazar
+      - text: Lazar
         resources: 1
         influence: 0
         trait: industrial
-        tech: Yellow
-      - name: Sakulag
+        tech: cybernetic
+      - text: Sakulag
         resources: 2
         influence: 1
         trait: hazardous
-  - name: LodorAlpha
-    type: standard
-    wormhole: Alpha
+    template: doublePlanet
+  - name: lodor_alpha
+    type: alpha
+    wormhole: alpha
     planets:
-      - name: Lodor
+      - text: Lodor
         resources: 3
         influence: 1
         trait: cultural
-  - name: MeharXull
+    template: wormholePlanet
+  - name: mehar_xull
     type: standard
     planets:
-      - name: Mehar Xull
+      - text: Mehar Xull
         resources: 1
         influence: 3
         trait: hazardous
-        tech: red
-  - name: MellonZohbat
+        tech: warfare
+    template: singlePlanet
+  - name: mellon_zohbat
     type: standard
     planets:
-      - name: Mellon
+      - text: Mellon
         resources: 0
         influence: 2
         trait: cultural
-      - name: Zohbat
+      - text: Zohbat
         resources: 3
         influence: 1
         trait: hazardous
-  - name: NewAlbionStarpoint
+    template: doublePlanet
+  - name: newalbion_starpoint
     type: standard
     planets:
-      - name: New Albion
+      - text: New Albion
         resources: 1
         influence: 1
         trait: industrial
-        tech: green
-      - name: Starpoint
+        tech: biotic
+      - text: Starpoint
         resources: 3
         influence: 1
         trait: hazardous
-  - name: QuannBeta
-    type: standard
-    wormhole: Beta
+    template: doublePlanet
+  - name: quann_beta
+    type: beta
+    wormhole: beta
     planets:
-      - name: Quann
+      - text: Quann
         resources: 2
         influence: 1
         trait: cultural
-  - name: QuecennRarron
+    template: wormholePlanet
+  - name: quecenn_rarron
     type: standard
     planets:
-      - name: Quecen'n
+      - text: Quecen'n
         resources: 1
         influence: 2
         trait: industrial
-      - name: Rarron
+      - text: Rarron
         resources: 0
         influence: 3
         trait: cultural
-  - name: Saudor
+    template: doublePlanet
+  - name: saudor
     type: standard
     planets:
-      - name: Saudor
+      - text: Saudor
         resources: 2
         influence: 2
         trait: industrial
-  - name: Tarmann
+    template: singlePlanet
+  - name: tarmann
     type: standard
     planets:
-      - name: Tar'Mann
+      - text: Tar'Mann
         resources: 1
         influence: 1
         trait: industrial
-        tech: green
-  - name: TequranTorkan
+        tech: biotic
+    template: singlePlanet
+  - name: tequran_torkan
     type: standard
     planets:
-      - name: Tequ'Ran
+      - text: Tequ'Ran
         resources: 2
         influence: 0
         trait: hazardous
-      - name: Torkan
+      - text: Torkan
         resources: 0
         influence: 3
         trait: cultural
-  - name: Thibah
+    template: doublePlanet
+  - name: thibah
     type: standard
     planets:
-      - name: Thibah
+      - text: Thibah
         resources: 1
         influence: 1
         trait: industrial
-        tech: blue
-  - name: Vefut
+        tech: propulsion
+    template: singlePlanet
+  - name: vefut
     type: standard
     planets:
-      - name: Vefut II
+      - text: Vefut II
         resources: 2
         influence: 2
         trait: hazardous
-  - name: Wellon
+    template: singlePlanet
+  - name: wellon
     type: standard
     planets:
-      - name: Wellon
+      - text: Wellon
         resources: 1
         influence: 2
         trait: industrial
-        tech: Yellow
-  - name: MecatolRex
+        tech: cybernetic
+    template: singlePlanet
+  - name: mecatolrex
     type: standard
     planets:
       - name: Mecatol Rex
         resources: 1
         influence: 6
-  - name: Asteroid Field
+    template: singlePlanet
+  - name: asteroid
+    text: Asteroid Field
     type: anomaly
-  - name: Asteroid Field
+    template: asteroids
+  - name: asteroid
+    text: Asteroid Field
     type: anomaly
-  - name: Space
+    template: asteroids
+  - name: space
+    text: Space
     type: standard
-  - name: Space
+    template: space
+  - name: space
+    text: Space
     type: standard
-  - name: Space
+    template: space
+  - name: space
+    text: Space
     type: standard
-  - name: Space
+    template: space
+  - name: space
+    text: Space
     type: standard
-  - name: Space
+    template: space
+  - name: space
+    text: Space
     type: standard
-  - name: Gravity Rift
+    template: space
+  - name: gravity_rift
+    text: Gravity Rift
     type: anomaly
-  - name: Nebula
+    template: gravityRift
+  - name: nebula
+    text: Nebula
     type: anomaly
+    template: nebula
   - name: Supernova
     type: anomaly
-  - name: Alpha
-    type: standard
-    wormhole: Alpha
-  - name: Beta
-    type: standard
-    wormhole: Beta
+    template: supernova
+  - name: alpha
+    type: alpha
+    wormhole: alpha
+    template: wormhole
+  - name: beta
+    type: beta
+    wormhole: beta
+    template: wormhole
   - name: Arborec
-    type: Home
+    type: home
     planets:
       - name: NestPhar
         resources: 3
         influence: 2
   - name: Creuss
-    type: Home
+    type: home
     planets:
       - name: Creuss
         resources: 4
         influence: 2
   - name: Hacan
-    type: Home
+    type: home
     planets:
       - name: Hercant
         resources: 1
@@ -254,7 +296,7 @@ tiles:
         resources: 0
         influence: 1
   - name: JolNar
-    type: Home
+    type: home
     planets:
       - name: Jol
         resources: 1
@@ -263,13 +305,13 @@ tiles:
         resources: 2
         influence: 3
   - name: L1Z1X
-    type: Home
+    type: home
     planets:
       - name: [0.0.0]
         resources: 5
         influence: 0
   - name: Letnev
-    type: Home
+    type: home
     planets:
       - name: Arc Prime
         resources: 4
@@ -278,19 +320,19 @@ tiles:
         resources: 2
         influence: 1
   - name: Mentak
-    type: Home
+    type: home
     planets:
       - name: Moll Primus
         resources: 4
         influence: 1
   - name: Muaat
-    type: Home
+    type: home
     planets:
       - name: Muaat
         resources: 4
         influence: 1
   - name: Naalu
-    type: Home
+    type: home
     planets:
       - name: Druaa
         resources: 3
@@ -299,13 +341,13 @@ tiles:
         resources: 0
         influence: 2
   - name: NekroVirus
-    type: Home
+    type: home
     planets:
       - name: Mordai II
         resources: 4
         influence: 0
   - name: Saar
-    type: Home
+    type: home
     planets:
       - name: Lisis II
         resources: 1
@@ -314,7 +356,7 @@ tiles:
         resources: 2
         influence: 1
   - name: SardakkNorr
-    type: Home
+    type: home
     planets:
       - name: Tren'Lak
         resources: 1
@@ -323,19 +365,19 @@ tiles:
         resources: 3
         influence: 1
   - name: Sol
-    type: Home
+    type: home
     planets:
       - name: Jord
         resources: 4
         influence: 2
   - name: Winnu
-    type: Home
+    type: home
     planets:
       - name: Winnu
         resources: 3
         influence: 4
   - name: Xxcha
-    type: Home
+    type: home
     planets:
       - name: Archon Wren
         resources: 2
@@ -344,13 +386,13 @@ tiles:
         resources: 1
         influence: 1
   - name: Yin
-    type: Home
+    type: home
     planets:
       - name: Darien
         resources: 4
         influence: 4
   - name: Yssaril
-    type: Home
+    type: home
     planets:
       - name: Retillion
         resources: 2

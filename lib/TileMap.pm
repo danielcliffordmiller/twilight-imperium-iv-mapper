@@ -67,12 +67,12 @@ sub empty_in_ring {
 sub can_be_placed {
     my ($map_data, $r, $n, $type) = @_;
 
-    return 1 unless any_neighbor( $map_data, $r, $n, sub { Tiles::type($_[0]) eq $type } );
+    return 1 unless any_neighbor( $map_data, $r, $n, sub { $_[0]{type} eq $type } );
 
     return 0 unless $r == RINGS;
 
     for my $c (empty_in_ring($map_data, $r)) {
-	return 0 unless any_neighbor( $map_data, $c->[0], $c->[1], sub { Tiles::type($_[0]) eq $type } );
+	return 0 unless any_neighbor( $map_data, $c->[0], $c->[1], sub { $_[0]{type} eq $type } );
     }
     return 1;
 }
