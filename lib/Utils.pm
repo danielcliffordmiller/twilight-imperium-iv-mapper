@@ -42,8 +42,10 @@ sub cache {
 sub to_string {
     return '('.(join ',' => map { to_string($_) } @_).')' if scalar @_ > 1;
     my $var = shift;
-    return '['.(join ',' => map { to_string($_) } @$var).']' if ref $var eq 'ARRAY';
-    return '{'.(join ',' => map { $_.'=>'.to_string($var->{$_}) } keys %$var).'}' if ref $var eq 'HASH';
+    #return '['.(join ',' => map { to_string($_) } @$var).']' if ref $var eq 'ARRAY';
+    #return '{'.(join ',' => map { $_.'=>'.to_string($var->{$_}) } keys %$var).'}' if ref $var eq 'HASH';
+    return "[$var]" if ref $var eq 'ARRAY';
+    return "{$var}" if ref $var eq 'HASH';
     return $var;
 }
 
