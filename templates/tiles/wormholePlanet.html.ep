@@ -2,13 +2,13 @@
 % use TileSvg;
 %
 % my $p = $tile->{planets}[0];
-% my $c = TileSvg::trait_color($p->{trait});
-% my $tc = TileSvg::tech_color($p->{tech});
+% my $c = TileSvg::trait_color($p);
+% my $t = TileSvg::tech_color($p);
 % my $wh = $tile->{wormhole};
 %
 <g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
-<% if (defined $tc) { %><circle cx="22" cy="-13" fill="<%= $tc %>" r="5"/><% } %>
+<% if (defined $t) { %><circle cx="22" cy="-13" fill="<%= $t %>" r="5"/><% } %>
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c %>"><%= $p->{resources} %> / <%= $p->{influence} %></text>
 <circle cx="0" cy="15" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>
 <% if ($wh eq "alpha") { %>

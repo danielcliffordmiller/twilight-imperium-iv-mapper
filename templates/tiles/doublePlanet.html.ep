@@ -2,8 +2,8 @@
 % use TileSvg;
 %
 % my @p = @{$tile->{planets}};
-% my @c = map { TileSvg::trait_color($_->{trait}) || "black" } @p;
-% my @tc = map { $_->{tech} ? TileSvg::tech_color($_->{tech}) : undef } @p;
+% my @c = map { TileSvg::trait_color($_) || "black" } @p;
+% my @tc = map { TileSvg::tech_color($_) } @p;
 %
 <g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>

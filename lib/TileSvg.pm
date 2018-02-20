@@ -34,11 +34,11 @@ sub ring_id {
 }
 
 sub trait_color {
-    return $trait_colors{$_[0]};
+    return exists $_[0]{trait} ? $trait_colors{$_[0]{trait}} : undef;
 }
 
 sub tech_color {
-    return $tech_colors{$_[0]};
+    return exists $_[0]{tech} ? $tech_colors{$_[0]{tech}} : undef;
 }
 
 1;
