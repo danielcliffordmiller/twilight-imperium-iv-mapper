@@ -45,8 +45,7 @@ foreach my $i (0 .. $#players) {
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $players[$i],
-	    template	=> 'homeTile'
-	    #template	=> 'singleText'
+	    template	=> 'singleText'
 	} ];
 }
 

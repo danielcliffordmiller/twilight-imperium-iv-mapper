@@ -1,4 +1,0 @@
-<g transform="translate(<%= "$x,$y" %>)">
-<use href="#r_anomaly"/>
-<text text-anchor="middle" y="2" font-size="14" fill="black">Supernova</text>
-</g>

@@ -225,13 +225,13 @@ tiles:
         influence: 6
     template: singlePlanet
   - name: asteroid
-    text: Asteroid Field
+    text: Asteroids
     type: anomaly
-    template: asteroids
+    template: singleText
   - name: asteroid
-    text: Asteroid Field
+    text: Asteroids
     type: anomaly
-    template: asteroids
+    template: singleText
   - name: space
     text: Space
     type: standard
@@ -255,14 +255,15 @@ tiles:
   - name: gravity_rift
     text: Gravity Rift
     type: anomaly
-    template: gravityRift
+    template: singleText
   - name: nebula
     text: Nebula
     type: anomaly
     template: nebula
-  - name: Supernova
+  - name: supernova
+    text: Supernova
     type: anomaly
-    template: supernova
+    template: singleText
   - name: alpha
     type: alpha
     wormhole: alpha
