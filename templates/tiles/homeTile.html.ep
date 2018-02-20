@@ -1,7 +1,6 @@
 <g transform="translate(<%= "$x,$y" %>)">
 <use href="#r_home"/>
 <text y="2" font-family="sans-serif" font-variant="small-caps" font-size="14" fill="black" text-anchor="middle">\
-<%= $text %>
+<%= $tile->{text} %>
 </text>
 </g>
-<%= include 'tiles/outline', d => { x => $x, y => $y } %>

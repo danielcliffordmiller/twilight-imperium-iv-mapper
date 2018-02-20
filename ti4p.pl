@@ -15,6 +15,15 @@ use Storable;
 use Tiles;
 use Utils;
 
+my @players = qw(
+    David
+    Dan
+    Randy
+    Rob
+    Aaron
+    Alex
+);
+
 srand(6); # delete this to get actually random deck draws
 
 my $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
@@ -23,18 +32,23 @@ my $deck = [ @$tile_data ];
 
 (my $mecatol, $deck) = Tiles::draw_tile( "mecatolrex", $tile_data );
 
-(undef, $deck, undef) = partition( sub { $_[0]{type} eq 'home' }, sub {
-	my $t = shift;
-	my @a = qw(gravityRift singlePlanet doublePlanet nebula asteroids supernova space wormholePlanet wormhole);
-	return $t->{template} ~~ @a;
-    }, @$deck );
+(undef, $deck) = partition( sub { $_[0]{type} eq 'home' }, @$deck );
 
-#(my $hand, $deck) = Tiles::draw_tiles(5, $deck);
 my $hand = [ @$deck ];
 
 my $map_data = [];
 
 push @$map_data, [ 0, 0, $mecatol ];
+
+foreach my $i (0 .. $#players) {
+    push @$map_data, [ 3, ($i*3-1)%(3*6), {
+	    name	=> 'player_tile',
+	    type	=> 'home',
+	    text	=> $players[$i],
+	    template	=> 'homeTile'
+	    #template	=> 'singleText'
+	} ];
+}
 
 get '/' => sub {
     my $c = shift;
