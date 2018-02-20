@@ -16,5 +16,4 @@
 <% } elsif ($wh eq "beta") { %>
 <text fill="blue" text-anchor="middle" y="19">β</text>
 <% } %>
-%#<text text-anchor="middle" y="12" font-size="14" fill="<%= $c[1] %>"><%= $p[1]->{resources} %> / <%= $p[1]->{influence} %></text>
 </g>
