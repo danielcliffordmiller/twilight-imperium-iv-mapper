@@ -11,6 +11,19 @@ my %ring_colors = (
     anomaly	=> [ qw( r_anomaly  red		) ]
 );
 
+my %trait_colors = (
+    industrial	=> "forestgreen",
+    hazardous	=> "red",
+    cultural	=> "royalblue"
+);
+
+my %tech_colors = (
+    biotic	=> "forestgreen",
+    warfare 	=> "red",
+    propulsion	=> "royalblue",
+    cybernetic	=> "gold"
+);
+
 sub ring_colors { \%ring_colors }
 
 sub ring_id {
@@ -18,14 +31,12 @@ sub ring_id {
     return $ring_colors{$tile->{type}}[0];
 }
 
-my %trait_colors = (
-    industrial	=> "forestgreen",
-    hazardous	=> "red",
-    cultural	=> "royalblue"
-);
-
 sub trait_color {
     return $trait_colors{$_[0]};
+}
+
+sub tech_color {
+    return $tech_colors{$_[0]};
 }
 
 1;
