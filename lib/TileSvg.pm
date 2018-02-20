@@ -8,6 +8,8 @@ use v5.18;
 my %ring_colors = (
     home	=> [ qw( r_home	    forestgreen ) ],
     standard	=> [ qw( r_standard royalblue	) ],
+    alpha	=> [ qw( r_standard royalblue	) ],
+    beta	=> [ qw( r_standard royalblue	) ],
     anomaly	=> [ qw( r_anomaly  red		) ]
 );
 
