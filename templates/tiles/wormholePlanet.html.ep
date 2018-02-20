@@ -12,8 +12,8 @@
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c %>"><%= $p->{resources} %> / <%= $p->{influence} %></text>
 <circle cx="0" cy="15" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>
 <% if ($wh eq "alpha") { %>
-<text fill="goldenrod" text-anchor="middle" y="18">α</text>
+<text class="wh" fill="goldenrod" text-anchor="middle" y="18">α</text>
 <% } elsif ($wh eq "beta") { %>
-<text fill="blue" text-anchor="middle" y="19">β</text>
+<text class="wh" fill="blue" text-anchor="middle" y="19">β</text>
 <% } %>
 </g>

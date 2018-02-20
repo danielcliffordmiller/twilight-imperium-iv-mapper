@@ -7,8 +7,8 @@
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
 <circle cx="0" cy="0" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>
 <% if ($wh eq "alpha") { %>
-<text fill="goldenrod" text-anchor="middle" y="3">α</text>
+<text class="wh" fill="goldenrod" text-anchor="middle" y="3">α</text>
 <% } elsif ($wh eq "beta") { %>\
-<text fill="blue" text-anchor="middle" y="4">β</text>
+<text class="wh" fill="blue" text-anchor="middle" y="4">β</text>
 <% } %>\
 </g>
