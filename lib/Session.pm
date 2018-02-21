@@ -61,6 +61,19 @@ sub player {
     return @p ? $p[0] : 0;
 }
 
+sub active_player {
+    my $self = shift;
+
+    my $num_map_tiles = scalar @{ $self->map_data } - 1; # - 1 because of mecatol rex
+    my $num_players = scalar @{ $self->players };
+
+    my $offset = $num_map_tiles % $num_players;
+
+    my $cycles;
+    { use integer; $cycles = $num_map_tiles / $num_players }
+    return $cycles % 2 ? $self->players->[$offset] : $self->players->[$num_players-($offset+1)];
+}
+
 sub hand {
     my $self = shift;
     my $id = shift;
