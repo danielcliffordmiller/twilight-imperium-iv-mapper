@@ -39,6 +39,14 @@ sub cache {
     return sub { $data{ $m->(@_) } ||= $fn->(@_) };
 }
 
+sub characters { 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'; }
+
+sub get_tag {
+    my $n = shift || 8;
+    my $c = characters;
+    return join '', map { substr $c, int rand length $c, 1 } (0 .. $n-1);
+}
+
 sub to_string {
     return '('.(join ',' => map { to_string($_) } @_).')' if scalar @_ > 1;
     my $var = shift;
