@@ -36,7 +36,7 @@ get '/s/#s_id/#p_id' => sub {
     my $c = shift;
     my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
 
-    unless (exists $state{$s_id} && exists $state{$s_id}->players->{$p_id}) {
+    unless (exists $state{$s_id} && $state{$s_id}->player_exists($p_id)) {
 	$c->render( status => 404 );
 	return;
     }
@@ -52,7 +52,7 @@ post '/' => sub {
     my ($s_id, $p_id);
     (undef, undef, $s_id, $p_id) = split '/', $c->param('ic-current-url');
 
-    unless (exists $state{$s_id} && exists $state{$s_id}->players->{$p_id}) {
+    unless (exists $state{$s_id} && $state{$s_id}->player_exists($p_id)) {
 	$c->render( status => 404 );
 	return;
     }
@@ -67,7 +67,7 @@ post '/' => sub {
     $c->render( template => 'map' );
 };
 
-# navagate to http://localhost:3000/s/VQHKtf2b/qACStEUp
+# navagate to http://localhost:3000/s/kNVXv8MR/qACStEUp
 
 ## load and save endpoints are for debugging, remove later
 #get '/save/#file' => sub {

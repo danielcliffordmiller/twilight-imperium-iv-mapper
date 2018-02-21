@@ -53,13 +53,17 @@ around 'BUILDARGS' => sub {
 	} ];
     }
 
-    $players{ Utils::get_tag } = { name => 'debug' }; # debug player
-
     return $self->$orig( map_data => \@map_data, players => \%players );
 };
 
+sub player_exists {
+    my $self = shift;
+    return exists $self->players->{$_[0]};
+}
+
 sub hand {
     my $self = shift;
+    return undef unless $self->players->{$_[0]};
     return $self->players->{$_[0]}->{hand};
 }
 
