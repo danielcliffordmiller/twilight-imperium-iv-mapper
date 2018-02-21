@@ -9,7 +9,7 @@ use Mouse;
 
 has map_data => (is => 'ro', isa => 'ArrayRef');
 
-has players => (is => 'ro', isa => 'HashRef');
+has players => (is => 'ro', isa => 'ArrayRef');
 
 state $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
 
@@ -30,7 +30,7 @@ around 'BUILDARGS' => sub {
 	@$deck
     );
 
-    my %players;
+    my @players;
 
     foreach my $n (0 .. $#names) {
 	my ($hand, $t);
@@ -40,12 +40,9 @@ around 'BUILDARGS' => sub {
 	($t, $blue) = Tiles::draw_tiles(3, $blue);
 	push @$hand, @$t;
 
-	$players{ Utils::get_tag } = {
-	    name => $names[$n],
-	    hand => $hand
-	};
+	push @players, [ Utils::get_tag, $names[$n], $hand ];
 
-	push @map_data, [ 3, ($n*3-1)%(3*6), {
+	push @map_data, [ 3, (($n+1)*3-1), {
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$n],
@@ -53,26 +50,31 @@ around 'BUILDARGS' => sub {
 	} ];
     }
 
-    return $self->$orig( map_data => \@map_data, players => \%players );
+    return $self->$orig( map_data => \@map_data, players => \@players );
 };
 
-sub player_exists {
+sub player {
     my $self = shift;
-    return exists $self->players->{$_[0]};
+    my $id = shift;
+
+    my @p = grep { $_->[0] eq $id } @{ $self->players };
+    return @p ? $p[0] : 0;
 }
 
 sub hand {
     my $self = shift;
-    return undef unless $self->players->{$_[0]};
-    return $self->players->{$_[0]}->{hand};
+    my $id = shift;
+
+    my $p = $self->player($id);
+    return $p ? $p->[2] : 0;
 }
 
 sub say_players {
     my $self = shift;
 
     my $players = $self->players;
-    foreach ( keys %{ $players } ) {
-	say $_." -> ".$players->{$_}{name};
+    foreach ( @$players ) {
+	say $_->[0]." -> ".$_->[1];
     }
 }
 

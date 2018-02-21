@@ -36,7 +36,7 @@ get '/s/#s_id/#p_id' => sub {
     my $c = shift;
     my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
 
-    unless (exists $state{$s_id} && $state{$s_id}->player_exists($p_id)) {
+    unless (exists $state{$s_id} && $state{$s_id}->player($p_id)) {
 	$c->render( status => 404 );
 	return;
     }
@@ -52,7 +52,7 @@ post '/' => sub {
     my ($s_id, $p_id);
     (undef, undef, $s_id, $p_id) = split '/', $c->param('ic-current-url');
 
-    unless (exists $state{$s_id} && $state{$s_id}->player_exists($p_id)) {
+    unless (exists $state{$s_id} && $state{$s_id}->player($p_id)) {
 	$c->render( status => 404 );
 	return;
     }
