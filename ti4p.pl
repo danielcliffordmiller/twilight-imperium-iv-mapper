@@ -10,10 +10,14 @@ use lib 'lib';
 use Mojolicious::Lite;
 use YAML ();
 
+use Session;
+
 use Storable;
 
 use Tiles;
 use Utils;
+
+srand(6); # delete this to get actually random deck draws
 
 my @players = qw(
     David
@@ -24,72 +28,73 @@ my @players = qw(
     Alex
 );
 
-srand(6); # delete this to get actually random deck draws
+my $s = Session->new(@players);
 
-my $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
+my %state = ( Utils::get_tag, $s );
 
-my $deck = [ @$tile_data ];
-
-(my $mecatol, $deck) = Tiles::draw_tile( "mecatolrex", $tile_data );
-
-(undef, $deck) = partition( sub { $_[0]{type} eq 'home' }, @$deck );
-
-my $hand = [ @$deck ];
-
-my $map_data = [];
-
-push @$map_data, [ 0, 0, $mecatol ];
-
-foreach my $i (0 .. $#players) {
-    push @$map_data, [ 3, ($i*3-1)%(3*6), {
-	    name	=> 'player_tile',
-	    type	=> 'home',
-	    text	=> $players[$i],
-	    template	=> 'singleText'
-	} ];
-}
-
-get '/' => sub {
+get '/s/#s_id/#p_id' => sub {
     my $c = shift;
-    $c->stash( map => $map_data, hand => $hand );
+    my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
+
+    unless (exists $state{$s_id} && exists $state{$s_id}->players->{$p_id}) {
+	$c->render( status => 404 );
+	return;
+    }
+
+    my $s = $state{$s_id};
+
+    $c->stash( map => $s->map_data, hand => $s->hand($p_id) );
     $c->render(template => 'map', layout => 'main');
 };
 
 post '/' => sub {
     my $c = shift;
-    my $tile = splice( @$hand, $c->param("hand") =~ s/hand//r, 1, (undef) );
+    my ($s_id, $p_id);
+    (undef, undef, $s_id, $p_id) = split '/', $c->param('ic-current-url');
+
+    unless (exists $state{$s_id} && exists $state{$s_id}->players->{$p_id}) {
+	$c->render( status => 404 );
+	return;
+    }
+
+    my $s = $state{$s_id};
+
+    my $tile = splice( @{ $s->hand($p_id) }, $c->param("hand") =~ s/hand//r, 1, (undef) );
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
-    push @$map_data, [ $r, $n, $tile ];
-    $c->stash( map => $map_data, hand => $hand );
+
+    push @{ $s->map_data }, [ $r, $n, $tile ];
+    $c->stash( map => $s->map_data, hand => $s->hand($p_id) );
     $c->render( template => 'map' );
 };
 
-# load and save endpoints are for debugging, remove later
-get '/save/#file' => sub {
-    my $c = shift;
-    my $file = $c->stash('file');
-    mkdir 'var' unless (-d 'var');
-    store { map => $map_data, hand => $hand }, "var/".$file;
-    $c->redirect_to('/');
-};
+# navagate to http://localhost:3000/s/VQHKtf2b/qACStEUp
 
-# remove later
-get '/load/#file' => sub {
-    my $c = shift;
-    my $file = $c->stash('file');
-    eval {
-	my $d = retrieve( "var/".$file );
-	($map_data, $hand) = @$d{'map','hand'};
-    };
-    $c->redirect_to('/');
-};
-
-# remove later
-get '/reset' => sub {
-    my $c = shift;
-    $map_data = [ [0, 0, $mecatol] ];
-    $hand = [ @$deck ];
-    $c->redirect_to('/');
-};
+## load and save endpoints are for debugging, remove later
+#get '/save/#file' => sub {
+#    my $c = shift;
+#    my $file = $c->stash('file');
+#    mkdir 'var' unless (-d 'var');
+#    store { map => $map_data, hand => $hand }, "var/".$file;
+#    $c->redirect_to('/');
+#};
+#
+## remove later
+#get '/load/#file' => sub {
+#    my $c = shift;
+#    my $file = $c->stash('file');
+#    eval {
+#	my $d = retrieve( "var/".$file );
+#	($map_data, $hand) = @$d{'map','hand'};
+#    };
+#    $c->redirect_to('/');
+#};
+#
+## remove later
+#get '/reset' => sub {
+#    my $c = shift;
+#    $map_data = [ [0, 0, $mecatol] ];
+#    $hand = [ @$deck ];
+#    $c->redirect_to('/');
+#};
 
 app->start();
