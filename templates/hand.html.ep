@@ -2,6 +2,6 @@
 %
 % for my $i (0 .. $#$hand) {
 %     next unless $hand->[$i];
-<%= include 'tiles/'.$hand->[$i]{template}), x => ($i*130), y => 0, tile => $hand->[$i] %>
+<%= include 'tiles/'.$hand->[$i]{template}, x => ($i*130), y => 0, tile => $hand->[$i] %>
 <%= include 'tiles/outline', d => { x => ($i*130), y => 0, class => 'hand', id => "hand$i", type => $hand->[$i]{type} } %>
 % }
