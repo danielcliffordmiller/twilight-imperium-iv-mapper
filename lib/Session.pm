@@ -46,7 +46,7 @@ around 'BUILDARGS' => sub {
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$n],
-	    template	=> 'singleText'
+	    template	=> 'single_text'
 	} ];
     }
 

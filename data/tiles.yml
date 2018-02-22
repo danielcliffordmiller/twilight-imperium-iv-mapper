@@ -10,7 +10,7 @@ tiles:
         resources: 2
         influence: 0
         trait: hazardous
-    template: doublePlanet
+    template: double_planet
   - name: arinam_meer
     type: standard
     planets:
@@ -23,7 +23,7 @@ tiles:
         influence: 4
         trait: hazardous
         tech: warfare
-    template: doublePlanet
+    template: double_planet
   - name: arnor_lor
     type: standard
     planets:
@@ -35,7 +35,7 @@ tiles:
         resources: 1
         influence: 2
         trait: industrial
-    template: doublePlanet
+    template: double_planet
   - name: bereg_lirta
     type: standard
     planets:
@@ -47,7 +47,7 @@ tiles:
         resources: 2
         influence: 3
         trait: hazardous
-    template: doublePlanet
+    template: double_planet
   - name: centauri_gral
     type: standard
     planets:
@@ -60,7 +60,7 @@ tiles:
         influence: 1
         trait: industrial
         tech: propulsion
-    template: doublePlanet
+    template: double_planet
   - name: coorneeq_resculon
     type: standard
     planets:
@@ -72,7 +72,7 @@ tiles:
         resources: 2
         influence: 0
         trait: cultural
-    template: doublePlanet
+    template: double_planet
   - name: dalbootha_xxehan
     type: standard
     planets:
@@ -84,7 +84,7 @@ tiles:
         resources: 1
         influence: 1
         trait: cultural
-    template: doublePlanet
+    template: double_planet
   - name: lazar_sakulag
     type: standard
     planets:
@@ -97,7 +97,7 @@ tiles:
         resources: 2
         influence: 1
         trait: hazardous
-    template: doublePlanet
+    template: double_planet
   - name: lodor_alpha
     type: alpha
     wormhole: alpha
@@ -106,7 +106,7 @@ tiles:
         resources: 3
         influence: 1
         trait: cultural
-    template: wormholePlanet
+    template: wormhole_planet
   - name: mehar_xull
     type: standard
     planets:
@@ -115,7 +115,7 @@ tiles:
         influence: 3
         trait: hazardous
         tech: warfare
-    template: singlePlanet
+    template: single_planet
   - name: mellon_zohbat
     type: standard
     planets:
@@ -127,7 +127,7 @@ tiles:
         resources: 3
         influence: 1
         trait: hazardous
-    template: doublePlanet
+    template: double_planet
   - name: newalbion_starpoint
     type: standard
     planets:
@@ -140,7 +140,7 @@ tiles:
         resources: 3
         influence: 1
         trait: hazardous
-    template: doublePlanet
+    template: double_planet
   - name: quann_beta
     type: beta
     wormhole: beta
@@ -149,7 +149,7 @@ tiles:
         resources: 2
         influence: 1
         trait: cultural
-    template: wormholePlanet
+    template: wormhole_planet
   - name: quecenn_rarron
     type: standard
     planets:
@@ -161,7 +161,7 @@ tiles:
         resources: 0
         influence: 3
         trait: cultural
-    template: doublePlanet
+    template: double_planet
   - name: saudor
     type: standard
     planets:
@@ -169,7 +169,7 @@ tiles:
         resources: 2
         influence: 2
         trait: industrial
-    template: singlePlanet
+    template: single_planet
   - name: tarmann
     type: standard
     planets:
@@ -178,7 +178,7 @@ tiles:
         influence: 1
         trait: industrial
         tech: biotic
-    template: singlePlanet
+    template: single_planet
   - name: tequran_torkan
     type: standard
     planets:
@@ -190,7 +190,7 @@ tiles:
         resources: 0
         influence: 3
         trait: cultural
-    template: doublePlanet
+    template: double_planet
   - name: thibah
     type: standard
     planets:
@@ -199,7 +199,7 @@ tiles:
         influence: 1
         trait: industrial
         tech: propulsion
-    template: singlePlanet
+    template: single_planet
   - name: vefut
     type: standard
     planets:
@@ -207,7 +207,7 @@ tiles:
         resources: 2
         influence: 2
         trait: hazardous
-    template: singlePlanet
+    template: single_planet
   - name: wellon
     type: standard
     planets:
@@ -216,22 +216,22 @@ tiles:
         influence: 2
         trait: industrial
         tech: cybernetic
-    template: singlePlanet
+    template: single_planet
   - name: mecatolrex
     type: standard
     planets:
       - name: Mecatol Rex
         resources: 1
         influence: 6
-    template: singlePlanet
+    template: single_planet
   - name: asteroid
     text: Asteroids
     type: anomaly
-    template: singleText
+    template: single_text
   - name: asteroid
     text: Asteroids
     type: anomaly
-    template: singleText
+    template: single_text
   - name: space
     text: Space
     type: standard
@@ -255,7 +255,7 @@ tiles:
   - name: gravity_rift
     text: Gravity Rift
     type: anomaly
-    template: singleText
+    template: single_text
   - name: nebula
     text: Nebula
     type: anomaly
@@ -263,7 +263,7 @@ tiles:
   - name: supernova
     text: Supernova
     type: anomaly
-    template: singleText
+    template: single_text
   - name: alpha
     type: alpha
     wormhole: alpha
