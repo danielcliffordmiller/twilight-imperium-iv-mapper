@@ -1,5 +1,7 @@
 package TileMap;
 
+require Exporter;
+
 use strict;
 use warnings;
 
@@ -8,6 +10,15 @@ use constant RINGS => 3;
 use v5.18;
 
 use Tiles;
+
+our @ISA = qw(Exporter);
+
+our @EXPORT_OK = qw(tiles_in_ring);
+
+sub tiles_in_ring {
+    my ($ring) = @_;
+    return $ring == 0 ? 1 : $ring * 6;
+}
 
 sub ring_full {
     my ($map_data, $r) = @_;

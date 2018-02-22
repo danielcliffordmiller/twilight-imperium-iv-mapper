@@ -1,5 +1,5 @@
 % use Tiles;
-% use SvgHex;
+% use TileSvg qw(xy_coords);
 %
 <% sub hand_coords { {
     use integer;
@@ -9,7 +9,7 @@
 <g transform="translate(750, 50)">
 % for my $i (0 .. $#$hand) {
 %     next unless $hand->[$i];
-%     my ($x, $y) = hex_coords(hand_coords($i));
+%     my ($x, $y) = xy_coords(hand_coords($i));
 <%= include 'tiles/'.$hand->[$i]{template}, x => $x, y => $y, tile => $hand->[$i] %>
 <%= include 'tiles/outline', d => { x => $x, y => $y, class => 'hand', id => "hand$i", type => $hand->[$i]{type} } %>
 % }

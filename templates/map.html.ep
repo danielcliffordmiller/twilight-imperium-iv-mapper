@@ -1,6 +1,6 @@
-% use SvgHex;
 % use Tiles;
-% use TileMap;
+% use TileSvg qw(xy_coords);
+% use TileMap qw(tiles_in_ring);
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
 <%= include 'svg_defs' %>\
@@ -9,8 +9,8 @@
 </g>\
 <g transform="translate(525,463)">
 % for my $ring (0..3) {
-%     for my $n (0..(hex_num_tiles($ring)-1)) {
-%	  my ($dx, $dy) = hex_coords( $ring, $n );
+%     for my $n (0..(tiles_in_ring($ring)-1)) {
+%	  my ($dx, $dy) = xy_coords( $ring, $n );
 %	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
 %	  next if $map_tile && !defined $map_tile->[2];
 %	  if ($map_tile) {
