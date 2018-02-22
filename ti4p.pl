@@ -8,14 +8,12 @@ use v5.18;
 use lib 'lib';
 
 use Mojolicious::Lite;
-use YAML ();
 
 use Session;
 
 use Storable;
 
-use Tiles;
-use Utils;
+use Utils qw(get_tag);
 
 srand(6); # delete this to get actually random deck draws
 
@@ -30,7 +28,7 @@ my @players = qw(
 
 my $s = Session->new(@players);
 
-my %state = ( Utils::get_tag, $s );
+my %state = ( get_tag, $s );
 
 get '/s/#s_id/#p_id' => sub {
     my $c = shift;

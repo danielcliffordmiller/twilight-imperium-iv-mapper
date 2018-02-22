@@ -8,7 +8,7 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT = qw(partition);
+our @EXPORT_OK = qw(partition get_tag);
 
 sub partition {
     my @subs;

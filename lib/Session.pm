@@ -2,8 +2,10 @@ package Session;
 
 use v5.18;
 
-use Tiles;
-use Utils;
+use YAML ();
+
+use Tiles qw(draw_tile draw_tiles);
+use Utils qw(partition get_tag);
 
 use Mouse;
 
@@ -18,7 +20,7 @@ around 'BUILDARGS' => sub {
     my $self = shift;
     my @names = @_;
 
-    my ($mecatol, $deck) = Tiles::draw_tile( "mecatolrex", $tile_data );
+    my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
 
     my @map_data;
 
@@ -35,12 +37,12 @@ around 'BUILDARGS' => sub {
     foreach my $n (0 .. $#names) {
 	my ($hand, $t);
 
-	($t, $red) = Tiles::draw_tiles(2, $red);
+	($t, $red) = draw_tiles(2, $red);
 	push @$hand, @$t;
-	($t, $blue) = Tiles::draw_tiles(3, $blue);
+	($t, $blue) = draw_tiles(3, $blue);
 	push @$hand, @$t;
 
-	push @players, [ Utils::get_tag, $names[$n], $hand ];
+	push @players, [ get_tag, $names[$n], $hand ];
 
 	push @map_data, [ 3, (($n+1)*3-1), {
 	    name	=> 'player_tile',

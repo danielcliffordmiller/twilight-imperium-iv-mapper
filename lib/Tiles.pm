@@ -1,10 +1,16 @@
 package Tiles;
 
+require Exporter;
+
 use v5.12;
 use strict;
 use warnings;
 
-use Utils;
+use Utils qw(partition);
+
+our @ISA = qw(Exporter);
+
+our @EXPORT_OK = qw(draw_tiles draw_tile);
 
 sub red_backed {
     $_[0]{type} eq 'anomaly' ||
