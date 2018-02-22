@@ -7,5 +7,13 @@
 <script src="/intercooler-1.2.1.min.js"></script>
 <script src="/tiles.js"></script>
 </head>
-<body><div id="map"><%= content %></div></body>
+<body><div id="map"><%= content %></div>
+<div id="confirm">
+<div>
+    <p>Are you sure you want to place this tile?</p>
+    <button id="c-yes">Yes</button>
+    <button id="c-no">No</button>
+</div>
+</div>
+</body>
 </html>

@@ -2,10 +2,10 @@
 % use TileSvg qw(xy_coords);
 % use TileMap qw(tiles_in_ring);
 %
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1600">
+<svg style="border: 1px solid black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="900">
 <%= include 'svg_defs' %>\
 <g transform="translate(265, 83)">\
-<%= include 'test_hand', hand => $hand %>
+<%= include 'hand', hand => $hand %>
 </g>\
 <g transform="translate(525,463)">
 % for my $ring (0..3) {
@@ -25,10 +25,3 @@
 % }
 </g>
 </svg>
-<div id="confirm">
-<div>
-    <p>Are you sure you want to place this tile?</p>
-    <button id="c-yes">Yes</button>
-    <button id="c-no">No</button>
-</div>
-</div>
