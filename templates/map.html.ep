@@ -2,11 +2,12 @@
 % use TileSvg qw(xy_coords);
 % use TileMap qw(tiles_in_ring);
 %
-<svg style="border: 1px solid black; width: 40em" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-58 -50 560 100">
+<div style="width: 40em">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-58 -50 560 100">
 <%= include 'svg_defs' %>\
 <%= include 'hand', hand => $hand %>
 </svg>
-<svg style="border: 1px solid black; width: 40em" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-280 -310 560 620">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-280 -310 560 620">
 % for my $ring (0..3) {
 %     for my $n (0..(tiles_in_ring($ring)-1)) {
 %	  my ($dx, $dy) = xy_coords( $ring, $n );
@@ -23,3 +24,4 @@
 %     }
 % }
 </svg>
+</div>
