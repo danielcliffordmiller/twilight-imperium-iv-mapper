@@ -6,6 +6,7 @@ svg text {
   font-variant: small-caps;
 }
 svg text.wh { font-variant: none; }
+body { margin: 0; }
 #confirm {
   position: fixed;
   top: 0;
