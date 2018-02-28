@@ -14,11 +14,17 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(ring_id trait_color tech_color xy_coords);
 
 my %ring_colors = (
-    home	=> [ qw( r_home	    forestgreen ) ],
-    standard	=> [ qw( r_standard royalblue	) ],
-    alpha	=> [ qw( r_standard royalblue	) ],
-    beta	=> [ qw( r_standard royalblue	) ],
-    anomaly	=> [ qw( r_anomaly  red		) ]
+    r_home	=> 'forestgreen',
+    r_standard	=> 'royalblue',
+    r_anomaly	=> 'red',
+);
+
+my %ring_ids = (
+    home	=> 'r_home',
+    standard	=> 'r_standard',
+    alpha	=> 'r_standard',
+    beta	=> 'r_standard',
+    anomaly	=> 'r_anomaly',
 );
 
 my %trait_colors = (
@@ -38,7 +44,7 @@ sub ring_colors { \%ring_colors }
 
 sub ring_id {
     my $tile = shift;
-    return $ring_colors{$tile->{type}}[0];
+    return $ring_ids{$tile->{type}};
 }
 
 sub trait_color {
