@@ -41,7 +41,7 @@ get '/s/#s_id/#p_id' => sub {
 
     my $s = $state{$s_id};
 
-    $c->stash( map => $s->map_data, hand => $s->hand($p_id) );
+    $c->stash( session => $s, map => $s->map_data, hand => $s->hand($p_id) );
     $c->render(template => 'map', layout => 'main');
 };
 
@@ -61,7 +61,7 @@ post '/' => sub {
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
 
     push @{ $s->map_data }, [ $r, $n, $tile ];
-    $c->stash( map => $s->map_data, hand => $s->hand($p_id) );
+    $c->stash( session => $s, map => $s->map_data, hand => $s->hand($p_id) );
     $c->render( template => 'map' );
 };
 
