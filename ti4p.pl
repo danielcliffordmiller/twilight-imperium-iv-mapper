@@ -30,9 +30,9 @@ my $s = Session->new(@players);
 
 my %state = ( $s->id(), $s );
 
-say "http://localhost:3000/s/".$s->id()."/".$s->players->[0][0];
+say "http://localhost:3000/s/".$s->id()."/p/".$s->players->[0][0];
 
-get '/s/:s_id/:p_id' => sub {
+get '/s/:s_id/p/:p_id' => sub {
     my $c = shift;
     my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
 
