@@ -9,6 +9,9 @@
 </div>
 </div>
 <div style="min-height: 100vh; width:40em">
+<div id="hand" ic-src="/s/<%= "$s_id/p/$p_id/hand" %>">
+<%= include 'hand', hand => $session->player($p_id)->[2] %>
+</div>
 <div id="map">
 <%= include 'map' %>
 </div>

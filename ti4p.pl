@@ -57,6 +57,14 @@ get '/s/:s_id/p/:p_id' => sub {
     $c->render( template => 'screen', layout => 'main' );
 };
 
+get '/s/:s_id/p/:p_id/hand' => sub {
+    my $c = shift;
+    my ($s, $p) = map { $c->stash($_) } qw(s_id p_id);
+
+    $c->stash( hand => $state{$s}->player($p)->[2] );
+    $c->render( template => 'hand' );
+};
+
 post '/s/:s_id' => sub {
     my $c = shift;
     my $s_id = $c->stash("s_id");
