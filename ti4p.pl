@@ -13,6 +13,8 @@ use Session;
 
 use Storable;
 
+use SVG qw(render_active_players);
+
 use Utils qw(get_tag);
 
 srand(6); # delete this to get actually random deck draws
@@ -30,7 +32,15 @@ my $s = Session->new(@players);
 
 my %state = ( $s->id(), $s );
 
-say "http://localhost:3000/s/".$s->id()."/p/".$s->players->[0][0];
+say "http://localhost:3000/s/".$s->id()."/players";
+
+get '/s/:s_id/players' => sub {
+    my $c = shift;
+
+    my $s_id = $c->stash('s_id');
+
+    $c->render( text => render_active_players($state{$s_id}), format => 'html' );
+};
 
 get '/s/:s_id/p/:p_id' => sub {
     my $c = shift;
