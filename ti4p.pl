@@ -28,7 +28,9 @@ my @players = qw(
 
 my $s = Session->new(@players);
 
-my %state = ( get_tag, $s );
+my %state = ( $s->id(), $s );
+
+say "http://localhost:3000/s/".$s->id()."/".$s->players->[0][0];
 
 get '/s/#s_id/#p_id' => sub {
     my $c = shift;
@@ -64,8 +66,6 @@ post '/' => sub {
     $c->stash( session => $s, map => $s->map_data, hand => $s->hand($p_id) );
     $c->render( template => 'map' );
 };
-
-# navagate to http://localhost:3000/s/kNVXv8MR/qACStEUp
 
 ## load and save endpoints are for debugging, remove later
 #get '/save/#file' => sub {

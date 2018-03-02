@@ -9,9 +9,11 @@ use Utils qw(partition get_tag);
 
 use Mouse;
 
-has map_data => (is => 'ro', isa => 'ArrayRef');
+has map_data	=> (is => 'ro', isa => 'ArrayRef');
 
-has players => (is => 'ro', isa => 'ArrayRef');
+has players	=> (is => 'ro', isa => 'ArrayRef');
+
+has id		=> (is => 'ro', isa => 'Str');
 
 state $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
 
@@ -52,7 +54,7 @@ around 'BUILDARGS' => sub {
 	} ];
     }
 
-    return $self->$orig( map_data => \@map_data, players => \@players );
+    return $self->$orig( map_data => \@map_data, players => \@players, id => get_tag );
 };
 
 sub player {
