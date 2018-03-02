@@ -61,7 +61,7 @@ get '/s/:s_id/p/:p_id/hand' => sub {
     my $c = shift;
     my ($s, $p) = map { $c->stash($_) } qw(s_id p_id);
 
-    $c->stash( hand => $state{$s}->player($p)->[2] );
+    $c->stash( hand => $state{$s}->player($p)->hand );
     $c->render( template => 'hand' );
 };
 
@@ -77,7 +77,7 @@ post '/s/:s_id' => sub {
 
     my $s = $state{$s_id};
 
-    my $tile = splice( @{ $s->hand($p_id) }, $c->param("hand") =~ s/hand//r, 1, (undef) );
+    my $tile = $s->player($p_id)->play( $c->param("hand") =~ s/hand//r );
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
 
     push @{ $s->map_data }, [ $r, $n, $tile ];

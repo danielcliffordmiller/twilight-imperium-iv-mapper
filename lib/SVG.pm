@@ -19,7 +19,8 @@ sub render_active_players {
     my ($players, $active) = ($s->players(), $s->active_player);
 
     return html([ 'ul', map {
-	[ 'li', $_ == $active ? { class => 'active' } : (), [ 'a', {href => "/".(join '/', 's', $s->id(), 'p', $_->[0])}, $_->[1] ] ]
+	#[ 'li', $_ == $active ? { class => 'active' } : (), $_->name ]
+	[ 'li', $_ == $active ? { class => 'active' } : (), [ 'a', {href => "/".(join '/', 's', $s->id(), 'p', $_->id)}, $_->name ] ]
     } @$players ]);
 }
 

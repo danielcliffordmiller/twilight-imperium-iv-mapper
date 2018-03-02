@@ -2,12 +2,14 @@ package Session;
 
 use v5.18;
 
+use Mouse;
+
 use YAML ();
 
 use Tiles qw(draw_tile draw_tiles);
 use Utils qw(partition get_tag);
 
-use Mouse;
+use Player;
 
 has map_data	=> (is => 'ro', isa => 'ArrayRef');
 
@@ -44,7 +46,11 @@ around 'BUILDARGS' => sub {
 	($t, $blue) = draw_tiles(3, $blue);
 	push @$hand, @$t;
 
-	push @players, [ get_tag, $names[$n], $hand ];
+	push @players, Player->new(
+	    id	    => get_tag,
+	    name    => $names[$n],
+	    hand    => $hand
+	);
 
 	push @map_data, [ 3, (($n+1)*3-1), {
 	    name	=> 'player_tile',
@@ -61,7 +67,7 @@ sub player {
     my $self = shift;
     my $id = shift;
 
-    my @p = grep { $_->[0] eq $id } @{ $self->players };
+    my @p = grep { $_->id eq $id } @{ $self->players };
     return @p ? $p[0] : 0;
 }
 
