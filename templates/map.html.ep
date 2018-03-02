@@ -1,7 +1,7 @@
 % use Tiles;
 % use TileSvg qw(xy_coords);
 % use TileMap qw(tiles_in_ring);
-% use SVG qw(render_active_players);
+% use SVG qw(render_active_players outline);
 %
 % my $hand = $session->player($p_id)->[2];
 % my $map = $session->map_data;
@@ -30,12 +30,24 @@ end
 %	  if ($map_tile) {
 <g transform="translate(<%= "$dx,$dy" %>)">
 <%= include 'tiles/'.$map_tile->[2]{template}, tile => $map_tile->[2] %>\
+<%= outline() %>
 </g>
-<%= include 'tiles/outline', d => { x => $dx, y => $dy }%>\
 %	  } else {
 %#	      'a' is for "allowed_types"
 %	      my @a = TileMap::allowed_types($map, $ring, $n);
-<%= include 'tiles/outline', d => { x => $dx, y => $dy, class => (join ' ', "map", @a) , id => "$ring,$n" } %>\
+<g transform="translate(<%= "$dx,$dy" %>)">
+<% if (@a) { =%>
+<%= outline( { 
+    'ic-trigger-on' => '',
+    'ic-post-to'    => '/',
+    'ic-target'	    => '#map',
+    class	    => (join ' ', @a, 'map'),
+    id		    => "$ring,$n"
+}) %>
+<% } else { %>
+<%= outline() %>
+<% } %>
+</g>
 %	  }
 %     }
 % }
