@@ -1,12 +1,14 @@
 % use Tiles;
 % use TileSvg qw(xy_coords);
 % use TileMap qw(tiles_in_ring);
-% use SVG qw(active_players);
+% use SVG qw(render_active_players);
 %
 <div style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
-<h3 style="margin: 1em 2em">Dan</h3>
+<h3 style="margin: 1em 2em">\
+<%= $session->player($p_id)->[1] %>\
+</h3>
 <div id="players">
-<%= active_players( $session ); %>
+<%= render_active_players( $session ); %>
 %#<ul style="list-style: none">
 %#<% foreach my $name (qw(David Dan Rob Sean Randy)) { %>\
 %#<li<%== qq( class="active" style="list-style: '→'") if $name eq "Dan" %>><%= $name %></li>
