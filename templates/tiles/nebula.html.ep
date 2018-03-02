@@ -1,5 +1,2 @@
-<g transform="translate(<%= "$x,$y" %>)">
 <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="url(#nebula-pattern)" stroke-width="6" stroke="red" transform="scale(.93)"/>
-%#<use href="#r_anomaly" fill="url(#nebula-pattern)"/>
 <text text-anchor="middle" y="2" font-size="14" fill="white">Nebula</text>
-</g>

@@ -5,10 +5,8 @@
 % my @c = map { TileSvg::trait_color($_) || "black" } @p;
 % my @tc = map { TileSvg::tech_color($_) } @p;
 %
-<g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
 <% if (defined $tc[0]) { %><circle cx="22" cy="-13" fill="<%= $tc[0] %>" r="5"/><% } %>
 <% if (defined $tc[1]) { %><circle cx="22" cy="7" fill="<%= $tc[1] %>" r="5"/><% } %>
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c[0] %>"><%= $p[0]->{resources} %> / <%= $p[0]->{influence} %></text>
 <text text-anchor="middle" y="12" font-size="14" fill="<%= $c[1] %>"><%= $p[1]->{resources} %> / <%= $p[1]->{influence} %></text>
-</g>

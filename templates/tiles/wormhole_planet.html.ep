@@ -6,14 +6,14 @@
 % my $t = TileSvg::tech_color($p);
 % my $wh = $tile->{wormhole};
 %
-<g transform="translate(<%= "$x,$y" %>)">
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
-<% if (defined $t) { %><circle cx="22" cy="-13" fill="<%= $t %>" r="5"/><% } %>
+<% if (defined $t) { %>\
+<circle cx="22" cy="-13" fill="<%= $t %>" r="5"/>
+<% } %>\
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c %>"><%= $p->{resources} %> / <%= $p->{influence} %></text>
 <circle cx="0" cy="15" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>
-<% if ($wh eq "alpha") { %>
+<% if ($wh eq "alpha") { %>\
 <text class="wh" fill="goldenrod" text-anchor="middle" y="18">α</text>
-<% } elsif ($wh eq "beta") { %>
+<% } elsif ($wh eq "beta") { %>\
 <text class="wh" fill="blue" text-anchor="middle" y="19">β</text>
 <% } %>
-</g>

@@ -1,6 +1,5 @@
-<g transform="translate(<%= "$x,$y" %>)">
+<% use TileSvg; %>
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
 <text y="3" font-family="sans-serif" font-variant="small-caps" font-size="14" fill="black" text-anchor="middle">\
 <%= $tile->{text} %>
 </text>
-</g>
