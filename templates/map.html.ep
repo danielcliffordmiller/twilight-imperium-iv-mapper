@@ -9,11 +9,6 @@
 </h3>
 <div id="players">
 <%= render_active_players( $session ); %>
-%#<ul style="list-style: none">
-%#<% foreach my $name (qw(David Dan Rob Sean Randy)) { %>\
-%#<li<%== qq( class="active" style="list-style: '→'") if $name eq "Dan" %>><%= $name %></li>
-%#<% } %>\
-%#</ul>
 </div>
 </div>
 <div style="min-height: 100vh; width:40em">
