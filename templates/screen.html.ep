@@ -1,0 +1,22 @@
+<% use SVG qw(render_active_players); =%>
+<svg style="position: absolute;" height="0" xmlns="http://www.w3.org/2000/svg">
+<%= include 'svg_defs' %>\
+</svg>
+<div id="sidebar" style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
+<h2 style="margin: 1em 2em"><%= $session->player($p_id)->[1] %></h2>
+<div id="players" ic-src="/s/<%= "$s_id/players" %>">
+<%= render_active_players( $session ); %>
+</div>
+</div>
+<div style="min-height: 100vh; width:40em">
+<div id="map">
+<%= include 'map' %>
+</div>
+</div>
+<div id="confirm">
+<div>
+<p>Are you sure you want to place this tile?</p>
+<button id="c-yes">Yes</button>
+<button id="c-no">No</button>
+</div>
+</div>

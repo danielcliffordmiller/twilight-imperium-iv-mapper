@@ -1,26 +1,18 @@
 % use Tiles;
 % use TileSvg qw(xy_coords);
 % use TileMap qw(tiles_in_ring);
-% use SVG qw(render_active_players outline);
+% use SVG qw(outline);
 %
 % my $hand = $session->player($p_id)->[2];
 % my $map = $session->map_data;
 %
-<div style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
-<h3 style="margin: 1em 2em">\
-<%= $session->player($p_id)->[1] %>\
-</h3>
-<div id="players">
-<%= render_active_players( $session ); %>
-</div>
-</div>
-<div style="min-height: 100vh; width:40em">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-58 -50 560 100">
 begin
 <%= include 'svg_defs' %>\
 end
 <%= include 'hand', hand => $hand %>
 </svg>
+
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-280 -310 560 620">
 % for my $ring (0..3) {
 %     for my $n (0..(tiles_in_ring($ring)-1)) {
@@ -52,4 +44,3 @@ end
 %     }
 % }
 </svg>
-</div>

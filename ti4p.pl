@@ -54,7 +54,7 @@ get '/s/:s_id/p/:p_id' => sub {
     my $s = $state{$s_id};
 
     $c->stash( session => $s );
-    $c->render(template => 'map', layout => 'main');
+    $c->render(template => 'screen', layout => 'main');
 };
 
 post '/s/:s_id' => sub {
