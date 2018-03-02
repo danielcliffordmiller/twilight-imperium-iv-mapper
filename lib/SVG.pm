@@ -24,9 +24,9 @@ sub render_active_players {
 }
 
 sub outline {
-    my $params = shift || {};
+    my %params = @_;
     return html( [ 'path', {
-		%$params,
+		%params,
 		d	=> "M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z",
 		fill	=> 'black',
 		'fill-opacity'	=> '0.0',

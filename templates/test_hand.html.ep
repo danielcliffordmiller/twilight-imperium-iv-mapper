@@ -13,7 +13,7 @@
 %     my ($x, $y) = xy_coords(hand_coords($i));
 <g transform="translate(<%= "$x,$y" %>)">
 <%= include 'tiles/'.$hand->[$i]{template}, tile => $hand->[$i] %>
-<%= outline( { class => 'hand', id=>"hand$i", type => $hand->[$i]{type} } ) %>
+<%= outline( class => 'hand', id=>"hand$i", type => $hand->[$i]{type} ) %>
 </g>
 % }
 </g>

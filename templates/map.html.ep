@@ -37,16 +37,16 @@ end
 %	      my @a = TileMap::allowed_types($map, $ring, $n);
 <g transform="translate(<%= "$dx,$dy" %>)">
 <% if (@a) { =%>
-<%= outline( { 
+<%= outline(
     'ic-trigger-on' => '',
     'ic-post-to'    => '/',
     'ic-target'	    => '#map',
     class	    => (join ' ', @a, 'map'),
     id		    => "$ring,$n"
-}) %>
-<% } else { %>
+) %>
+<% } else { =%>
 <%= outline() %>
-<% } %>
+<% } =%>
 </g>
 %	  }
 %     }
