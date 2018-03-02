@@ -3,6 +3,9 @@
 % use TileMap qw(tiles_in_ring);
 % use SVG qw(render_active_players);
 %
+% my $hand = $session->player($p_id)->[2];
+% my $map = $session->map_data;
+%
 <div style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
 <h3 style="margin: 1em 2em">\
 <%= $session->player($p_id)->[1] %>\

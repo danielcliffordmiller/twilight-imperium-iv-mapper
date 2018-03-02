@@ -32,7 +32,7 @@ my %state = ( $s->id(), $s );
 
 say "http://localhost:3000/s/".$s->id()."/".$s->players->[0][0];
 
-get '/s/#s_id/#p_id' => sub {
+get '/s/:s_id/:p_id' => sub {
     my $c = shift;
     my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
 
@@ -43,7 +43,7 @@ get '/s/#s_id/#p_id' => sub {
 
     my $s = $state{$s_id};
 
-    $c->stash( session => $s, map => $s->map_data, hand => $s->hand($p_id) );
+    $c->stash( session => $s );
     $c->render(template => 'map', layout => 'main');
 };
 
@@ -63,7 +63,7 @@ post '/' => sub {
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
 
     push @{ $s->map_data }, [ $r, $n, $tile ];
-    $c->stash( session => $s, map => $s->map_data, hand => $s->hand($p_id) );
+    $c->stash( session => $s, p_id => $p_id );
     $c->render( template => 'map' );
 };
 
