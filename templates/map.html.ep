@@ -39,7 +39,7 @@ end
 <% if (@a) { =%>
 <%= outline(
     'ic-trigger-on' => '',
-    'ic-post-to'    => '/',
+    'ic-post-to'    => '/s/'.$session->id,
     'ic-target'	    => '#map',
     class	    => (join ' ', @a, 'map'),
     id		    => "$ring,$n"

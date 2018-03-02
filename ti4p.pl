@@ -47,10 +47,10 @@ get '/s/:s_id/:p_id' => sub {
     $c->render(template => 'map', layout => 'main');
 };
 
-post '/' => sub {
+post '/s/:s_id' => sub {
     my $c = shift;
-    my ($s_id, $p_id);
-    (undef, undef, $s_id, $p_id) = split '/', $c->param('ic-current-url');
+    my $s_id = $c->stash("s_id");
+    my $p_id = (split '/', $c->param('ic-current-url'))[-1];
 
     unless (exists $state{$s_id} && $state{$s_id}->player($p_id)) {
 	$c->render( status => 404 );
