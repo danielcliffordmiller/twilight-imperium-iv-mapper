@@ -7,9 +7,6 @@
 % my $map = $session->map_data;
 %
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-58 -50 560 100">
-begin
-<%= include 'svg_defs' %>\
-end
 <%= include 'hand', hand => $hand %>
 </svg>
 

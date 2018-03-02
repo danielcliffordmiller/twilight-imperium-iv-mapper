@@ -1,10 +1,8 @@
-% use Tiles;
-% use SVG qw(outline);
-%
-% for my $i (0 .. $#$hand) {
-%     next unless $hand->[$i];
+<% use SVG qw(outline); %>\
+<% for my $i (0 .. $#$hand) { %>\
+<% next unless $hand->[$i]; %>
 <g transform="translate(<%= $i*110 %>,0)">
 <%= include 'tiles/'.$hand->[$i]{template}, tile => $hand->[$i] %>
 <%= outline( class => 'hand', id => "hand$i", 'tile-type' => $hand->[$i]{type} ) %>
 </g>
-% }
+<% } %>
