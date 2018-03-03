@@ -14,8 +14,6 @@ use Session;
 
 use Storable;
 
-use SVG qw(render_active_players);
-
 use Utils qw(get_tag);
 
 srand(6); # delete this to get actually random deck draws

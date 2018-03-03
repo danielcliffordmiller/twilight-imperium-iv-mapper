@@ -1,4 +1,3 @@
-<% use SVG qw(render_active_players); =%>
 <svg style="position: absolute;" height="0" xmlns="http://www.w3.org/2000/svg">
 <%= include 'svg_defs' %>\
 </svg>
