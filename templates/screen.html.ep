@@ -5,7 +5,7 @@
 <div id="sidebar" style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
 <h2 style="margin: 1em 2em"><%= $session->player($p_id)->name %></h2>
 <div id="players" ic-src="/s/<%= "$s_id/players" %>">
-<%= render_active_players( $session ); %>
+<%= include 'players' %>
 </div>
 </div>
 <div style="min-height: 100vh; width:40em">

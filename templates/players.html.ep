@@ -1,0 +1,8 @@
+<% my ($players, $active) = ($session->players(), $session->active_player); %>\
+<ul>
+    <% foreach my $player (@$players) { =%>\
+<li<% if ($player == $active) { %> class="active"<% } %>>\
+<%= link_to $player->name => '/'.(join '/' => 's', $s_id, 'p', $player->id)  %>\
+</li>
+    <% } =%>\
+</ul>

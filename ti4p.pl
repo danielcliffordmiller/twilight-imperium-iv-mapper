@@ -50,10 +50,8 @@ helper 'outline' => sub {
 get '/s/:s_id/players' => sub {
     my $c = shift;
 
-    my $s_id = $c->stash('s_id');
-
-    $c->render( text => render_active_players($state{$s_id}), format => 'html' );
-};
+    $c->stash( session => $state{$c->stash('s_id')} );
+} => 'players';
 
 get '/s/:s_id/p/:p_id' => sub {
     my $c = shift;
