@@ -11,7 +11,8 @@ use v5.18;
 
 use Tiles;
 
-has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles');
+has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
+has 'num_players' => (is => 'ro', isa => 'Int', reader => '_num_players', required => 1);
 
 sub tiles_in_ring {
     my ($ring) = @_;
@@ -114,6 +115,25 @@ sub place {
     };
 }
 
+sub iterator {
+    my $self = shift;
+    my @res;
+    my $tile;
+    for my $r ( 0 .. RINGS ) {
+	for my $n ( 0 .. (tiles_in_ring($r)-1) ) {
+	    $tile = $self->tile($r, $n);
+	    push @res, Map::Entry->new(
+		r => $r,
+		n => $n,
+		$tile ? (tile => $tile) : (allowed_types => [$self->allowed_types($r, $n)])
+	    );
+	}
+    }
+    return sub {
+	shift @res;
+    };
+}
+
 around 'BUILDARGS' => sub {
     my $orig = shift;
     my $self = shift;
@@ -133,7 +153,27 @@ around 'BUILDARGS' => sub {
 	} ];
     }
 
-    return $self->$orig( tiles => \@tiles );
+    return $self->$orig( tiles => \@tiles, num_players => scalar @names );
+};
+
+package Map::Entry;
+
+use Mouse;
+
+has 'r'		    => (is => 'ro', isa => 'Str', required => 1);
+has 'n'	    	    => (is => 'ro', isa => 'Str', required => 1);
+has 'tile'  	    => (is => 'ro', isa => 'HashRef', predicate => 'has_tile' );
+has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
+
+sub rn {
+    my $self = shift;
+    return ($self->r, $self->n);
+}
+
+around 'allowed_types' => sub {
+    my $orig = shift;
+    my $self = shift;
+    return @{$self->$orig()};
 };
 
 1;

@@ -1,37 +1,28 @@
-% use Tiles;
 % use TileSvg qw(xy_coords);
 % use SVG qw(outline);
 % use Map;
 %
-% my $map = $session->map;
-%
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-280 -310 560 620">
-% for my $ring (0..3) {
-%     for my $n (0..(Map::tiles_in_ring($ring)-1)) {
-%	  my ($dx, $dy) = xy_coords( $ring, $n );
-%	  my $map_tile = $map->tile( $ring, $n );
-%	  if ($map_tile) {
-<g transform="translate(<%= "$dx,$dy" %>)">
-<%= include 'tiles/'.$map_tile->{template}, tile => $map_tile %>\
-<%= outline() %>
-</g>
-%	  } else {
-%#	      'a' is for "allowed_types"
-%	      my @a = $map->allowed_types($ring, $n);
-<g transform="translate(<%= "$dx,$dy" %>)">
-<% if (@a) { %>
-<%= outline(
-    'ic-trigger-on' => '',
-    'ic-post-to'    => '/s/'.$session->id,
-    'ic-target'	    => '#map',
-    class	    => (join ' ', @a, 'map'),
-    id		    => "$ring,$n"
-) %>
-<% } else { %>
-<%= outline() %>
-<% } %>
-</g>
-%	  }
-%     }
-% }
+<% my $map_spot; my $it = $session->map->iterator(); while ( $map_spot = $it->() ) { %>\
+    <% my ($x, $y) = xy_coords( $map_spot->rn ); =%>\
+    <g transform="translate(<%= "$x,$y" %>)">
+    <% if ( $map_spot->has_tile ) { =%>\
+	<%= include 'tiles/'.$map_spot->tile->{template}, tile => $map_spot->tile =%>
+	<%= outline() =%>
+    <% } else { =%>\
+	<% my @a = $map_spot->allowed_types; =%>
+	<% if (@a) { =%>\
+	    <%= outline(
+		'ic-trigger-on'	=> '',
+		'ic-post-to'    => '/s/'.$session->id,
+		'ic-target'	=> '#map',
+		class		=> (join ' ', @a, 'map'),
+		id		=> (join ',' => $map_spot->rn )
+	    ) =%>
+	<% } else { =%>\
+	    <%= outline() =%>
+	<% } =%>\
+    <% } =%>\
+    </g>
+<% } %>\
 </svg>
