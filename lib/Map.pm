@@ -45,7 +45,7 @@ sub tile {
     return @a ? $a[0][2] : undef;
 }
 
-sub get_neighbors {
+sub _get_neighbors {
     my $self = shift;
 
     my @res;
@@ -56,12 +56,12 @@ sub get_neighbors {
     return @res;
 }
 
-sub any_neighbor {
+sub _any_neighbor {
     my ($self, $r, $n, $fn) = @_;
 
-    my @a = $self->get_neighbors($r, $n);
+    my @a = $self->_get_neighbors($r, $n);
 
-    return grep { $fn->($_) } $self->get_neighbors($r, $n);
+    return grep { $fn->($_) } $self->_get_neighbors($r, $n);
 }
 
 sub empty_in_ring {
@@ -74,15 +74,15 @@ sub empty_in_ring {
     return @res;
 }
 
-sub can_be_placed {
+sub _can_be_placed {
     my ($self, $r, $n, $type) = @_;
 
-    return 1 unless $self->any_neighbor( $r, $n, sub { $_[0]{type} eq $type } );
+    return 1 unless $self->_any_neighbor( $r, $n, sub { $_[0]{type} eq $type } );
 
     return 0 unless $r == RINGS;
 
     for my $c ($self->empty_in_ring($r)) {
-	return 0 unless $self->any_neighbor( $c->[0], $c->[1], sub { $_[0]{type} eq $type } );
+	return 0 unless $self->_any_neighbor( $c->[0], $c->[1], sub { $_[0]{type} eq $type } );
     }
     return 1;
 }
@@ -94,9 +94,9 @@ sub allowed_types {
     my @allowed;
     if ($r == 1 || $self->_ring_full( $r-1 ) ) {
 	push @allowed, 'standard';
-	push @allowed, 'anomaly'    if $self->can_be_placed( @_, 'anomaly' );
-	push @allowed, 'beta'	    if $self->can_be_placed( @_, 'beta'    );
-	push @allowed, 'alpha'	    if $self->can_be_placed( @_, 'alpha'   );
+	push @allowed, 'anomaly'    if $self->_can_be_placed( @_, 'anomaly' );
+	push @allowed, 'beta'	    if $self->_can_be_placed( @_, 'beta'    );
+	push @allowed, 'alpha'	    if $self->_can_be_placed( @_, 'alpha'   );
     }
     return @allowed;
 }
