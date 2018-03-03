@@ -59,9 +59,9 @@ get '/s/:s_id/p/:p_id' => sub {
 
 get '/s/:s_id/p/:p_id/hand' => sub {
     my $c = shift;
-    my ($s, $p) = map { $c->stash($_) } qw(s_id p_id);
+    my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
 
-    $c->stash( hand => $state{$s}->player($p)->hand );
+    $c->stash( session => $state{$s_id} );
     $c->render( template => 'hand' );
 };
 

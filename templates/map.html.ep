@@ -8,7 +8,7 @@
     <g transform="translate(<%= "$x,$y" %>)">
     <% if ( $map_spot->has_tile ) { =%>\
 	<%= include 'tiles/'.$map_spot->tile->{template}, tile => $map_spot->tile =%>
-	<%= outline() =%>
+	<use href="#outline"/>
     <% } else { =%>\
 	<% my @a = $map_spot->allowed_types; =%>
 	<% if (@a) { =%>\
@@ -20,7 +20,7 @@
 		id		=> (join ',' => $map_spot->rn )
 	    ) =%>
 	<% } else { =%>\
-	    <%= outline() =%>
+	    <use href="#outline"/>
 	<% } =%>\
     <% } =%>\
     </g>

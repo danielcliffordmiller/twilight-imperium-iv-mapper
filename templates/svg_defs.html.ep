@@ -1,4 +1,5 @@
 % use TileSvg;
+% use SVG qw(outline);
 <defs>
     <pattern id="space-pattern" patternUnits="userSpaceOnUse" width="100" height="100">
 	<image href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
@@ -9,4 +10,5 @@
 <% my $href = TileSvg::ring_colors(); foreach my $k (keys %$href) { %>\
 <path id="<%= $k %>" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="6" stroke="<%= $href->{$k} %>" transform="scale(.93)"/>
 <% } %>\
+<%= outline( id => 'outline' ) %>
 </defs>
