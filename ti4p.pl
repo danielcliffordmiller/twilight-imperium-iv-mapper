@@ -80,7 +80,8 @@ post '/s/:s_id' => sub {
     my $tile = $s->player($p_id)->play( $c->param("hand") =~ s/hand//r );
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
 
-    push @{ $s->map_data }, [ $r, $n, $tile ];
+    $s->map->place($tile)->($r, $n);
+
     $c->stash( session => $s, p_id => $p_id );
     $c->render( template => 'map' );
 };

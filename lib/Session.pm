@@ -9,12 +9,11 @@ use YAML ();
 use Tiles qw(draw_tile draw_tiles);
 use Utils qw(partition get_tag);
 
+use Map;
 use Player;
 
-has map_data	=> (is => 'ro', isa => 'ArrayRef');
-
+has map		=> (is => 'ro', isa => 'Map');
 has players	=> (is => 'ro', isa => 'ArrayRef');
-
 has id		=> (is => 'ro', isa => 'Str');
 
 state $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
@@ -26,9 +25,7 @@ around 'BUILDARGS' => sub {
 
     my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
 
-    my @map_data;
-
-    push @map_data, [ 0, 0, $mecatol ];
+    my $map = Map->new( $mecatol, @names );
 
     my ($home, $red, $blue) = partition(
 	sub { $_[0]{type} eq 'home' },
@@ -51,16 +48,9 @@ around 'BUILDARGS' => sub {
 	    name    => $names[$n],
 	    hand    => $hand
 	);
-
-	push @map_data, [ 3, (($n+1)*3-1), {
-	    name	=> 'player_tile',
-	    type	=> 'home',
-	    text	=> $names[$n],
-	    template	=> 'single_text'
-	} ];
     }
 
-    return $self->$orig( map_data => \@map_data, players => \@players, id => get_tag );
+    return $self->$orig( map => $map, players => \@players, id => get_tag );
 };
 
 sub player {
@@ -74,7 +64,7 @@ sub player {
 sub active_player {
     my $self = shift;
 
-    my $num_map_tiles = scalar @{ $self->map_data } - 1; # - 1 because of mecatol rex
+    my $num_map_tiles = $self->map->num_played;
     my $num_players = scalar @{ $self->players };
 
     my $offset = $num_map_tiles % $num_players;

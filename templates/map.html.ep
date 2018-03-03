@@ -1,26 +1,25 @@
 % use Tiles;
 % use TileSvg qw(xy_coords);
-% use TileMap qw(tiles_in_ring);
 % use SVG qw(outline);
+% use Map;
 %
-% my $map = $session->map_data;
+% my $map = $session->map;
 %
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="-280 -310 560 620">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="-280 -310 560 620">
 % for my $ring (0..3) {
-%     for my $n (0..(tiles_in_ring($ring)-1)) {
+%     for my $n (0..(Map::tiles_in_ring($ring)-1)) {
 %	  my ($dx, $dy) = xy_coords( $ring, $n );
-%	  my $map_tile = ( grep { $_->[0] == $ring && $_->[1] == $n } @$map )[0];
-%	  next if $map_tile && !defined $map_tile->[2];
+%	  my $map_tile = $map->tile( $ring, $n );
 %	  if ($map_tile) {
 <g transform="translate(<%= "$dx,$dy" %>)">
-<%= include 'tiles/'.$map_tile->[2]{template}, tile => $map_tile->[2] %>\
+<%= include 'tiles/'.$map_tile->{template}, tile => $map_tile %>\
 <%= outline() %>
 </g>
 %	  } else {
 %#	      'a' is for "allowed_types"
-%	      my @a = TileMap::allowed_types($map, $ring, $n);
+%	      my @a = $map->allowed_types($ring, $n);
 <g transform="translate(<%= "$dx,$dy" %>)">
-<% if (@a) { =%>
+<% if (@a) { %>
 <%= outline(
     'ic-trigger-on' => '',
     'ic-post-to'    => '/s/'.$session->id,
@@ -28,9 +27,9 @@
     class	    => (join ' ', @a, 'map'),
     id		    => "$ring,$n"
 ) %>
-<% } else { =%>
+<% } else { %>
 <%= outline() %>
-<% } =%>
+<% } %>
 </g>
 %	  }
 %     }
