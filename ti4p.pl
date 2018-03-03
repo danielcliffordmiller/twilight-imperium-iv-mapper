@@ -86,26 +86,30 @@ post '/s/:s_id' => sub {
     $c->render( template => 'map' );
 };
 
-## load and save endpoints are for debugging, remove later
-#get '/save/#file' => sub {
-#    my $c = shift;
-#    my $file = $c->stash('file');
-#    mkdir 'var' unless (-d 'var');
-#    store { map => $map_data, hand => $hand }, "var/".$file;
-#    $c->redirect_to('/');
-#};
-#
-## remove later
-#get '/load/#file' => sub {
-#    my $c = shift;
-#    my $file = $c->stash('file');
-#    eval {
-#	my $d = retrieve( "var/".$file );
-#	($map_data, $hand) = @$d{'map','hand'};
-#    };
-#    $c->redirect_to('/');
-#};
-#
+# load and save endpoints are for debugging, remove later
+get '/s/:s_id/save' => sub {
+    my $c = shift;
+    my $s = $state{ $c->stash('s_id') };
+    unless ($s) {
+	$c->render( status => 404 );
+	return;
+    }
+    mkdir 'var' unless (-d 'var');
+    store $s, "var/".$c->stash('s_id');
+    #$c->redirect_to('/');
+};
+
+# remove later
+get '/s/:s_id/load' => sub {
+    my $c = shift;
+    my $s_id = $c->stash('s_id');
+    eval {
+	my $s = retrieve( "var/".$s_id );
+	$state{$s_id} = $s;
+    };
+    #$c->redirect_to('/');
+};
+
 ## remove later
 #get '/reset' => sub {
 #    my $c = shift;
