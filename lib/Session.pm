@@ -86,7 +86,8 @@ sub play {
     my $type = $self->active_player->hand($i)->{type};
     return sub {
 	my ($r, $n) = @_;
-	if ( $self->map->can_be_placed($r, $n, $type) ) {
+	my @a = $self->map->allowed_types($r, $n);
+	if ( grep { $_ eq $type } @a ) {
 	    my $tile = $self->active_player->play($i);
 	    $self->map->place($tile)->($r, $n);
 	}
