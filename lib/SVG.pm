@@ -24,18 +24,6 @@ sub render_active_players {
     } @$players ]);
 }
 
-sub outline {
-    my %params = @_;
-    return html( [ 'path', {
-		%params,
-		d	=> "M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z",
-		fill	=> 'black',
-		'fill-opacity'	=> '0.0',
-		'stroke-width'	=> '2',
-		stroke	=> 'black'
-	    } ] );
-}
-
 sub html {
     return b(HTML::Element->new_from_lol( @_ )->as_HTML());
 }

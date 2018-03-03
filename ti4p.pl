@@ -8,6 +8,7 @@ use v5.18;
 use lib 'lib';
 
 use Mojolicious::Lite;
+use Mojo::ByteStream 'b';
 
 use Session;
 
@@ -33,6 +34,18 @@ my $s = Session->new(@players);
 my %state = ( $s->id(), $s );
 
 say "http://localhost:3000/s/".$s->id()."/players";
+
+helper 'outline' => sub {
+    my $c = shift;
+    my %attrs = ( @_,
+	d	=> "M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z",
+	fill	=> 'black',
+	'fill-opacity'	=> '0.0',
+	'stroke-width'	=> '2',
+	stroke	=> 'black'
+    );
+    return b( "<path ".(join ' ', map { $_.'="'.$attrs{$_}.'"' } keys %attrs)." />" );
+};
 
 get '/s/:s_id/players' => sub {
     my $c = shift;

@@ -1,5 +1,4 @@
 % use TileSvg qw(xy_coords);
-% use SVG qw(outline);
 % use Map;
 %
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-280 -310 560 620">
@@ -12,13 +11,13 @@
     <% } else { =%>\
 	<% my @a = $map_spot->allowed_types; =%>
 	<% if (@a) { =%>\
-	    <%= outline(
+	    <%= outline
 		'ic-trigger-on'	=> '',
 		'ic-post-to'    => '/s/'.$session->id,
 		'ic-target'	=> '#map',
 		class		=> (join ' ', @a, 'map'),
 		id		=> (join ',' => $map_spot->rn )
-	    ) =%>
+	    =%>
 	<% } else { =%>\
 	    <use href="#outline"/>
 	<% } =%>\

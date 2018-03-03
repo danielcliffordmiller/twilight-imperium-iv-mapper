@@ -1,11 +1,11 @@
-<% use SVG qw(outline); my $hand = $session->player($p_id)->hand(); %>\
+<% my $hand = $session->player($p_id)->hand(); %>\
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-58 -50 560 100">
 <% for my $i (0 .. $#$hand) { %>\
 <% next unless $hand->[$i]; %>
 <g transform="translate(<%= $i*110 %>,0)">
 <%= include 'tiles/'.$hand->[$i]{template}, tile => $hand->[$i] %>
 <% if ( $session->is_active_player($p_id) ) { %>
-<%= outline( class => 'hand', id => "hand$i", 'tile-type' => $hand->[$i]{type} ) %>
+<%= outline class => 'hand', id => "hand$i", 'tile-type' => $hand->[$i]{type}  %>
 <% } else { %>\
 <use href="#outline"/>
 <% } %>\
