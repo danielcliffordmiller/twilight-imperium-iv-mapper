@@ -74,21 +74,23 @@ sub active_player {
     return $cycles % 2 ? $self->players->[$offset] : $self->players->[$num_players-($offset+1)];
 }
 
-sub hand {
+sub is_active_player {
     my $self = shift;
-    my $id = shift;
-
-    my $p = $self->player($id);
-    return $p ? $p->[2] : 0;
+    my $p_id = shift;
+    return $self->active_player == $self->player($p_id);
 }
 
-sub say_players {
+sub play {
     my $self = shift;
-
-    my $players = $self->players;
-    foreach ( @$players ) {
-	say $_->[0]." -> ".$_->[1];
-    }
+    my $i = shift;
+    my $type = $self->active_player->hand($i)->{type};
+    return sub {
+	my ($r, $n) = @_;
+	if ( $self->map->can_be_placed($r, $n, $type) ) {
+	    my $tile = $self->active_player->play($i);
+	    $self->map->place($tile)->($r, $n);
+	}
+    };
 }
 
 1;

@@ -70,17 +70,17 @@ post '/s/:s_id' => sub {
     my $s_id = $c->stash("s_id");
     my $p_id = (split '/', $c->param('ic-current-url'))[-1];
 
-    unless (exists $state{$s_id} && $state{$s_id}->player($p_id)) {
+    my $s = $state{$s_id};
+
+    unless ($s && $s->player($p_id) && $s->is_active_player($p_id)) {
 	$c->render( status => 404 );
 	return;
     }
 
-    my $s = $state{$s_id};
-
-    my $tile = $s->player($p_id)->play( $c->param("hand") =~ s/hand//r );
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
+    my $i = $c->param("hand") =~ s/hand//r;
 
-    $s->map->place($tile)->($r, $n);
+    $s->play($i)->($r, $n);
 
     $c->stash( session => $s, p_id => $p_id );
     $c->render( template => 'map' );
