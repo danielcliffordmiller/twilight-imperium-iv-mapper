@@ -16,6 +16,7 @@
 		'ic-post-to'    => '/s/'.$session->id,
 		'ic-target'	=> '#map',
 		class		=> (join ' ', @a, 'map'),
+		onclick		=> 'handleMapClick.call(this)',
 		id		=> (join ',' => $map_spot->rn )
 	    =%>
 	<% } else { =%>\
