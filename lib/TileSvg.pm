@@ -44,15 +44,15 @@ sub ring_colors { \%ring_colors }
 
 sub ring_id {
     my $tile = shift;
-    return $ring_ids{$tile->{type}};
+    return $ring_ids{$tile->type};
 }
 
 sub trait_color {
-    return exists $_[0]{trait} ? $trait_colors{$_[0]{trait}} : undef;
+    return $_[0]->has_trait ? $trait_colors{$_[0]->trait} : undef;
 }
 
 sub tech_color {
-    return exists $_[0]{tech} ? $tech_colors{$_[0]{tech}} : undef;
+    return $_[0]->has_tech ? $tech_colors{$_[0]->tech} : undef;
 }
 
 sub xy_direction {

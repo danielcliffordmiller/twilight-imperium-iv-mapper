@@ -11,12 +11,13 @@ use Utils qw(partition get_tag);
 
 use Map;
 use Player;
+use Tile;
 
 has map		=> (is => 'ro', isa => 'Map');
-has players	=> (is => 'ro', isa => 'ArrayRef');
+has players	=> (is => 'ro', isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', isa => 'Str');
 
-state $tile_data = YAML::LoadFile('./data/tiles.yml')->{tiles};
+state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
 around 'BUILDARGS' => sub {
     my $orig = shift;
@@ -28,7 +29,7 @@ around 'BUILDARGS' => sub {
     my $map = Map->new( $mecatol, @names );
 
     my ($home, $red, $blue) = partition(
-	sub { $_[0]{type} eq 'home' },
+	sub { $_[0]->type eq 'home' },
 	\&Tiles::red_backed,
 	@$deck
     );

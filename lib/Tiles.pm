@@ -12,11 +12,13 @@ our @ISA = qw(Exporter);
 
 our @EXPORT_OK = qw(draw_tiles draw_tile);
 
+my @valid_templates = map { s|templates/tiles/(\w+)\..*$|$1|r } glob "templates/tiles/*";
+
 sub red_backed {
-    $_[0]{type} eq 'anomaly' ||
-    $_[0]{name} eq 'space' ||
-    $_[0]{name} eq 'alpha' ||
-    $_[0]{name} eq 'beta'
+    $_[0]->type eq 'anomaly' ||
+    $_[0]->name eq 'space' ||
+    $_[0]->name eq 'alpha' ||
+    $_[0]->name eq 'beta'
 }
 
 sub draw {
@@ -41,7 +43,7 @@ sub draw_tiles {
 sub draw_tile {
     my ($name, $tiles) = @_;
 
-    my @tiles = partition( sub { $_[0]{name} eq $name }, @$tiles );
+    my @tiles = partition( sub { $_[0]->name eq $name }, @$tiles );
     return ($tiles[0][0], $tiles[1]);
 }
 

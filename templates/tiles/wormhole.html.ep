@@ -1,7 +1,7 @@
 %
 % use TileSvg;
 %
-% my $wh = $tile->{wormhole};
+% my $wh = $tile->wormhole;
 %
 <use href="#<%= TileSvg::ring_id($tile) %>"/>
 <circle cx="0" cy="0" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>

@@ -11,6 +11,8 @@ use v5.18;
 
 use Tiles;
 
+use Tile;
+
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
 has 'num_players' => (is => 'ro', isa => 'Int', reader => '_num_players', required => 1);
 
@@ -77,12 +79,12 @@ sub empty_in_ring {
 sub _can_be_placed {
     my ($self, $r, $n, $type) = @_;
 
-    return 1 unless $self->_any_neighbor( $r, $n, sub { $_[0]{type} eq $type } );
+    return 1 unless $self->_any_neighbor( $r, $n, sub { $_[0]->type eq $type } );
 
     return 0 unless $r == RINGS;
 
     for my $c ($self->empty_in_ring($r)) {
-	return 0 unless $self->_any_neighbor( $c->[0], $c->[1], sub { $_[0]{type} eq $type } );
+	return 0 unless $self->_any_neighbor( $c->[0], $c->[1], sub { $_[0]->type eq $type } );
     }
     return 1;
 }
@@ -145,12 +147,12 @@ around 'BUILDARGS' => sub {
     push @tiles, [ 0, 0, $center ];
 
     for my $n ( 0 .. $#names ) {
-	push @tiles, [ 3, (($n+1)*3-1), {
+	push @tiles, [ 3, (($n+1)*3-1), Tile->new(
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$n],
 	    template	=> 'single_text'
-	} ];
+	) ];
     }
 
     return $self->$orig( tiles => \@tiles, num_players => scalar @names );
@@ -159,10 +161,11 @@ around 'BUILDARGS' => sub {
 package Map::Entry;
 
 use Mouse;
+use Tile;
 
 has 'r'		    => (is => 'ro', isa => 'Str', required => 1);
 has 'n'	    	    => (is => 'ro', isa => 'Str', required => 1);
-has 'tile'  	    => (is => 'ro', isa => 'HashRef', predicate => 'has_tile' );
+has 'tile'  	    => (is => 'ro', isa => 'Tile', predicate => 'has_tile' );
 has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
 
 sub rn {
