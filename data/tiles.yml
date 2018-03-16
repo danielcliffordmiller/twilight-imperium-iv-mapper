@@ -220,7 +220,7 @@ tiles:
   - name: mecatolrex
     type: standard
     planets:
-      - name: Mecatol Rex
+      - text: Mecatol Rex
         resources: 1
         influence: 6
     template: single_planet
@@ -275,129 +275,129 @@ tiles:
   - name: Arborec
     type: home
     planets:
-      - name: NestPhar
+      - text: NestPhar
         resources: 3
         influence: 2
   - name: Creuss
     type: home
     planets:
-      - name: Creuss
+      - text: Creuss
         resources: 4
         influence: 2
   - name: Hacan
     type: home
     planets:
-      - name: Hercant
+      - text: Hercant
         resources: 1
         influence: 1
-      - name: Arretze
+      - text: Arretze
         resources: 2
         influence: 0
-      - name: Kamdorn
+      - text: Kamdorn
         resources: 0
         influence: 1
   - name: JolNar
     type: home
     planets:
-      - name: Jol
+      - text: Jol
         resources: 1
         influence: 2
-      - name: Nar
+      - text: Nar
         resources: 2
         influence: 3
   - name: L1Z1X
     type: home
     planets:
-      - name: [0.0.0]
+      - text: "[0.0.0]"
         resources: 5
         influence: 0
   - name: Letnev
     type: home
     planets:
-      - name: Arc Prime
+      - text: Arc Prime
         resources: 4
         influence: 0
-      - name: Wren Terra
+      - text: Wren Terra
         resources: 2
         influence: 1
   - name: Mentak
     type: home
     planets:
-      - name: Moll Primus
+      - text: Moll Primus
         resources: 4
         influence: 1
   - name: Muaat
     type: home
     planets:
-      - name: Muaat
+      - text: Muaat
         resources: 4
         influence: 1
   - name: Naalu
     type: home
     planets:
-      - name: Druaa
+      - text: Druaa
         resources: 3
         influence: 1
-      - name: Maaluuk
+      - text: Maaluuk
         resources: 0
         influence: 2
   - name: NekroVirus
     type: home
     planets:
-      - name: Mordai II
+      - text: Mordai II
         resources: 4
         influence: 0
   - name: Saar
     type: home
     planets:
-      - name: Lisis II
+      - text: Lisis II
         resources: 1
         influence: 0
-      - name: Ragh
+      - text: Ragh
         resources: 2
         influence: 1
   - name: SardakkNorr
     type: home
     planets:
-      - name: Tren'Lak
+      - text: Tren'Lak
         resources: 1
         influence: 0
-      - name: Quinarra
+      - text: Quinarra
         resources: 3
         influence: 1
   - name: Sol
     type: home
     planets:
-      - name: Jord
+      - text: Jord
         resources: 4
         influence: 2
   - name: Winnu
     type: home
     planets:
-      - name: Winnu
+      - text: Winnu
         resources: 3
         influence: 4
   - name: Xxcha
     type: home
     planets:
-      - name: Archon Wren
+      - text: Archon Wren
         resources: 2
         influence: 3
-      - name: Archon Tau
+      - text: Archon Tau
         resources: 1
         influence: 1
   - name: Yin
     type: home
     planets:
-      - name: Darien
+      - text: Darien
         resources: 4
         influence: 4
   - name: Yssaril
     type: home
     planets:
-      - name: Retillion
+      - text: Retillion
         resources: 2
         influence: 3
-      - name: Shalloq
+      - text: Shalloq
         resources: 1
         influence: 2
