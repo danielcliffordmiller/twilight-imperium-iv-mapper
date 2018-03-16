@@ -69,7 +69,7 @@ sub empty_in_ring {
 
     my @res;
     for my $n (0 .. $r * 6 - 1) {
-	push @res, [ $r, $n ] unless grep { $_->[0] == $r && $_->[1] == $n } $self->_tiles;
+	push @res, [ $r, $n ] unless $self->tile($r, $n);
     }
     return @res;
 }
