@@ -19,4 +19,13 @@ sub play {
     return splice @{ $self->hand }, $n, 1, undef;
 }
 
+sub dump {
+    my $self = shift;
+    return {
+	name => $self->name,
+	id  => $self->id,
+	hand	=> $self->hand
+    };
+}
+
 1;

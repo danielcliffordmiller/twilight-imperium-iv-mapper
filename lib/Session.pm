@@ -54,6 +54,16 @@ around 'BUILDARGS' => sub {
     return $self->$orig( map => $map, players => \@players, id => get_tag );
 };
 
+sub dump {
+    my $self = shift;
+
+    return {
+	id => $self->id,
+	map => $self->map->dump,
+	players => [ map { $_->dump } @{$self->players} ]
+    };
+}
+
 sub player {
     my $self = shift;
     my $id = shift;

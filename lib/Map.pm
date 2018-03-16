@@ -21,6 +21,11 @@ sub tiles_in_ring {
     return $ring == 0 ? 1 : $ring * 6;
 }
 
+sub dump {
+    my $self = shift;
+    return [ @{ $self->_tiles } ];
+}
+
 sub _neighbor_coords {
     my ($r, $n) = @_;
     my @res = map { [$r, $_ % ($r*6)] } ($n-1, $n+1);

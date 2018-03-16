@@ -66,6 +66,12 @@ get '/s/:s_id/p/:p_id' => sub {
     $c->render( template => 'screen', layout => 'main' );
 };
 
+get '/s/:s_id/json' => sub {
+    my $c = shift;
+
+    $c->render( json => $state{$c->stash('s_id')}->dump );
+};
+
 get '/s/:s_id/p/:p_id/hand' => sub {
     my $c = shift;
     my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
