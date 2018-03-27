@@ -20,8 +20,7 @@ my @valid_templates = map { s|templates/tiles/(\w+)\..*$|$1|r } glob "templates/
 
 has ['name', 'type'] => (is => 'ro', isa => 'Str', required => 1);
 
-has 'template' => (is => 'ro', isa => 'Template');
-#has 'template' => (is => 'ro', isa => 'Template', required => 1, trigger => \&_check_template);
+has 'template' => (is => 'ro', isa => 'Template', required => 1);
 
 has 'planets' => (is => 'ro', isa => 'ArrayRef[Tile::Planet]');
 has 'wormhole' => (is => 'ro', isa => 'Str');
