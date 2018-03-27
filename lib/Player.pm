@@ -6,7 +6,7 @@ use Mouse;
 
 has name    => (is => 'ro', isa => 'Str' );
 has id	    => (is => 'ro', isa => 'Str' );
-has hand    => (is => 'ro', isa => 'ArrayRef[Tile]' );
+has hand    => (is => 'ro', isa => 'ArrayRef' );
 
 around 'hand' => sub {
     my ($orig, $self, $n) = @_;
@@ -16,7 +16,16 @@ around 'hand' => sub {
 sub play {
     my ($self, $n) = @_;
 
-    return splice @{ $self->hand }, $n, 1, undef;
+    my $t = $self->hand($n);
+
+    return (
+	$t,
+	Player->new(
+	    name    => $self->name,
+	    id	    => $self->id,
+	    hand    => [ map { $_ == $t ? undef : $_ } @{$self->hand} ]
+	)
+    );
 }
 
 sub dump {

@@ -111,6 +111,18 @@ sub is_active_player {
     return $self->active_player == $self->player($p_id);
 }
 
+sub _update_active_player {
+    my $self = shift;
+    my $player = shift;
+    my $players = $self->players;
+    foreach my $i (0 .. $#$players) {
+	if ($self->is_active_player( $players->[$i]->id )) {
+	    $players->[$i] = $player;
+	    last;
+	}
+    }
+}
+
 sub play {
     my $self = shift;
     my $i = shift;
@@ -119,7 +131,8 @@ sub play {
 	my ($r, $n) = @_;
 	my @a = $self->map->allowed_types($r, $n);
 	if ( grep { $_ eq $type } @a ) {
-	    my $tile = $self->active_player->play($i);
+	    my ($tile, $player) = $self->active_player->play($i);
+	    $self->_update_active_player( $player );
 	    $self->_map($self->map->place($tile)->($r, $n));
 	}
     };
