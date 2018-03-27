@@ -14,7 +14,6 @@ use Tiles;
 use Tile;
 
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
-has 'num_players' => (is => 'ro', isa => 'Int', reader => '_num_players', required => 1);
 
 sub tiles_in_ring {
     my ($ring) = @_;
