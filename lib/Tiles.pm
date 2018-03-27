@@ -6,7 +6,7 @@ use v5.12;
 use strict;
 use warnings;
 
-use Utils qw(partition);
+use Utils qw(draw partition);
 
 our @ISA = qw(Exporter);
 
@@ -17,12 +17,6 @@ sub red_backed {
     $_[0]->name eq 'space' ||
     $_[0]->name eq 'alpha' ||
     $_[0]->name eq 'beta'
-}
-
-sub draw {
-    my $tiles = shift;
-    my $tile = $tiles->[int(rand(@$tiles))];
-    return $tile, [ grep { $_ != $tile } @$tiles ];
 }
 
 sub draw_tiles {
