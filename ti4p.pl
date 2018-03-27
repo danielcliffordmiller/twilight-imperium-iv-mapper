@@ -27,7 +27,7 @@ my @players = qw(
     Alex
 );
 
-my $s = Session->new(@players);
+my $s = Session->create(@players);
 
 my %state = ( $s->id(), $s );
 
@@ -66,6 +66,7 @@ get '/s/:s_id/p/:p_id' => sub {
     $c->render( template => 'screen', layout => 'main' );
 };
 
+# purely for debugging
 get '/s/:s_id/json' => sub {
     my $c = shift;
 
@@ -95,7 +96,7 @@ post '/s/:s_id' => sub {
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
     my $i = $c->param("hand") =~ s/hand//r;
 
-    $s->play($i)->($r, $n);
+    $state{$s_id} = $s = $s->play($i)->($r, $n);
 
     $c->stash( session => $s, p_id => $p_id );
     $c->render( template => 'map' );

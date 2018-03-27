@@ -19,9 +19,8 @@ has id		=> (is => 'ro', isa => 'Str');
 
 state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
-around 'BUILDARGS' => sub {
-    my $orig = shift;
-    my $self = shift;
+sub create {
+    shift;
     my @names = @_;
 
     my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
@@ -51,8 +50,8 @@ around 'BUILDARGS' => sub {
 	);
     }
 
-    return $self->$orig( map => $map, players => \@players, id => get_tag );
-};
+    return Session->new( map => $map, players => \@players, id => get_tag );
+}
 
 sub build_map {
     my $center = shift;
@@ -132,8 +131,12 @@ sub play {
 	my @a = $self->map->allowed_types($r, $n);
 	if ( grep { $_ eq $type } @a ) {
 	    my ($tile, $player) = $self->active_player->play($i);
-	    $self->_update_active_player( $player );
-	    $self->_map($self->map->place($tile)->($r, $n));
+	    my $active = $self->active_player;
+	    return Session->new(
+		map	    => $self->map->place($tile)->($r, $n),
+		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
+		id	    => $self->id
+	    );
 	}
     };
 }
