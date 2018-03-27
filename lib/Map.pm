@@ -117,7 +117,7 @@ sub place {
     my ($self, $tile) = @_;
     return sub {
 	my ($r, $n) = @_;
-	push @{$self->_tiles}, [$r, $n, $tile];
+	return Map->new( tiles => [ [$r, $n, $tile], @{$self->_tiles} ] );
     };
 }
 

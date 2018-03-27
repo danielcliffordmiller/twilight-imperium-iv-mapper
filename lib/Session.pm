@@ -13,7 +13,7 @@ use Map;
 use Player;
 use Tile;
 
-has map		=> (is => 'ro', isa => 'Map');
+has map		=> (is => 'ro', writer => '_map', isa => 'Map');
 has players	=> (is => 'ro', isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', isa => 'Str');
 
@@ -120,7 +120,7 @@ sub play {
 	my @a = $self->map->allowed_types($r, $n);
 	if ( grep { $_ eq $type } @a ) {
 	    my $tile = $self->active_player->play($i);
-	    $self->map->place($tile)->($r, $n);
+	    $self->_map($self->map->place($tile)->($r, $n));
 	}
     };
 }
