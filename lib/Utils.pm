@@ -48,9 +48,9 @@ sub get_tag {
 }
 
 sub draw {
-    my $items = shift;
-    my $item = $items->[int(rand(@$items))];
-    return $item, [ grep { $_ != $item } @$items ];
+    my @items = @{ $_[0] };
+    my $item = splice @items, int rand @items, 1;
+    return $item, \@items;
 }
 
 sub shuffle {
