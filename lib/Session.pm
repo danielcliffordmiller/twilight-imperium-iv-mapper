@@ -89,7 +89,7 @@ sub player {
     my $id = shift;
 
     my @p = grep { $_->id eq $id } @{ $self->players };
-    return @p ? $p[0] : 0;
+    return @p ? $p[0] : undef;
 }
 
 sub active_player {
@@ -111,22 +111,10 @@ sub is_active_player {
     return $self->active_player == $self->player($p_id);
 }
 
-sub _update_active_player {
-    my $self = shift;
-    my $player = shift;
-    my $players = $self->players;
-    foreach my $i (0 .. $#$players) {
-	if ($self->is_active_player( $players->[$i]->id )) {
-	    $players->[$i] = $player;
-	    last;
-	}
-    }
-}
-
 sub play {
     my $self = shift;
     my $i = shift;
-    my $type = $self->active_player->hand($i)->{type};
+    my $type = $self->active_player->hand($i)->type;
     return sub {
 	my ($r, $n) = @_;
 	my @a = $self->map->allowed_types($r, $n);
