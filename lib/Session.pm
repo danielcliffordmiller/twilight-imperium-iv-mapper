@@ -26,7 +26,7 @@ around 'BUILDARGS' => sub {
 
     my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
 
-    my $map = Map->new( $mecatol, @names );
+    my $map = build_map( $mecatol, @names );
 
     my ($home, $red, $blue) = partition(
 	sub { $_[0]->type eq 'home' },
