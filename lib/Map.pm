@@ -141,28 +141,6 @@ sub iterator {
     };
 }
 
-around 'BUILDARGS' => sub {
-    my $orig = shift;
-    my $self = shift;
-    my $center = shift;
-    my @names = @_;
-
-    my @tiles;
-
-    push @tiles, [ 0, 0, $center ];
-
-    for my $n ( 0 .. $#names ) {
-	push @tiles, [ 3, (($n+1)*3-1), Tile->new(
-	    name	=> 'player_tile',
-	    type	=> 'home',
-	    text	=> $names[$n],
-	    template	=> 'single_text'
-	) ];
-    }
-
-    return $self->$orig( tiles => \@tiles, num_players => scalar @names );
-};
-
 package Map::Entry;
 
 use Mouse;

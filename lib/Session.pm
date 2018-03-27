@@ -54,6 +54,26 @@ around 'BUILDARGS' => sub {
     return $self->$orig( map => $map, players => \@players, id => get_tag );
 };
 
+sub build_map {
+    my $center = shift;
+    my @names = @_;
+
+    my @tiles;
+
+    push @tiles, [ 0, 0, $center ];
+
+    for my $n ( 0 .. $#names ) {
+	push @tiles, [ 3, (($n+1)*3-1), Tile->new(
+	    name	=> 'player_tile',
+	    type	=> 'home',
+	    text	=> $names[$n],
+	    template	=> 'single_text'
+	) ];
+    }
+
+    return Map->new( tiles => \@tiles );
+}
+
 sub dump {
     my $self = shift;
 
