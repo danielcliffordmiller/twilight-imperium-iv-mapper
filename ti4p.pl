@@ -90,7 +90,7 @@ get '/s/:s_id/p/:p_id/undo' => sub {
     $state{$s_id} = $s = $s->previous if $s->previous->is_active_player($p_id);
 
     $c->stash( session => $s );
-    $c->render( template => 'screen', layout => 'main' );
+    $c->redirect_to('ss_idpp_id');
 };
 
 post '/s/:s_id' => sub {
