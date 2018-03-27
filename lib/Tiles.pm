@@ -12,8 +12,6 @@ our @ISA = qw(Exporter);
 
 our @EXPORT_OK = qw(draw_tiles draw_tile);
 
-my @valid_templates = map { s|templates/tiles/(\w+)\..*$|$1|r } glob "templates/tiles/*";
-
 sub red_backed {
     $_[0]->type eq 'anomaly' ||
     $_[0]->name eq 'space' ||
