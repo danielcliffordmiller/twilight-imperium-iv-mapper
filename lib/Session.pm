@@ -13,65 +13,25 @@ use Map;
 use Player;
 use Tile;
 
-has map		=> (is => 'ro', isa => 'Map');
-has players	=> (is => 'ro', isa => 'ArrayRef[Player]');
-has id		=> (is => 'ro', isa => 'Str');
+use SixPlayerSession;
+
+has map		=> (is => 'ro', required => 1, isa => 'Map');
+has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[Player]');
+has id		=> (is => 'ro', required => 1, isa => 'Str');
 has previous	=> (is => 'ro', isa => 'Session' );
 
 state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
+my %create_table = (
+    6 => \&SixPlayerSession::create
+);
+
 sub create {
     shift;
+
     my @names = @_;
 
-    my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
-
-    my $map = build_map( $mecatol, @names );
-
-    my ($home, $red, $blue) = partition(
-	sub { $_[0]->type eq 'home' },
-	\&Tiles::red_backed,
-	@$deck
-    );
-
-    my @players;
-
-    foreach my $n (0 .. $#names) {
-	my ($hand, $t);
-
-	($t, $red) = draw_tiles(2, $red);
-	push @$hand, @$t;
-	($t, $blue) = draw_tiles(3, $blue);
-	push @$hand, @$t;
-
-	push @players, Player->new(
-	    id	    => get_tag,
-	    name    => $names[$n],
-	    hand    => $hand
-	);
-    }
-
-    return Session->new( map => $map, players => \@players, id => get_tag );
-}
-
-sub build_map {
-    my $center = shift;
-    my @names = @_;
-
-    my @tiles;
-
-    push @tiles, [ 0, 0, $center ];
-
-    for my $n ( 0 .. $#names ) {
-	push @tiles, [ 3, (($n+1)*3-1), Tile->new(
-	    name	=> 'player_tile',
-	    type	=> 'home',
-	    text	=> $names[$n],
-	    template	=> 'single_text'
-	) ];
-    }
-
-    return Map->new( tiles => \@tiles );
+    return $create_table{ scalar @names }->($tile_data, @names);
 }
 
 sub dump {
