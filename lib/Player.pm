@@ -6,7 +6,7 @@ use Mouse;
 
 has name    => (is => 'ro', isa => 'Str' );
 has id	    => (is => 'ro', isa => 'Str' );
-has hand    => (is => 'ro', isa => 'ArrayRef' );
+has hand    => (is => 'ro', isa => 'ArrayRef[Tile]' );
 
 around 'hand' => sub {
     my ($orig, $self, $n) = @_;
