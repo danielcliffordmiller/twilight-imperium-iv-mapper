@@ -81,6 +81,18 @@ get '/s/:s_id/p/:p_id/hand' => sub {
     $c->render( template => 'hand' );
 };
 
+get '/s/:s_id/p/:p_id/undo' => sub {
+    my $c = shift;
+    my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
+
+    my $s = $state{$s_id};
+
+    $state{$s_id} = $s = $s->previous if $s->previous->is_active_player($p_id);
+
+    $c->stash( session => $s );
+    $c->render( template => 'screen', layout => 'main' );
+};
+
 post '/s/:s_id' => sub {
     my $c = shift;
     my $s_id = $c->stash("s_id");

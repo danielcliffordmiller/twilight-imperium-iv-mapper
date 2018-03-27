@@ -16,6 +16,7 @@ use Tile;
 has map		=> (is => 'ro', writer => '_map', isa => 'Map');
 has players	=> (is => 'ro', isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', isa => 'Str');
+has previous	=> (is => 'ro', isa => 'Session' );
 
 state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
@@ -135,7 +136,8 @@ sub play {
 	    return Session->new(
 		map	    => $self->map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
-		id	    => $self->id
+		id	    => $self->id,
+		previous    => $self
 	    );
 	}
     };
