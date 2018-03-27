@@ -10,13 +10,13 @@ use Mouse;
 use Session;
 
 use Tiles qw(draw_tile draw_tiles);
-use Utils qw(partition get_tag);
+use Utils qw(partition get_tag random_shift shuffle);
 
 extends 'Session';
 
 sub create {
     my $td = shift;
-    my @names = @_;
+    my @names = shuffle(@_);
 
     my ($mecatol, $deck) = draw_tile( "mecatolrex", $td );
 
@@ -45,7 +45,7 @@ sub create {
 	);
     }
 
-    return SixPlayerSession->new( map => $map, players => \@players, id => get_tag );
+    return SixPlayerSession->new( map => $map, players => [ random_shift(@players) ], id => get_tag );
 }
 
 sub build_map {
