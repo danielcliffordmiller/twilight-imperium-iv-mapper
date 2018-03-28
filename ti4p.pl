@@ -11,6 +11,7 @@ use Mojolicious::Lite;
 use Mojo::ByteStream 'b';
 
 use Session;
+use SessionBuilder qw(create_session);
 
 use Storable;
 
@@ -27,7 +28,7 @@ my @players = qw(
     Alex
 );
 
-my $s = Session->create(@players);
+my $s = create_session(@players);
 
 my %state = ( $s->id(), $s );
 

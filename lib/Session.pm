@@ -2,37 +2,22 @@ package Session;
 
 use v5.18;
 
-use Mouse;
+use Mouse::Role;
 
 use YAML ();
 
 use Tiles qw(draw_tile draw_tiles);
-use Utils qw(partition get_tag);
+use Utils qw(partition get_tag random_shift shuffle);
 
 use Map;
 use Player;
 use Tile;
 
-use SixPlayerSession;
 
 has map		=> (is => 'ro', required => 1, isa => 'Map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
 has previous	=> (is => 'ro', isa => 'Session' );
-
-state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
-
-my %create_table = (
-    6 => \&SixPlayerSession::create
-);
-
-sub create {
-    shift;
-
-    my @names = @_;
-
-    return $create_table{ scalar @names }->($tile_data, @names);
-}
 
 sub dump {
     my $self = shift;
@@ -81,7 +66,7 @@ sub play {
 	if ( grep { $_ eq $type } @a ) {
 	    my ($tile, $player) = $self->active_player->play($i);
 	    my $active = $self->active_player;
-	    return Session->new(
+	    return $self->meta->new_object(
 		map	    => $self->map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,

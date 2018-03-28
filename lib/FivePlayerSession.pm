@@ -1,4 +1,4 @@
-package SixPlayerSession;
+package FivePlayerSession;
 
 use v5.18;
 
