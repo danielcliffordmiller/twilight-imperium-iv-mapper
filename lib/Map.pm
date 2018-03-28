@@ -11,8 +11,8 @@ use v5.18;
 
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
 
-sub tiles_in_ring {
-    my ($ring) = @_;
+sub _tiles_in_ring {
+    my $ring = shift;
     return $ring == 0 ? 1 : $ring * 6;
 }
 
@@ -66,7 +66,7 @@ sub _any_neighbor {
     return grep { $fn->($_) } $self->_get_neighbors($r, $n);
 }
 
-sub empty_in_ring {
+sub _empty_in_ring {
     my ($self, $r) = @_;
 
     my @res;
@@ -83,13 +83,13 @@ sub _can_be_placed {
 
     return 0 unless $r == RINGS;
 
-    for my $c ($self->empty_in_ring($r)) {
+    for my $c ($self->_empty_in_ring($r)) {
 	return 0 unless $self->_any_neighbor( $c->[0], $c->[1], sub { $_[0]->type eq $type } );
     }
     return 1;
 }
 
-sub allowed_types {
+sub _allowed_types {
     my $self = shift; 
     my ($r, $n) = @_;
 
@@ -101,6 +101,12 @@ sub allowed_types {
 	push @allowed, 'alpha'	    if $self->_can_be_placed( @_, 'alpha'   );
     }
     return @allowed;
+}
+
+sub is_legal_play {
+    my ($self, $type, $r, $n) = @_;
+
+    return scalar grep { $_ eq $type } $self->_allowed_types($r, $n);
 }
 
 sub num_played {
@@ -122,12 +128,12 @@ sub iterator {
     my @res;
     my $tile;
     for my $r ( 0 .. RINGS ) {
-	for my $n ( 0 .. (tiles_in_ring($r)-1) ) {
+	for my $n ( 0 .. (_tiles_in_ring($r)-1) ) {
 	    $tile = $self->tile($r, $n);
 	    push @res, Map::Entry->new(
 		r => $r,
 		n => $n,
-		$tile ? (tile => $tile) : (allowed_types => [$self->allowed_types($r, $n)])
+		$tile ? (tile => $tile) : (allowed_types => [$self->_allowed_types($r, $n)])
 	    );
 	}
     }

@@ -62,8 +62,7 @@ sub play {
     my $type = $self->active_player->hand($i)->type;
     return sub {
 	my ($r, $n) = @_;
-	my @a = $self->map->allowed_types($r, $n);
-	if ( grep { $_ eq $type } @a ) {
+	if ( $self->map->is_legal_play( $type, $r, $n ) ) {
 	    my ($tile, $player) = $self->active_player->play($i);
 	    my $active = $self->active_player;
 	    return $self->meta->new_object(
