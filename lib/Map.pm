@@ -9,10 +9,6 @@ use constant RINGS => 3;
 
 use v5.18;
 
-use Tiles;
-
-use Tile;
-
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
 
 sub tiles_in_ring {
@@ -145,8 +141,8 @@ package Map::Entry;
 use Mouse;
 use Tile;
 
-has 'r'		    => (is => 'ro', isa => 'Str', required => 1);
-has 'n'	    	    => (is => 'ro', isa => 'Str', required => 1);
+has 'r'		    => (is => 'ro', isa => 'Int', required => 1);
+has 'n'	    	    => (is => 'ro', isa => 'Int', required => 1);
 has 'tile'  	    => (is => 'ro', isa => 'Tile', predicate => 'has_tile' );
 has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
 
