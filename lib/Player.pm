@@ -4,9 +4,10 @@ use v5.18;
 
 use Mouse;
 
-has name    => (is => 'ro', isa => 'Str' );
-has id	    => (is => 'ro', isa => 'Str' );
-has hand    => (is => 'ro', isa => 'ArrayRef' );
+has name    => (is => 'ro', isa => 'Str', required => 1 );
+has id	    => (is => 'ro', isa => 'Str', required => 1 );
+has hand    => (is => 'ro', isa => 'ArrayRef', required => 1 );
+has view    => (is => 'ro', isa => 'Int', required => 1 );
 
 around 'hand' => sub {
     my ($orig, $self, $n) = @_;
@@ -23,6 +24,7 @@ sub play {
 	Player->new(
 	    name    => $self->name,
 	    id	    => $self->id,
+	    view    => $self->view,
 	    hand    => [ map { $_ == $t ? undef : $_ } @{$self->hand} ]
 	)
     );
@@ -31,9 +33,10 @@ sub play {
 sub dump {
     my $self = shift;
     return {
-	name => $self->name,
-	id  => $self->id,
-	hand	=> $self->hand
+	name	=> $self->name,
+	id	=> $self->id,
+	hand	=> $self->hand,
+	view	=> $self->view
     };
 }
 

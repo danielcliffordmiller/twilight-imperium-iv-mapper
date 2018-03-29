@@ -56,6 +56,7 @@ sub create_session {
 	push @players, Player->new(
 	    id	    => get_tag,
 	    name    => $names[$n],
+	    view    => view_rotation( @{$conf->players($n)->coord} ),
 	    hand    => $hand
 	);
     }
