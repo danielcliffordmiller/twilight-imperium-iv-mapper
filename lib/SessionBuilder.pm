@@ -10,6 +10,8 @@ use FivePlayerSession;
 use FourPlayerSession;
 use ThreePlayerSession;
 
+use SessionConfig;
+
 use Tile;
 
 use Tiles qw(draw_tile draw_tiles);
@@ -21,78 +23,15 @@ our @EXPORT_OK = qw(create_session);
 
 state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
-my %session_config = (
-    3 => {
-	create	=> sub { return ThreePlayerSession->new( @_ ) },
-	tiles	=> {
-	    red	    => 2,
-	    blue    => 6
-	},
-	players	=> [
-	    [ 3, 2 ],
-	    [ 3, 8 ],
-	    [ 3, 14 ],
-	],
-	non_map => [
-	    [ 3, 4 ],
-	    [ 3, 5 ],
-	    [ 3, 6 ],
-	    [ 3, 10 ],
-	    [ 3, 11 ],
-	    [ 3, 12 ],
-	    [ 3, 16 ],
-	    [ 3, 17 ],
-	    [ 3, 0 ],
-	]
-    },
-    4 => {
-	create	=> sub { return FourPlayerSession->new( @_ ) },
-	tiles	=> {
-	    red	    => 3,
-	    blue    => 5,
-	},
-	players	=> [
-	    [ 3, 3 ],
-	    [ 3, 7 ],
-	    [ 3, 12 ],
-	    [ 3, 16 ],
-	]
-    },
-    5 => {
-	create	=> sub { return FivePlayerSession->new( @_ ) },
-	tiles	=> {
-	    red	    => 2,
-	    blue    => 4,
-	},
-	players	=> [
-	    [ 3, 2 ],
-	    [ 3, 5 ],
-	    [ 3, 8 ],
-	    [ 3, 12 ],
-	    [ 3, 16 ],
-	],
-    },
-    6 => {
-	create	=> sub { return SixPlayerSession->new( @_ ) },
-	tiles	=> {
-	    red	    => 2,
-	    blue    => 3,
-	},
-	players	=> [
-	    [ 3, 2 ],
-	    [ 3, 5 ],
-	    [ 3, 8 ],
-	    [ 3, 11 ],
-	    [ 3, 14 ],
-	    [ 3, 17 ],
-	]
-    }
-);
+state $session_config = { map {
+    $_->{players} = [ map { SessionConfig::Player->new($_) } @{$_->{players}} ];
+    ( $_->{count}, SessionConfig->new( $_ ) )
+} @{YAML::LoadFile('./data/session_conf.yml')} };
 
 sub create_session {
     my @names = shuffle(@_);
 
-    my $conf = $session_config{ @names } or die "needs 3 to 6 players";
+    my $conf = $session_config->{ @names } or die "needs 3 to 6 players";
 
     my ($mecatol, $deck) = draw_tile( "mecatolrex", $tile_data );
 
@@ -109,9 +48,9 @@ sub create_session {
     foreach my $n (0 .. $#names) {
 	my ($hand, $t);
 
-	($t, $red) = draw_tiles($conf->{tiles}{red}, $red);
+	($t, $red) = draw_tiles($conf->red_tiles, $red);
 	push @$hand, @$t;
-	($t, $blue) = draw_tiles($conf->{tiles}{blue}, $blue);
+	($t, $blue) = draw_tiles($conf->blue_tiles, $blue);
 	push @$hand, @$t;
 
 	push @players, Player->new(
@@ -122,7 +61,7 @@ sub create_session {
     }
 
     # random_shift places the players such that the speaker is $players[0]
-    return $conf->{create}->( map => $map, players => [ random_shift(@players) ], id => get_tag );
+    return $conf->class_name->new( map => $map, players => [ random_shift(@players) ], id => get_tag );
 }
 
 sub build_map {
@@ -133,7 +72,7 @@ sub build_map {
     my @tiles;
 
     push @tiles, [ 0, 0, $center ], map {
-	[ @{$conf->{players}->[$_]}, Tile->new(
+	[ @{$conf->players($_)->coord}, Tile->new(
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$_],
@@ -142,7 +81,7 @@ sub build_map {
     } ( 0 .. $#names );
 
     return Map->new( tiles => \@tiles, non_map_spaces =>
-	$conf->{non_map} || [] );
+	[ $conf->non_map ] );
 }
 
 1;
