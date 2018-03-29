@@ -89,8 +89,6 @@ my %session_config = (
     }
 );
 
-my $w = "SixPlayerSession";
-
 sub create_session {
     my @names = shuffle(@_);
 
