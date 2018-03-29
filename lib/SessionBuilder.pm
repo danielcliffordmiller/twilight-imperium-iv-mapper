@@ -84,4 +84,12 @@ sub build_map {
 	[ $conf->non_map ] );
 }
 
+sub view_rotation {
+    my ($r, $n) = @_;
+
+    die "should only be called when $r == 3" unless $r == 3;
+
+    return 5 - ( ( int( ( ($n-1) % 18 ) / 3 ) ) + 3 ) % 6;
+}
+
 1;
