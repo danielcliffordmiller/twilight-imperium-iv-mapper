@@ -26,7 +26,7 @@ sub _check_coord {
 
 has 'class_name' => (is => 'ro', isa => 'Str', required => 1);
 has ['red_tiles', 'blue_tiles'] => (is => 'ro', isa => 'Int', required => 1);
-has 'players' => (is => 'ro', isa => 'ArrayRef[SessionConfig::Player]', required => 1);
+has 'players' => (is => 'ro', isa => 'ArrayRef[Coord]', required => 1);
 has 'non_map' => (is => 'ro', isa => 'ArrayRef[Coord]', default => sub { [] } );
 
 around 'non_map' => sub {
@@ -38,21 +38,9 @@ around 'non_map' => sub {
 
 around 'players' => sub {
     my ($orig, $self, $n) = @_;
-    return defined $n ? $self->$orig()->[$n] : $self->$orig();
-};
-
-package SessionConfig::Player;
-
-use Mouse;
-
-has 'coord' => (is => 'ro', isa => 'Coord', required => 1);
-has 'rotate' => (is => 'ro', isa => 'Int', required => 1);
-
-around 'coord' => sub {
-    my $orig = shift;
-    my $self = shift;
-
-    return [ split ',' => $self->$orig() ];
+    return defined $n ?
+	[ split ',' => $self->$orig()->[$n] ] :
+	map { [ split ',' => $_ ] } @{$self->$orig()};
 };
 
 1;

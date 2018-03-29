@@ -56,7 +56,7 @@ sub create_session {
 	push @players, Player->new(
 	    id	    => get_tag,
 	    name    => $names[$n],
-	    view    => view_rotation( @{$conf->players($n)->coord} ),
+	    view    => view_rotation( @{$conf->players($n)} ),
 	    hand    => $hand
 	);
     }
@@ -73,7 +73,7 @@ sub build_map {
     my @tiles;
 
     push @tiles, [ 0, 0, $center ], map {
-	[ @{$conf->players($_)->coord}, Tile->new(
+	[ @{$conf->players($_)}, Tile->new(
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$_],

@@ -3,12 +3,9 @@
   red_tiles: 2
   blue_tiles: 6
   players:
-    - coord: 3,2
-      rotate: 2
-    - coord: 3,8
-      rotate: 0
-    - coord: 3,14
-      rotate: 4
+    - 3,2
+    - 3,8
+    - 3,14
   non_map:
     - 3,4
     - 3,5
@@ -24,43 +21,28 @@
   red_tiles: 3
   blue_tiles: 5
   players:
-    - coord: 3,3
-      rotate: 2
-    - coord: 3,7
-      rotate: 0
-    - coord: 3,12
-      rotate: 5
-    - coord: 3,16
-      rotate: 3
+    - 3,3
+    - 3,7
+    - 3,12
+    - 3,16
 - count: 5
   class_name: FivePlayerSession
   red_tiles: 2
   blue_tiles: 4
   players:
-    - coord: 3,2
-      rotate: 2
-    - coord: 3,5
-      rotate: 1
-    - coord: 3,8
-      rotate: 0
-    - coord: 3,12
-      rotate: 5
-    - coord: 3,16
-      rotate: 3
+    - 3,2
+    - 3,5
+    - 3,8
+    - 3,12
+    - 3,16
 - count: 6
   class_name: SixPlayerSession
   red_tiles: 2
   blue_tiles: 3
   players:
-    - coord: 3,2
-      rotate: 2
-    - coord: 3,5
-      rotate: 1
-    - coord: 3,8
-      rotate: 0
-    - coord: 3,11
-      rotate: 5
-    - coord: 3,14
-      rotate: 4
-    - coord: 3,17
-      rotate: 3
+    - 3,2
+    - 3,5
+    - 3,8
+    - 3,11
+    - 3,14
+    - 3,17
