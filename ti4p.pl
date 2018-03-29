@@ -125,7 +125,7 @@ get '/s/:s_id/save' => sub {
     }
     mkdir 'var' unless (-d 'var');
     store $s, "var/".$c->stash('s_id');
-    #$c->redirect_to('/');
+    $c->redirect_to('players');
 };
 
 # remove later
@@ -136,7 +136,7 @@ get '/s/:s_id/load' => sub {
 	my $s = retrieve( "var/".$s_id );
 	$state{$s_id} = $s;
     };
-    #$c->redirect_to('/');
+    $c->redirect_to('players');
 };
 
 ## remove later
