@@ -139,12 +139,4 @@ get '/s/:s_id/load' => sub {
     $c->redirect_to('players');
 };
 
-## remove later
-#get '/reset' => sub {
-#    my $c = shift;
-#    $map_data = [ [0, 0, $mecatol] ];
-#    $hand = [ @$deck ];
-#    $c->redirect_to('/');
-#};
-
 app->start();
