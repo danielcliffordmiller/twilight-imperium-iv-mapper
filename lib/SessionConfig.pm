@@ -36,6 +36,17 @@ around 'non_map' => sub {
     return map { [ split ',' => $_ ] } @{ $self->$orig() };
 };
 
+sub view {
+    my $self = shift;
+    my $n = shift;
+
+    my $c = $self->players($n);
+
+    die "no coord found for player $n" unless $c;
+
+    return 5 - ( ( int( ( ($c->[1]-1) % 18 ) / 3 ) ) + 3 ) % 6;
+}
+
 around 'players' => sub {
     my ($orig, $self, $n) = @_;
     return defined $n ?

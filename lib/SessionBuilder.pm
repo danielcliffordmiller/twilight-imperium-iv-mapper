@@ -24,7 +24,6 @@ our @EXPORT_OK = qw(create_session);
 state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
 state $session_config = { map {
-    $_->{players} = [ map { SessionConfig::Player->new($_) } @{$_->{players}} ];
     ( $_->{count}, SessionConfig->new( $_ ) )
 } @{YAML::LoadFile('./data/session_conf.yml')} };
 
@@ -56,7 +55,7 @@ sub create_session {
 	push @players, Player->new(
 	    id	    => get_tag,
 	    name    => $names[$n],
-	    view    => view_rotation( @{$conf->players($n)} ),
+	    view    => $conf->view($n),
 	    hand    => $hand
 	);
     }
@@ -83,14 +82,6 @@ sub build_map {
 
     return Map->new( tiles => \@tiles, non_map_spaces =>
 	[ $conf->non_map ] );
-}
-
-sub view_rotation {
-    my ($r, $n) = @_;
-
-    die "should only be called when $r == 3" unless $r == 3;
-
-    return 5 - ( ( int( ( ($n-1) % 18 ) / 3 ) ) + 3 ) % 6;
 }
 
 1;
