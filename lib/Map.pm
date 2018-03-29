@@ -10,6 +10,7 @@ use constant RINGS => 3;
 use v5.18;
 
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
+has 'non_map_spaces' => (is => 'ro', isa => 'ArrayRef', reader => '_non_map_spaces', default => sub { [] } );
 
 sub _tiles_in_ring {
     my $ring = shift;
@@ -71,7 +72,7 @@ sub _empty_in_ring {
 
     my @res;
     for my $n (0 .. $r * 6 - 1) {
-	push @res, [ $r, $n ] unless $self->tile($r, $n);
+	push @res, [ $r, $n ] unless $self->tile($r, $n) || $self->_is_non_map_space( $r, $n );
     }
     return @res;
 }
@@ -103,6 +104,12 @@ sub _allowed_types {
     return @allowed;
 }
 
+sub _is_non_map_space {
+    my ($self, $r, $n) = @_;
+
+    return scalar grep { $_->[0] == $r && $_->[1] == $n } @{ $self->_non_map_spaces };
+}
+
 sub is_legal_play {
     my ($self, $type, $r, $n) = @_;
 
@@ -119,7 +126,8 @@ sub place {
     my ($self, $tile) = @_;
     return sub {
 	my ($r, $n) = @_;
-	return Map->new( tiles => [ [$r, $n, $tile], @{$self->_tiles} ] );
+	return Map->new( tiles => [ [$r, $n, $tile], @{$self->_tiles} ],
+	    non_map_spaces => $self->_non_map_spaces );
     };
 }
 
@@ -129,6 +137,7 @@ sub iterator {
     my $tile;
     for my $r ( 0 .. RINGS ) {
 	for my $n ( 0 .. (_tiles_in_ring($r)-1) ) {
+	    next if $self->_is_non_map_space($r, $n);
 	    $tile = $self->tile($r, $n);
 	    push @res, Map::Entry->new(
 		r => $r,

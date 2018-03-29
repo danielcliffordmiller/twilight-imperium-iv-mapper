@@ -32,6 +32,17 @@ my %session_config = (
 	    [ 3, 2 ],
 	    [ 3, 8 ],
 	    [ 3, 14 ],
+	],
+	non_map => [
+	    [ 3, 4 ],
+	    [ 3, 5 ],
+	    [ 3, 6 ],
+	    [ 3, 10 ],
+	    [ 3, 11 ],
+	    [ 3, 12 ],
+	    [ 3, 16 ],
+	    [ 3, 17 ],
+	    [ 3, 0 ],
 	]
     },
     4 => {
@@ -132,7 +143,11 @@ sub build_map {
 	) ]
     } ( 0 .. $#names );
 
-    return Map->new( tiles => \@tiles );
+    return Map->new( tiles => \@tiles, non_map_spaces =>
+	$conf->{non_map} || [] );
+#    return exists $conf->{non_map} ?
+#	Map->new( tiles => \@tiles, non_map_spaces => $conf->{non_map} ) :
+#	Map->new( tiles => \@tiles );
 }
 
 1;
