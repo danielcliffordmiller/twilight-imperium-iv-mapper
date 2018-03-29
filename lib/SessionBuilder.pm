@@ -143,9 +143,6 @@ sub build_map {
 
     return Map->new( tiles => \@tiles, non_map_spaces =>
 	$conf->{non_map} || [] );
-#    return exists $conf->{non_map} ?
-#	Map->new( tiles => \@tiles, non_map_spaces => $conf->{non_map} ) :
-#	Map->new( tiles => \@tiles );
 }
 
 1;
