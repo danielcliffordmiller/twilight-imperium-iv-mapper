@@ -14,7 +14,7 @@ use Player;
 use Tile;
 
 
-has map		=> (is => 'ro', required => 1, isa => 'Map');
+has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
 has previous	=> (is => 'ro', isa => 'Session' );
@@ -24,7 +24,7 @@ sub dump {
 
     return {
 	id => $self->id,
-	map => $self->map->dump,
+	map => $self->_map->dump,
 	players => [ map { $_->dump } @{$self->players} ]
     };
 }
@@ -40,7 +40,7 @@ sub player {
 sub active_player {
     my $self = shift;
 
-    my $num_map_tiles = $self->map->num_played;
+    my $num_map_tiles = $self->_map->num_played;
     my $num_players = scalar @{ $self->players };
 
     my $offset = $num_map_tiles % $num_players;
@@ -56,17 +56,24 @@ sub is_active_player {
     return $self->active_player == $self->player($p_id);
 }
 
+sub iterator {
+    my $self = shift;
+    my $p_id = shift;
+    my $view = $self->player( $p_id )->view;
+    return $self->_map->iterator( $view );
+}
+
 sub play {
     my $self = shift;
     my $i = shift;
     my $type = $self->active_player->hand($i)->type;
     return sub {
 	my ($r, $n) = @_;
-	if ( $self->map->is_legal_play( $type, $r, $n ) ) {
+	if ( $self->_map->is_legal_play( $type, $r, $n ) ) {
 	    my ($tile, $player) = $self->active_player->play($i);
 	    my $active = $self->active_player;
 	    return $self->meta->new_object(
-		map	    => $self->map->place($tile)->($r, $n),
+		map	    => $self->_map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,
 		previous    => $self

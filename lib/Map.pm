@@ -135,13 +135,15 @@ sub iterator {
     my $self = shift;
     my @res;
     my $tile;
+    my $view = shift;
     for my $r ( 0 .. RINGS ) {
 	for my $n ( 0 .. (_tiles_in_ring($r)-1) ) {
 	    next if $self->_is_non_map_space($r, $n);
 	    $tile = $self->tile($r, $n);
 	    push @res, Map::Entry->new(
-		r => $r,
-		n => $n,
+		r	    => $r,
+		n	    => $n,
+		view	    => $view,
 		$tile ? (tile => $tile) : (allowed_types => [$self->_allowed_types($r, $n)])
 	    );
 	}
@@ -156,14 +158,22 @@ package Map::Entry;
 use Mouse;
 use Tile;
 
-has 'r'		    => (is => 'ro', isa => 'Int', required => 1);
-has 'n'	    	    => (is => 'ro', isa => 'Int', required => 1);
+has ['r', 'n']	    => (is => 'ro', isa => 'Int', required => 1);
 has 'tile'  	    => (is => 'ro', isa => 'Tile', predicate => 'has_tile' );
 has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
+has 'view'	    => (is => 'ro', isa => 'Int', required => 1);
 
 sub rn {
     my $self = shift;
     return ($self->r, $self->n);
+}
+
+sub view_rn {
+    my $self = shift;
+    my ($r, $n, $v) = ($self->r, $self->n, $self->view);
+    return $r == 0 ?
+	($r, $n) :
+	($r, ($n + ($r * $v)) % (6 * $r));
 }
 
 around 'allowed_types' => sub {
