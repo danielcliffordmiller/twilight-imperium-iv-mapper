@@ -16,6 +16,11 @@ subtype 'Coord',
     where { _check_coord($_) },
     message { "coord must be two numbers joined by a comma" };
 
+subtype 'ShadowPlayer',
+    as 'HashRef',
+    where { _check_shadow_players($_) },
+    message { "shadow order sequence must match dealt shadow tiles" };
+
 sub _check_coord {
     my $c = shift;
     my @v = split ',' => $c;
@@ -24,10 +29,20 @@ sub _check_coord {
 	&& looks_like_number( $v[1] );
 }
 
+sub _check_shadow_players {
+    my $s = shift;
+    my $t = 0;
+    foreach my $p (@{$s->{players}}) {
+	$t += ($p->{red_tiles} // 0) + ($p->{blue_tiles} // 0);
+    }
+    return scalar @{$s->{order}} == $t;
+}
+
 has 'class_name' => (is => 'ro', isa => 'Str', required => 1);
 has ['red_tiles', 'blue_tiles'] => (is => 'ro', isa => 'Int', required => 1);
 has 'players' => (is => 'ro', isa => 'ArrayRef[Coord]', required => 1);
 has 'non_map' => (is => 'ro', isa => 'ArrayRef[Coord]', default => sub { [] } );
+has 'shadow'  => (is => 'ro', isa => 'ShadowPlayer');
 
 around 'non_map' => sub {
     my $orig = shift;

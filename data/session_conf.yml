@@ -35,6 +35,10 @@
     - 3,8
     - 3,12
     - 3,16
+  shadow:
+    players:
+      - red_tiles: 1
+    order: [ 1 ]
 - count: 6
   class_name: SixPlayerSession
   red_tiles: 2
