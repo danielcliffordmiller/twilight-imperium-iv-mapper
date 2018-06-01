@@ -38,7 +38,6 @@ sub _check_shadow_players {
     return scalar @{$s->{order}} == $t;
 }
 
-has 'class_name' => (is => 'ro', isa => 'Str', required => 1);
 has ['red_tiles', 'blue_tiles'] => (is => 'ro', isa => 'Int', required => 1);
 has 'players' => (is => 'ro', isa => 'ArrayRef[Coord]', required => 1);
 has 'non_map' => (is => 'ro', isa => 'ArrayRef[Coord]', default => sub { [] } );

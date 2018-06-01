@@ -1,5 +1,4 @@
 - count: 3
-  class_name: ThreePlayerSession
   red_tiles: 2
   blue_tiles: 6
   players:
@@ -17,7 +16,6 @@
     - 3,17
     - 3,0
 - count: 4
-  class_name: FourPlayerSession
   red_tiles: 3
   blue_tiles: 5
   players:
@@ -26,7 +24,6 @@
     - 3,12
     - 3,16
 - count: 5
-  class_name: FivePlayerSession
   red_tiles: 2
   blue_tiles: 4
   players:
@@ -40,7 +37,6 @@
       - red_tiles: 1
     order: [ 1 ]
 - count: 6
-  class_name: SixPlayerSession
   red_tiles: 2
   blue_tiles: 3
   players:
