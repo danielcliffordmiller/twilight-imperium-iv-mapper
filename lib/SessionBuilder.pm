@@ -5,10 +5,6 @@ use v5.18;
 use strict;
 use warnings;
 
-use SixPlayerSession;
-use FivePlayerSession;
-use FourPlayerSession;
-use ThreePlayerSession;
 use Session;
 
 use SessionConfig;
@@ -89,7 +85,7 @@ sub create_session {
         }
     }
 
-    return $conf->class_name->new(
+    return Session->new(
 	map => $map,
 	players => \@players,
 	id => get_tag,

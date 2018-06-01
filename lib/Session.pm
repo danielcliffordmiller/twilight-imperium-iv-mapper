@@ -2,7 +2,7 @@ package Session;
 
 use v5.18;
 
-use Mouse::Role;
+use Mouse;
 
 use YAML ();
 
@@ -65,7 +65,7 @@ sub play {
 	if ( $self->_map->is_legal_play( $type, $r, $n ) ) {
 	    my ($tile, $player) = $self->active_player->play($i);
 	    my $active = $self->active_player;
-	    return $self->meta->new_object(
+	    return Session->new(
 		map	    => $self->_map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,
