@@ -6,6 +6,8 @@ use strict;
 use warnings;
 
 use constant RINGS => 3;
+# (3 + 2 + 1) * 6; (doesn't include the center)
+use constant PLAYABLE_SPOTS => 36;
 
 use v5.18;
 

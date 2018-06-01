@@ -9,10 +9,14 @@ use SixPlayerSession;
 use FivePlayerSession;
 use FourPlayerSession;
 use ThreePlayerSession;
+use Session;
 
 use SessionConfig;
 
+use Map;
 use Tile;
+
+use Player;
 
 use Tiles qw(draw_tile draw_tiles);
 use Utils qw(partition get_tag random_shift shuffle);
@@ -61,7 +65,44 @@ sub create_session {
     }
 
     # random_shift places the players such that the speaker is $players[0]
-    return $conf->class_name->new( map => $map, players => [ random_shift(@players) ], id => get_tag );
+    @players = random_shift(@players);
+
+    return $conf->class_name->new(
+	map => $map,
+	players => \@players,
+	id => get_tag,
+	play_order => build_player_order($conf, @players)
+    );
+}
+
+sub build_player_order {
+    my $conf = shift;
+    my @players = @_;
+
+    my $num_spots = Map::PLAYABLE_SPOTS - ($conf->players + $conf->non_map + $conf->num_shadow_tiles);
+
+    my @order = map {
+	my $offset = $_ % $conf->players;
+	int($_ / $conf->players) % 2 ?
+	    $conf->players - ($offset + 1) :
+	    $offset
+    } (0..$num_spots-1);
+
+    unshift @order, map { $_ - 1 } @{$conf->shadow->{order}} if $conf->shadow;
+
+    my @ids = reverse map { $players[$_]->id } @order;
+
+    # TODO fix the code to remove this line
+    unshift @ids, $ids[0]; # fix bug so final player can place last tile
+
+    my $order;
+    for my $id (@ids) {
+	$order = $order ? 
+	    Session::Order->new(active_id => $id, next_order => $order) :
+	    Session::Order->new(active_id => $id);
+    }
+
+    return $order;
 }
 
 sub build_map {

@@ -4,10 +4,10 @@ use v5.18;
 
 use Mouse;
 
-has name    => (is => 'ro', isa => 'Str', required => 1 );
-has id	    => (is => 'ro', isa => 'Str', required => 1 );
-has hand    => (is => 'ro', isa => 'ArrayRef', required => 1 );
-has view    => (is => 'ro', isa => 'Int', required => 1 );
+has name    => ( is => 'ro', isa => 'Str', required => 1 );
+has id	    => ( is => 'ro', isa => 'Str', required => 1 );
+has hand    => ( is => 'ro', isa => 'ArrayRef', required => 1 );
+has view    => ( is => 'ro', isa => 'Int', required => 1 );
 
 around 'hand' => sub {
     my ($orig, $self, $n) = @_;

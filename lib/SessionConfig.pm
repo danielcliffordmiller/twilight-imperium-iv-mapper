@@ -51,6 +51,11 @@ around 'non_map' => sub {
     return map { [ split ',' => $_ ] } @{ $self->$orig() };
 };
 
+sub num_shadow_tiles {
+    my $self = shift;
+    return $self->shadow ? scalar @{$self->shadow->{order}} : 0;
+}
+
 sub view {
     my $self = shift;
     my $n = shift;

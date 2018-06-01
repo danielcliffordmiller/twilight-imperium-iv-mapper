@@ -13,10 +13,10 @@ use Map;
 use Player;
 use Tile;
 
-
 has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[Player]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
+has play_order	=> (is => 'ro', isa => 'Session::Order');
 has previous	=> (is => 'ro', isa => 'Session' );
 
 sub dump {
@@ -40,20 +40,13 @@ sub player {
 sub active_player {
     my $self = shift;
 
-    my $num_map_tiles = $self->_map->num_played;
-    my $num_players = scalar @{ $self->players };
-
-    my $offset = $num_map_tiles % $num_players;
-
-    my $cycles;
-    { use integer; $cycles = $num_map_tiles / $num_players }
-    return $cycles % 2 ? $self->players->[$offset] : $self->players->[$num_players-($offset+1)];
+    return $self->player($self->play_order->active_id);
 }
 
 sub is_active_player {
     my $self = shift;
     my $p_id = shift;
-    return $self->active_player == $self->player($p_id);
+    return $self->play_order->active_id eq $p_id;
 }
 
 sub iterator {
@@ -76,10 +69,20 @@ sub play {
 		map	    => $self->_map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,
+		play_order  => $self->play_order->next_order,
 		previous    => $self
 	    );
 	}
     };
 }
+
+package Session::Order;
+
+use Mouse;
+
+use Player;
+
+has 'active_id'	    => (isa => 'Str', is => 'ro', required => 1);
+has 'next_order'    => (isa => 'Session::Order', is => 'ro');
 
 1;
