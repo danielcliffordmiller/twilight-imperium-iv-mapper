@@ -17,6 +17,7 @@ use Map;
 use Tile;
 
 use Player;
+use ShadowPlayer;
 
 use Tiles qw(draw_tile draw_tiles);
 use Utils qw(partition get_tag random_shift shuffle);
@@ -66,6 +67,27 @@ sub create_session {
 
     # random_shift places the players such that the speaker is $players[0]
     @players = random_shift(@players);
+
+    # this code could be cleaned up and would help from a proper shadow_conf class
+    if ($conf->shadow) {
+        my @shadow_players = @{$conf->shadow->{players}};
+        for my $i (0..$#shadow_players) {
+	    say "creating ", $i + 1, " player", $i ? "s" : "";
+            my ($hand, $t);
+            if (defined $shadow_players[$i]{red_tiles}) {
+        	($t, $red) = draw_tiles($shadow_players[$i]{red_tiles}, $red);
+        	push @$hand, @$t;
+            }
+            if (defined $shadow_players[$i]{blue_tiles}) {
+        	($t, $blue) = draw_tiles($shadow_players[$i]{blue_tiles}, $blue);
+        	push @$hand, @$t;
+            }
+            $players[$i] = ShadowPlayer->new(
+        	player	=> $players[$i],
+		hand	=> $hand
+	    );
+        }
+    }
 
     return $conf->class_name->new(
 	map => $map,

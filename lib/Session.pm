@@ -14,7 +14,7 @@ use Player;
 use Tile;
 
 has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
-has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[Player]');
+has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[PlayerRole]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
 has play_order	=> (is => 'ro', isa => 'Session::Order');
 has previous	=> (is => 'ro', isa => 'Session' );

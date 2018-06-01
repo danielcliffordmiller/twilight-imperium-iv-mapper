@@ -6,13 +6,7 @@ use Mouse;
 
 has name    => ( is => 'ro', isa => 'Str', required => 1 );
 has id	    => ( is => 'ro', isa => 'Str', required => 1 );
-has hand    => ( is => 'ro', isa => 'ArrayRef', required => 1 );
 has view    => ( is => 'ro', isa => 'Int', required => 1 );
-
-around 'hand' => sub {
-    my ($orig, $self, $n) = @_;
-    return defined $n ? $self->$orig()->[$n] : $self->$orig();
-};
 
 sub play {
     my ($self, $n) = @_;
@@ -30,14 +24,6 @@ sub play {
     );
 }
 
-sub dump {
-    my $self = shift;
-    return {
-	name	=> $self->name,
-	id	=> $self->id,
-	hand	=> $self->hand,
-	view	=> $self->view
-    };
-}
+with 'PlayerRole';
 
 1;
