@@ -235,23 +235,23 @@ tiles:
   - name: space
     text: Space
     type: standard
-    template: space
+    template: single_text
   - name: space
     text: Space
     type: standard
-    template: space
+    template: single_text
   - name: space
     text: Space
     type: standard
-    template: space
+    template: single_text
   - name: space
     text: Space
     type: standard
-    template: space
+    template: single_text
   - name: space
     text: Space
     type: standard
-    template: space
+    template: single_text
   - name: gravity_rift
     text: Gravity Rift
     type: anomaly
@@ -259,7 +259,7 @@ tiles:
   - name: nebula
     text: Nebula
     type: anomaly
-    template: nebula
+    template: single_text
   - name: supernova
     text: Supernova
     type: anomaly
