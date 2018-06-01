@@ -25,7 +25,7 @@ sub play {
 	    name    => $self->name,
 	    id	    => $self->id,
 	    view    => $self->view,
-	    hand    => [ map { $_ == $t ? undef : $_ } @{$self->hand} ]
+	    hand    => [ map { defined $_ && $_ == $t ? undef : $_ } @{$self->hand} ]
 	)
     );
 }
