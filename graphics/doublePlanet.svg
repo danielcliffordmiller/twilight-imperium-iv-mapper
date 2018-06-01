@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(100,420)">
-        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="8" stroke="blue" transform="scale(.90)"/>
-        <path d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="2" stroke="black"/>
-        <text x="-12" y="-8" font-size="14" fill="black">0 / 0</text>
-        <text x="-12" y="12" font-size="14" fill="black">0 / 0</text>
-    </g>
-</svg>
