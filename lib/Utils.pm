@@ -8,7 +8,7 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(partition get_tag draw shuffle random_shift);
+our @EXPORT_OK = qw(partition get_tag draw random_shift);
 
 sub partition {
     my @subs;
@@ -51,16 +51,6 @@ sub draw {
     my @items = @{ $_[0] };
     my $item = splice @items, int rand @items, 1;
     return $item, \@items;
-}
-
-sub shuffle {
-    my $items = [ @_ ];
-    my (@res, $i);
-    while (@$items) {
-	($i, $items) = draw( $items );
-	push @res, $i;
-    }
-    return @res;
 }
 
 sub random_shift {

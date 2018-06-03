@@ -9,6 +9,8 @@ use Session;
 
 use SessionConfig;
 
+use YAML ();
+
 use Map;
 use Tile;
 
@@ -16,7 +18,9 @@ use Player;
 use ShadowPlayer;
 
 use Tiles qw(draw_tile draw_tiles);
-use Utils qw(partition get_tag random_shift shuffle);
+use Utils qw(partition get_tag random_shift);
+
+use List::Util qw(shuffle);
 
 our @ISA = qw(Exporter);
 
