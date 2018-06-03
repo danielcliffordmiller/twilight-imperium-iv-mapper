@@ -4,15 +4,6 @@ use v5.18;
 
 use Mouse;
 
-use YAML ();
-
-use Tiles qw(draw_tile draw_tiles);
-use Utils qw(partition get_tag random_shift shuffle);
-
-use Map;
-use Player;
-use Tile;
-
 has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[PlayerRole]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
