@@ -13,6 +13,7 @@ use v5.18;
 
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
 has 'non_map' => (is => 'ro', isa => 'ArrayRef', reader => '_non_map', default => sub { [] } );
+has 'warps' => (is => 'ro', isa => 'HashRef[ArrayRef]', reader => '_warps', default => sub { {} });
 
 sub _tiles_in_ring {
     my $ring = shift;
@@ -28,6 +29,7 @@ sub _neighbor_coords {
     my $self = shift;
     my ($r, $n) = @_;
     my @res = map { [$r, $_ % ($r*6)] } ($n-1, $n+1);
+    #return @res if $r == 1;
     if ($r > 1) {
 	my $n2;
 	{ use integer;
@@ -36,6 +38,7 @@ sub _neighbor_coords {
 	push @res, [$r-1, $n2];
 	push @res, [$r-1, ($n2-1) % (($r-1)*6)] if ($n+1) % $r;
     }
+    push @res, @{$self->_warps->{"$r,$n"}} if exists $self->_warps->{"$r,$n"};
     return grep { ! $_ ~~ @{$self->_non_map} } @res;
 }
 
@@ -131,8 +134,11 @@ sub place {
     my ($self, $tile) = @_;
     return sub {
 	my ($r, $n) = @_;
-	return Map->new( tiles => [ [$r, $n, $tile], @{$self->_tiles} ],
-	    non_map => $self->_non_map );
+	return Map->new(
+	    tiles => [ [$r, $n, $tile], @{$self->_tiles} ],
+	    non_map => $self->_non_map,
+	    warps => $self->_warps
+	);
     };
 }
 

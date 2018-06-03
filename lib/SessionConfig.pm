@@ -38,6 +38,7 @@ sub _check_shadow_players {
     return scalar @{$s->{order}} == $t;
 }
 
+has 'adjacent' => (is => 'ro', isa => 'HashRef[ArrayRef[Coord]]', default => sub { {} });
 has ['red_tiles', 'blue_tiles'] => (is => 'ro', isa => 'Int', required => 1);
 has 'players' => (is => 'ro', isa => 'ArrayRef[Coord]', required => 1);
 has 'non_map' => (is => 'ro', isa => 'ArrayRef[Coord]', default => sub { [] } );
@@ -48,6 +49,18 @@ around 'non_map' => sub {
     my $self = shift;
 
     return map { [ split ',' => $_ ] } @{ $self->$orig() };
+};
+
+around 'adjacent' => sub {
+    my $orig = shift;
+    my $self = shift;
+    my %r = %{$self->$orig()};
+    return {
+	map {
+	    my $k = $_;
+	    ( $_, [ map { [split ','] } @{$r{$_}} ] );
+	} keys %r
+    };
 };
 
 sub num_shadow_tiles {

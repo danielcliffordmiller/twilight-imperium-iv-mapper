@@ -143,8 +143,11 @@ sub build_map {
 	) ]
     } ( 0 .. $#names );
 
-    return Map->new( tiles => \@tiles, non_map =>
-	[ $conf->non_map ] );
+    return Map->new(
+	tiles => \@tiles,
+	non_map => [ $conf->non_map ],
+	$conf->adjacent ? (warps => $conf->adjacent) : ()
+    );
 }
 
 1;
