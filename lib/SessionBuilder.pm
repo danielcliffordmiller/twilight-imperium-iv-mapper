@@ -143,7 +143,7 @@ sub build_map {
 	) ]
     } ( 0 .. $#names );
 
-    return Map->new( tiles => \@tiles, non_map_spaces =>
+    return Map->new( tiles => \@tiles, non_map =>
 	[ $conf->non_map ] );
 }
 

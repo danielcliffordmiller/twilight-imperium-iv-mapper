@@ -12,7 +12,7 @@ use constant PLAYABLE_SPOTS => 36;
 use v5.18;
 
 has 'tiles' => (is => 'ro', isa => 'ArrayRef', reader => '_tiles', required => 1);
-has 'non_map_spaces' => (is => 'ro', isa => 'ArrayRef', reader => '_non_map_spaces', default => sub { [] } );
+has 'non_map' => (is => 'ro', isa => 'ArrayRef', reader => '_non_map', default => sub { [] } );
 
 sub _tiles_in_ring {
     my $ring = shift;
@@ -109,7 +109,7 @@ sub _allowed_types {
 sub _is_non_map_space {
     my ($self, $r, $n) = @_;
 
-    return scalar grep { $_->[0] == $r && $_->[1] == $n } @{ $self->_non_map_spaces };
+    return scalar grep { $_->[0] == $r && $_->[1] == $n } @{ $self->_non_map };
 }
 
 sub is_legal_play {
@@ -129,7 +129,7 @@ sub place {
     return sub {
 	my ($r, $n) = @_;
 	return Map->new( tiles => [ [$r, $n, $tile], @{$self->_tiles} ],
-	    non_map_spaces => $self->_non_map_spaces );
+	    non_map => $self->_non_map );
     };
 }
 
