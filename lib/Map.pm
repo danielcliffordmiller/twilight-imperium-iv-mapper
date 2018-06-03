@@ -25,22 +25,25 @@ sub dump {
 }
 
 sub _neighbor_coords {
+    my $self = shift;
     my ($r, $n) = @_;
     my @res = map { [$r, $_ % ($r*6)] } ($n-1, $n+1);
-    return @res if $r == 1;
-    my $n2;
-    { use integer;
-	$n2 = $n-(($n+1)/$r);
+    if ($r > 1) {
+	my $n2;
+	{ use integer;
+	    $n2 = $n-(($n+1)/$r);
+	}
+	push @res, [$r-1, $n2];
+	push @res, [$r-1, ($n2-1) % (($r-1)*6)] if ($n+1) % $r;
     }
-    push @res, [$r-1, $n2];
-    push @res, [$r-1, ($n2-1) % (($r-1)*6)] if ($n+1) % $r;
-    return @res;
+    return grep { ! $_ ~~ @{$self->_non_map} } @res;
 }
 
 sub _ring_full {
     my ($self, $r) = @_;
 
-    return $r*6 == grep { $_->[0] == $r } @{$self->_tiles};
+    my $num_non_map = grep { $_->[0] == $r } @{$self->_non_map};
+    return $r*6-$num_non_map == grep { $_->[0] == $r } @{$self->_tiles};
 }
 
 sub tile {
@@ -54,7 +57,7 @@ sub _get_neighbors {
     my $self = shift;
 
     my @res;
-    for my $c (_neighbor_coords(@_)) {
+    for my $c ($self->_neighbor_coords(@_)) {
 	my $t = $self->tile( @$c );
 	push @res, $t if $t;
     }
