@@ -47,9 +47,3 @@ body { margin: 0; }
   height: 3em;
   width: 5em;
 }
-#players ul {
-  list-style: none;
-}
-#players .active {
-  list-style: '→';
-}

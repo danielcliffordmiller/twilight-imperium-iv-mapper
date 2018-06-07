@@ -38,6 +38,7 @@ sub _check_shadow_players {
     return scalar @{$s->{order}} == $t;
 }
 
+#has 'adjacent' => (is => 'ro', isa => 'HashRef', default => sub { {} });
 has 'adjacent' => (is => 'ro', isa => 'HashRef[ArrayRef[Coord]]', default => sub { {} });
 has ['red_tiles', 'blue_tiles'] => (is => 'ro', isa => 'Int', required => 1);
 has 'players' => (is => 'ro', isa => 'ArrayRef[Coord]', required => 1);
