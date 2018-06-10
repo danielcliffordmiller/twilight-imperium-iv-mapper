@@ -41,6 +41,7 @@ helper 'outline' => sub {
 	fill	=> 'black',
 	'fill-opacity'	=> '0.0',
 	'stroke-width'	=> '2',
+	'stroke-linejoin' => 'round',
 	stroke	=> 'black'
     );
     return b( "<path ".(join ' ', map { $_.'="'.$attrs{$_}.'"' } keys %attrs)." />" );
