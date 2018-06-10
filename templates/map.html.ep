@@ -15,6 +15,7 @@
 		'ic-trigger-on'	=> '',
 		'ic-post-to'    => '/s/'.$session->id,
 		'ic-target'	=> '#map',
+		'ic-include'	=> '.hand.selected + foreignObject input',
 		class		=> (join ' ', @a, 'map'),
 		onclick		=> 'handleMapClick.call(this)',
 		id		=> (join ',' => $map_spot->rn )

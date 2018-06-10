@@ -5,7 +5,8 @@
 <g transform="translate(<%= $i*110 %>,0)">
 <%= include 'tiles/'.$hand->[$i]{template}, tile => $hand->[$i] %>
 <% if ( $session->is_active_player($p_id) ) { %>
-<%= outline onclick => 'handleHandClick.call(this)', class => 'hand', id => "hand$i", 'tile-type' => $hand->[$i]{type}  %>
+<%= outline onclick => 'handleHandClick.call(this)', class => 'hand', 'tile-type' => $hand->[$i]{type}  %>
+<foreignObject><input type="hidden" value="<%= $i %>" name="hand"/></foreignObject>
 <% } else { %>\
 <use href="#outline"/>
 <% } %>\

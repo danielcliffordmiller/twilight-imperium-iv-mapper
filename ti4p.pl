@@ -107,7 +107,7 @@ post '/s/:s_id' => sub {
     }
 
     my ($r, $n) = split /,/, $c->param('ic-trigger-id');
-    my $i = $c->param("hand") =~ s/hand//r;
+    my $i = $c->param("hand");
 
     $state{$s_id} = $s = $s->play($i)->($r, $n);
 

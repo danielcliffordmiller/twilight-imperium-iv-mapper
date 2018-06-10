@@ -18,9 +18,6 @@ function handleMapClick() {
   }
 }
 function handleReady() {
-  $(document).on("beforeAjaxSend.ic", function(event, ajaxSetup, elt) {
-    ajaxSetup.data = ajaxSetup.data + "&hand=" + $(".hand.selected")[0].id;
-  });
   $("#c-no").click(function(event){
     $("#confirm").removeClass("active");
   });
