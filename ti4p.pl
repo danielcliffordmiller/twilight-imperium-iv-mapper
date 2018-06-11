@@ -95,6 +95,21 @@ get '/s/:s_id/p/:p_id/undo' => sub {
     $c->redirect_to('ss_idpp_id');
 };
 
+get '/s/:s_id/p/:p_id/refresh' => sub {
+    my $c = shift;
+    my $s_id = $c->stash("s_id");
+    my $p_id = $c->stash("p_id");
+
+    my $s = $state{$s_id};
+
+    if ($c->param('session-status-id') ne $s->md5) {
+	$c->stash(session => $s, p_id => $p_id);
+	$c->render( template => 'screen' );
+    } else {
+	$c->render(text => ' ');
+    }
+};
+
 post '/s/:s_id' => sub {
     my $c = shift;
     my $s_id = $c->stash("s_id");

@@ -17,9 +17,3 @@ function handleMapClick() {
     });
   }
 }
-function handleReady() {
-  $("#c-no").click(function(event){
-    $("#confirm").removeClass("active");
-  });
-}
-$(document).ready(handleReady);

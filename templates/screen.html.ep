@@ -1,3 +1,5 @@
+<div ic-src="/s/<%= "$s_id/p/$p_id/refresh" %>" ic-poll="3s" ic-include="#session-status-id" ic-replace-target="true">
+<input id="session-status-id" type="hidden" name="session-status-id" value="<%= $session->md5 %>">
 <svg style="position: absolute;" height="0" xmlns="http://www.w3.org/2000/svg">
 <%= include 'svg_defs' %>\
 </svg>
@@ -19,6 +21,7 @@
 <div>
 <p>Are you sure you want to place this tile?</p>
 <button id="c-yes">Yes</button>
-<button id="c-no">No</button>
+<button onclick='$("#confirm").removeClass("active")' id="c-no">No</button>
+</div>
 </div>
 </div>

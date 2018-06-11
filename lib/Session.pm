@@ -4,6 +4,8 @@ use v5.18;
 
 use Mouse;
 
+use Hash::MD5 qw(sum);
+
 has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[PlayerRole]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
@@ -18,6 +20,11 @@ sub dump {
 	map => $self->_map->dump,
 	players => [ map { $_->dump } @{$self->players} ]
     };
+}
+
+sub md5 {
+    my $self = shift;
+    return sum($self->_map);
 }
 
 sub player {
