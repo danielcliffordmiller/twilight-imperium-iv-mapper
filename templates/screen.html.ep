@@ -21,7 +21,7 @@
 <div>
 <p>Are you sure you want to place this tile?</p>
 <button id="c-yes">Yes</button>
-<button onclick='$("#confirm").removeClass("active")' id="c-no">No</button>
+<button ic-target="#confirm" ic-action="removeClass:active" id="c-no">No</button>
 </div>
 </div>
 </div>
