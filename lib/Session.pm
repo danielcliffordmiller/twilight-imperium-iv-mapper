@@ -6,11 +6,14 @@ use Mouse;
 
 use Hash::MD5 qw(sum);
 
+use PlayerLog;
+
 has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
 has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[PlayerRole]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
 has play_order	=> (is => 'ro', isa => 'Session::Order');
 has previous	=> (is => 'ro', isa => 'Session' );
+has player_log	=> (is => 'ro', isa => 'PlayerLog', default => sub { PlayerLog->new }, reader => '_player_log');
 
 sub dump {
     my $self = shift;
@@ -18,7 +21,8 @@ sub dump {
     return {
 	id => $self->id,
 	map => $self->_map->dump,
-	players => [ map { $_->dump } @{$self->players} ]
+	players => [ map { $_->dump } @{$self->players} ],
+	player_log => $self->_player_log->dump,
     };
 }
 
@@ -47,11 +51,18 @@ sub is_active_player {
     return $self->play_order->active_id eq $p_id;
 }
 
-sub iterator {
+sub map_iterator {
     my $self = shift;
     my $p_id = shift;
     my $view = $self->player( $p_id )->view;
     return $self->_map->iterator( $view );
+}
+
+sub log_iterator {
+    my $self = shift;
+    my $p_id = shift;
+    my $view = $self->player( $p_id )->view;
+    return $self->_player_log->iterator( $view );
 }
 
 sub play {
@@ -68,7 +79,8 @@ sub play {
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,
 		play_order  => $self->play_order->next_order,
-		previous    => $self
+		previous    => $self,
+		player_log  => $self->_player_log->place($player, $tile, $r, $n)
 	    );
 	}
     };

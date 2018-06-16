@@ -1,0 +1,15 @@
+<h4>Log:</h4>
+<div>
+<table>
+<tbody>
+<% my $log; my $it = $session->log_iterator($p_id); while ( $log = $it->() ) { %>\
+<tr onclick='handleLogClick.call(this)'>
+<td><%= $log->player->name %></td>
+<td>→</td>
+<td><%= $log->tile->name %></td>
+<td><%= join ',' => $log->view_rn %></td>
+</tr>
+<% } %>\
+</tbody>
+</table>
+</div>

@@ -17,3 +17,6 @@ function handleMapClick() {
     });
   }
 }
+function handleLogClick() {
+
+}

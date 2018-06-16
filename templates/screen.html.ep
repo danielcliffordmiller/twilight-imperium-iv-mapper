@@ -8,6 +8,10 @@
 <div id="players" ic-src="/s/<%= "$s_id/players" %>">
 <%= include 'players' %>
 </div>
+<hr/>
+<div id="player-log" ic-src="/s/<%= "$s_id/p/$p_id/log" %>">
+<%= include 'player_log' %>
+</div>
 </div>
 <div style="min-height: 100vh; width:40em">
 <div id="hand" ic-src="/s/<%= "$s_id/p/$p_id/hand" %>">

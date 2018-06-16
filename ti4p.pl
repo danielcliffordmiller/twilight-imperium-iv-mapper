@@ -20,7 +20,6 @@ use Utils qw(get_tag);
 srand(6); # delete this to get actually random deck draws
 
 my @players = qw(
-    David
     Dan
     Randy
     Rob
@@ -81,6 +80,14 @@ get '/s/:s_id/p/:p_id/hand' => sub {
 
     $c->stash( session => $state{$s_id} );
     $c->render( template => 'hand' );
+};
+
+get '/s/:s_id/p/:p_id/log' => sub {
+    my $c = shift;
+    my $s_id = $c->stash('s_id');
+    
+    $c->stash( session => $state{$s_id} );
+    $c->render( template => 'player_log' );
 };
 
 get '/s/:s_id/p/:p_id/undo' => sub {
