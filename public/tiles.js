@@ -19,7 +19,9 @@ function handleMapClick() {
 }
 function handleLogClick() {
   $('#map use[href="#log-outline"]').remove();
+  const target = $(".log-selection");
   $(".log-selection").removeClass('log-selection');
+  if (target.is(this)) { return; }
 
   const xmlns="http://www.w3.org/2000/svg";
   const g = document.createElementNS(xmlns, 'g');
@@ -31,3 +33,6 @@ function handleLogClick() {
 
   $(this).addClass('log-selection');
 }
+Intercooler.ready(function(){
+  $("#player-log table tr:last-child").click();
+});
