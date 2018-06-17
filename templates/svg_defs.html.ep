@@ -10,4 +10,5 @@
 <path id="<%= $k %>" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="6" stroke="<%= $href->{$k} %>" transform="scale(.93)"/>
 <% } %>\
 <%= outline id => 'outline' %>
+<%= outline id => 'log-outline' %>
 </defs>

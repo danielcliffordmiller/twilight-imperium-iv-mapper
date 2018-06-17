@@ -17,3 +17,22 @@ function handleMapClick() {
     });
   }
 }
+function handleLogClick() {
+  $('#map use[href="#log-outline"]').remove();
+  const target = $(".log-selection");
+  $(".log-selection").removeClass('log-selection');
+  if (target.is(this)) { return; }
+
+  const xmlns="http://www.w3.org/2000/svg";
+  const g = document.createElementNS(xmlns, 'g');
+  g.setAttribute("transform", "translate("+this.getAttribute('coords')+")");
+  const use = document.createElementNS(xmlns, 'use');
+  use.setAttribute('href', "#log-outline");
+  g.appendChild(use);
+  $("#map > svg").append(g);
+
+  $(this).addClass('log-selection');
+}
+Intercooler.ready(function(){
+  $("#player-log table tr:last-child").click();
+});

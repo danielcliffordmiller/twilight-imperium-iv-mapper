@@ -50,3 +50,27 @@ body { margin: 0; }
 #players td:nth-child(n+3) {
   padding-left: 0.4em;
 }
+#log-outline {
+  animation: 700ms infinite alternate log-pulse;
+}
+@keyframes log-pulse {
+  from {
+    stroke: black;
+    stroke-width: 2;
+  }
+  to {
+    stroke: gold;
+    stroke-width: 6;
+  }
+}
+.log-selection {
+  color: gold;
+  font-weight: bold;
+}
+#player-log table {
+  border-style: none;
+  padding-left: 1.5em;
+}
+#player-log table tr {
+  cursor: pointer;
+}
