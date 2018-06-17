@@ -1,8 +1,5 @@
 <% my $hand = $session->player($p_id)->hand(); %>\
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-58 -50 560 100">
-<g transform="translate(220,0)">
-<use href="#log-outline"/>
-</g>
 <% for my $i (0 .. $#$hand) { %>\
 <% next unless $hand->[$i]; %>
 <g transform="translate(<%= $i*110 %>,0)">

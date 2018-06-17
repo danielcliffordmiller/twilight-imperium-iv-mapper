@@ -18,7 +18,9 @@ function handleMapClick() {
   }
 }
 function handleLogClick() {
-  //const elt = '<g transform="translate('+this.getAttribute('coords')+')"><path id="log-outline" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="black" fill-opacity="0.0" stroke-width="2" stroke-linejoin="round" stroke="black" /></g>';
+  $('#map use[href="#log-outline"]').remove();
+  $(".log-selection").removeClass('log-selection');
+
   const xmlns="http://www.w3.org/2000/svg";
   const g = document.createElementNS(xmlns, 'g');
   g.setAttribute("transform", "translate("+this.getAttribute('coords')+")");
@@ -26,12 +28,6 @@ function handleLogClick() {
   use.setAttribute('href', "#log-outline");
   g.appendChild(use);
   $("#map > svg").append(g);
-  //const logElt = this;
-  //$("#map > svg").each( function(i) {
-  //  const g = this.createElement('g');
-  //  g.setAttribute("transform", "translate("+logElt.getAttribute('coords')+")");
-  //  const use = this.createElement('use');
-  //  use.setAttribute('href', "#log-outline");
-  //  g.appendChild(use);
-  //});
+
+  $(this).addClass('log-selection');
 }
