@@ -169,28 +169,16 @@ package Map::Entry;
 use Mouse;
 use Tile;
 
-has ['r', 'n']	    => (is => 'ro', isa => 'Int', required => 1);
 has 'tile'  	    => (is => 'ro', isa => 'Tile', predicate => 'has_tile' );
 has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
 has 'view'	    => (is => 'ro', isa => 'Int', required => 1);
-
-sub rn {
-    my $self = shift;
-    return ($self->r, $self->n);
-}
-
-sub view_rn {
-    my $self = shift;
-    my ($r, $n, $v) = ($self->r, $self->n, $self->view);
-    return $r == 0 ?
-	($r, $n) :
-	($r, ($n + ($r * $v)) % (6 * $r));
-}
 
 around 'allowed_types' => sub {
     my $orig = shift;
     my $self = shift;
     return @{$self->$orig()};
 };
+
+with 'ViewPointRole';
 
 1;
