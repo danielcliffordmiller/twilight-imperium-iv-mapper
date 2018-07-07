@@ -74,3 +74,37 @@ body { margin: 0; }
 #player-log table tr {
   cursor: pointer;
 }
+#hand {
+  min-height: 100vh;
+  width: 20em;
+  border-right: 1px solid black;
+  float:left;
+}
+#map {
+  width: 40em;
+  float:left
+}
+#hand g:nth-child(1) {
+  transform: translate(0px,0px);
+}
+#hand g:nth-child(2) {
+  transform: translate(85px,50px);
+}
+#hand g:nth-child(3) {
+  transform: translate(0px,100px);
+}
+#hand g:nth-child(4) {
+  transform: translate(85px,150px);
+}
+#hand g:nth-child(5) {
+  transform: translate(0px,200px);
+}
+#hand g:nth-child(6) {
+  transform: translate(85px,250px);
+}
+#hand g:nth-child(7) {
+  transform: translate(0px,300px);
+}
+#hand g:nth-child(8) {
+  transform: translate(85px,350px);
+}

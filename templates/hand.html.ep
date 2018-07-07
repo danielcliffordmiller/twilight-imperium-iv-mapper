@@ -1,8 +1,8 @@
 <% my $hand = $session->player($p_id)->hand(); %>\
-<svg xmlns="http://www.w3.org/2000/svg" viewbox="-58 -50 560 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="-58 -50 280 460">
 <% for my $i (0 .. $#$hand) { %>\
 <% next unless $hand->[$i]; %>
-<g transform="translate(<%= $i*110 %>,0)">
+<g>
 <%= include 'tiles/'.$hand->[$i]{template}, tile => $hand->[$i] %>
 <% if ( $session->is_active_player($p_id) ) { %>
 <%= outline onclick => 'handleHandClick.call(this)', class => 'hand', 'tile-type' => $hand->[$i]{type}  %>
