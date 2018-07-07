@@ -18,7 +18,7 @@ function handleMapClick() {
   }
 }
 function handleLogClick() {
-  $('#map use[href="#log-outline"]').remove();
+  $('#map use[href="#log-outline"]').parent().remove();
   const target = $(".log-selection");
   $(".log-selection").removeClass('log-selection');
   if (target.is(this)) { return; }
@@ -34,5 +34,6 @@ function handleLogClick() {
   $(this).addClass('log-selection');
 }
 Intercooler.ready(function(){
+  $(".log-selection").removeClass('log-selection');
   $("#player-log table tr:last-child").click();
 });

@@ -2,7 +2,6 @@
 <h4>Log:</h4>
 <div>
 <table>
-<tbody>
 <% my $it = $session->log_iterator($p_id); while ( my $log = $it->() ) { %>\
 <tr coords="<%= join ',' => xy_coords( $log->view_rn ) %>" onclick='handleLogClick.call(this)'>
 <td><%= $log->player->name %></td>
@@ -10,6 +9,5 @@
 <td><%= $log->tile->name %></td>
 </tr>
 <% } %>\
-</tbody>
 </table>
 </div>
