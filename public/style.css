@@ -67,6 +67,9 @@ body { margin: 0; }
   color: gold;
   font-weight: bold;
 }
+#sidebar {
+  background-color: white;
+}
 #player-log table {
   border-style: none;
   padding-left: 1.5em;
