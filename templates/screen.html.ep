@@ -3,7 +3,7 @@
 <svg style="position: absolute;" height="0" xmlns="http://www.w3.org/2000/svg">
 <%= include 'svg_defs' %>\
 </svg>
-<div id="sidebar" style="position: absolute; right: 0; min-height: 100vh; min-width: 20em; border-left: 3px double black">
+<div class="sb" id="sidebar">
 <h2 style="margin: 1em 2em"><%= $session->player($p_id)->name %></h2>
 <div id="players" ic-src="/s/<%= "$s_id/players" %>">
 <%= include 'players' %>
@@ -13,11 +13,16 @@
 <%= include 'player_log' %>
 </div>
 </div>
+<div class="sb" id="hamburger-button" onclick="sidebarState.handleClick()">
+<span></span>
+</div>
+<div id="container">
 <div id="hand" ic-src="/s/<%= "$s_id/p/$p_id/hand" %>">
 <%= include 'hand' %>
 </div>
 <div id="map">
 <%= include 'map' %>
+</div>
 </div>
 <div id="confirm">
 <div>

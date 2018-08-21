@@ -113,6 +113,7 @@ get '/s/:s_id/p/:p_id/refresh' => sub {
 	$c->stash(session => $s, p_id => $p_id);
 	$c->render( template => 'screen' );
     } else {
+	#$c->res->headers->header("X-IC-CancelPolling" => 'true');
 	$c->render(text => ' ');
     }
 };

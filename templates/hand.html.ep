@@ -1,5 +1,5 @@
 <% my $hand = $session->player($p_id)->hand(); %>\
-<svg xmlns="http://www.w3.org/2000/svg" viewbox="-58 -50 280 460">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="-60 -50 560 620">
 <% for my $i (0 .. $#$hand) { %>\
 <% next unless $hand->[$i]; %>
 <g>
