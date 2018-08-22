@@ -78,11 +78,12 @@ body { margin: 0; }
   background-color: white;
   position: fixed;
   right: 0;
-  min-height: 100vh;
+  height: 100%;
   min-width: 20em;
   border-left: 3px double black;
   z-index: 3;
   visibility: hidden;
+  overflow-y: scroll;
 }
 #sidebar.sb-open {
   visibility: unset;
