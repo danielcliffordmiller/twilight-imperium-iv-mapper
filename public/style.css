@@ -257,3 +257,9 @@ body { margin: 0; }
 #hamburger-button.sb-open, #hamburger-button.sb-closed {
   display: unset;
 }
+svg {
+  -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
+}
