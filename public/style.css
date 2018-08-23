@@ -79,13 +79,13 @@ body { margin: 0; }
   position: fixed;
   right: 0;
   height: 100%;
-  width: 20%;
-  min-width: 190px;
-  font-size: 0.88em;
+  width: 240px;
+  /*font-size: 0.88em;*/
   border-left: 3px double black;
   z-index: 3;
   visibility: hidden;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 #sidebar.sb-open {
   visibility: unset;
@@ -180,6 +180,12 @@ body { margin: 0; }
     margin-right: -144%;
     margin-bottom: unset;
   }
+}
+@media (min-aspect-ratio: 23/25) and (max-height: 600px) {
+  #sidebar { font-size: 0.88em; width: 180px; }
+}
+@media (min-aspect-ratio: 23/25) and (max-height: 400px) {
+  #sidebar { font-size: 0.70em; width: 155px; }
 }
 @media (min-aspect-ratio: 23/25) and (min-height:  200px) { #container { width: 16em; } }
 @media (min-aspect-ratio: 23/25) and (min-height:  225px) { #container { width: 18em; } }
