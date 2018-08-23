@@ -39,7 +39,7 @@ sub _neighbor_coords {
 	push @res, [$r-1, ($n2-1) % (($r-1)*6)] if ($n+1) % $r;
     }
     push @res, @{$self->_warps->{"$r,$n"}} if exists $self->_warps->{"$r,$n"};
-    return grep { ! $_ ~~ @{$self->_non_map} } @res;
+    return grep { ! ($_ ~~ @{$self->_non_map}) } @res;
 }
 
 sub _ring_full {
