@@ -15,20 +15,22 @@ use Utils qw(get_tag);
 sub startup {
     my $self = shift;
 
-    my @players = qw(
-	Dan
-	Randy
-	Rob
-	Scott
-	Frank
-	Ben
-    );
+    {
+	my @players = qw(
+	    Dan
+	    Randy
+	    Rob
+	    Scott
+	    Frank
+	    Ben
+	);
 
-    my $s = create_session(@players);
+	my $s = create_session(@players);
 
-    say "http://localhost:3000/s/".$s->id()."/players";
+	say "http://localhost:3000/s/".$s->id()."/players";
 
-    $self->helper('state' => sub { state $state = { $s->id(), $s } });
+	$self->helper('state' => sub { state $state = { $s->id(), $s } });
+    }
 
     $self->helper('outline' => sub {
 	my $c = shift;
@@ -45,121 +47,94 @@ sub startup {
 
     my $r = $self->routes;
 
-    $r->get('/s/:s_id/players' => sub {
-	my $c = shift;
-
-	$c->stash( session => $c->state->{$c->stash('s_id')} );
-    } => 'players');
-
-    $r->get('/s/:s_id/p/:p_id' => sub {
-	my $c = shift;
-	my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
-
-	unless (exists $c->state->{$s_id} && $c->state->{$s_id}->player($p_id)) {
-	    $c->render( status => 404 );
-	    return;
-	}
-
-	my $s = $c->state->{$s_id};
-
-	$c->stash( session => $s );
-	$c->render( template => 'screen', layout => 'main' );
-    });
-
-    # purely for debugging
-    $r->get('/s/:s_id/json' => sub {
-	my $c = shift;
-
-	$c->render( json => $c->state->{$c->stash('s_id')}->dump );
-    });
-
-    $r->get('/s/:s_id/p/:p_id/hand' => sub {
-	my $c = shift;
-	my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
-
-	$c->stash( session => $c->state->{$s_id} );
-	$c->render( template => 'hand' );
-    });
-
-    $r->get('/s/:s_id/p/:p_id/log' => sub {
+    my $s = $r->under('/s/:s_id' => sub {
 	my $c = shift;
 	my $s_id = $c->stash('s_id');
-	
-	$c->stash( session => $c->state->{$s_id} );
-	$c->render( template => 'player_log' );
-    });
 
-    $r->get('/s/:s_id/p/:p_id/undo' => sub {
-	my $c = shift;
-	my ($s_id, $p_id) = map { $c->stash($_) } qw(s_id p_id);
-
-	my $s = $c->state->{$s_id};
-
-	$c->state->{$s_id} = $s = $s->previous if $s->previous->is_active_player($p_id);
-
-	$c->stash( session => $s );
-	$c->redirect_to('ss_idpp_id');
-    });
-
-    $r->get('/s/:s_id/p/:p_id/refresh' => sub {
-	my $c = shift;
-	my $s_id = $c->stash("s_id");
-	my $p_id = $c->stash("p_id");
-
-	my $s = $c->state->{$s_id};
-
-	if ($c->param('session-status-id') ne $s->md5) {
-	    $c->stash(session => $s, p_id => $p_id);
-	    $c->render( template => 'screen' );
-	} else {
-	    #$c->res->headers->header("X-IC-CancelPolling" => 'true');
-	    $c->render(text => ' ');
+	if (exists $c->state->{$s_id}) {
+	    $c->stash(session => $c->state->{$s_id});
+	    return 1;
 	}
+	$c->reply->not_found;
+	return undef;
     });
 
-    $r->post('/s/:s_id' => sub {
+    $s->get('/players');
+
+    # purely for debugging
+    $s->get('/json' => sub {
 	my $c = shift;
-	my $s_id = $c->stash("s_id");
+	$c->render( json => $c->stash('session')->dump );
+    });
+
+    $s->post('/' => sub {
+	my $c = shift;
+
+	my ($s_id, $session) = map { $c->stash($_) } qw(s_id session);
 	my $p_id = (split '/', $c->param('ic-current-url'))[-1];
 
-	my $s = $c->state->{$s_id};
-
-	unless ($s && $s->player($p_id) && $s->is_active_player($p_id)) {
-	    $c->render( status => 404 );
+	unless ($session->player($p_id) && $session->is_active_player($p_id)) {
+	    $c->reply->not_found;
 	    return;
 	}
 
 	my ($r, $n) = split /,/, $c->param('ic-trigger-id');
 	my $i = $c->param("hand");
 
-	$c->state->{$s_id} = $s = $s->play($i)->($r, $n);
+	$c->state->{$s_id} = $session->play($i)->($r, $n);
 
-	$c->stash( session => $s, p_id => $p_id );
+	$c->stash( session => $c->state->{$s_id}, p_id => $p_id );
 	$c->render( template => 'map' );
     });
 
     # load and save endpoints are for debugging, remove later
-    $r->get('/s/:s_id/save' => sub {
+    $s->get('/save' => sub {
 	my $c = shift;
-	my $s = $c->state->{ $c->stash('s_id') };
-	unless ($s) {
-	    $c->render( status => 404 );
-	    return;
-	}
 	mkdir 'var' unless (-d 'var');
-	store $s, "var/".$c->stash('s_id');
+	store $c->stash('session'), "var/".$c->stash('s_id');
 	$c->redirect_to('players');
     });
 
     # remove later
-    $r->get('/s/:s_id/load' => sub {
+    $s->get('/load' => sub {
 	my $c = shift;
 	my $s_id = $c->stash('s_id');
 	eval {
-	    my $s = retrieve( "var/".$s_id );
-	    $c->state->{$s_id} = $s;
+	    my $session = retrieve( "var/".$s_id );
+	    $c->state->{$s_id} = $session;
 	};
 	$c->redirect_to('players');
+    });
+
+    my $p = $s->under('/p/:p_id' => sub {
+	my $c = shift;
+	my $p_id = $c->stash('p_id');
+
+	return 1 if $c->stash('session')->player($p_id);
+
+	$c->reply->not_found;
+	return undef;
+    });
+
+    $p->get('/' => {template => 'screen', layout => 'main'} );
+
+    $p->get('/hand');
+
+    $p->get('/log' => {template => 'player_log'});
+
+    $p->get('/undo' => sub {
+	my $c = shift;
+	my ($s_id, $p_id, $session) = map { $c->stash($_) } qw(s_id p_id session);
+	$c->state->{$s_id} = $session->previous if $session->previous->is_active_player($p_id);
+
+	$c->redirect_to('pp_id');
+    });
+
+    $p->get('/refresh' => sub {
+	my $c = shift;
+	$c->param('session-status-id') ne $c->stash('session')->md5 ?
+	    $c->render( template => 'screen' ) :
+	    $c->render( text => ' ' );
     });
 }
 
