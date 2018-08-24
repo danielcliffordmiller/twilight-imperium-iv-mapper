@@ -1,4 +1,4 @@
-package Map;
+package TwilightImperiumMapper::Model::Map;
 
 use Mouse;
 
@@ -137,7 +137,7 @@ sub place {
     my ($self, $tile) = @_;
     return sub {
 	my ($r, $n) = @_;
-	return Map->new(
+	return TwilightImperiumMapper::Model::Map->new(
 	    tiles => [ [$r, $n, $tile], @{$self->_tiles} ],
 	    non_map => $self->_non_map,
 	    warps => $self->_warps
@@ -154,7 +154,7 @@ sub iterator {
 	for my $n ( 0 .. (_tiles_in_ring($r)-1) ) {
 	    next if $self->_is_non_map_space($r, $n);
 	    $tile = $self->tile($r, $n);
-	    push @res, Map::Entry->new(
+	    push @res, TwilightImperiumMapper::Model::Map::Entry->new(
 		r	    => $r,
 		n	    => $n,
 		view	    => $view,
@@ -167,12 +167,12 @@ sub iterator {
     };
 }
 
-package Map::Entry;
+package TwilightImperiumMapper::Model::Map::Entry;
 
 use Mouse;
-use Tile;
+use TwilightImperiumMapper::Model::Tile;
 
-has 'tile'  	    => (is => 'ro', isa => 'Tile', predicate => 'has_tile' );
+has 'tile'  	    => (is => 'ro', isa => 'TwilightImperiumMapper::Model::Tile', predicate => 'has_tile' );
 has 'allowed_types' => (is => 'ro', isa => 'ArrayRef', default => sub { [] });
 has 'view'	    => (is => 'ro', isa => 'Int', required => 1);
 
@@ -182,6 +182,6 @@ around 'allowed_types' => sub {
     return @{$self->$orig()};
 };
 
-with 'ViewPointRole';
+with 'TwilightImperiumMapper::Model::ViewPointRole';
 
 1;

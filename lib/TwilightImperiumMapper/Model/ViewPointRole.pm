@@ -1,4 +1,4 @@
-package ViewPointRole;
+package TwilightImperiumMapper::Model::ViewPointRole;
 
 use v5.18;
 

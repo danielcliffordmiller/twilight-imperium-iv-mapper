@@ -1,24 +1,24 @@
-package SessionBuilder;
+package TwilightImperiumMapper::Model::SessionBuilder;
 
 use v5.18;
 
 use strict;
 use warnings;
 
-use Session;
+use TwilightImperiumMapper::Model::Session;
+use TwilightImperiumMapper::Model::SessionConfig;
 
-use SessionConfig;
+use TwilightImperiumMapper::Model::Map;
+use TwilightImperiumMapper::Model::Tile;
+
+use TwilightImperiumMapper::Model::Player;
+use TwilightImperiumMapper::Model::ShadowPlayer;
+
+use Utils::Tiles qw(draw_tile draw_tiles red_backed);
+
+use Utils qw(partition get_tag random_shift);
 
 use YAML ();
-
-use Map;
-use Tile;
-
-use Player;
-use ShadowPlayer;
-
-use Tiles qw(draw_tile draw_tiles);
-use Utils qw(partition get_tag random_shift);
 
 use List::Util qw(shuffle);
 
@@ -26,10 +26,10 @@ our @ISA = qw(Exporter);
 
 our @EXPORT_OK = qw(create_session);
 
-state $tile_data = [ map { Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
+state $tile_data = [ map { TwilightImperiumMapper::Model::Tile->new(%$_) } @{YAML::LoadFile('./data/tiles.yml')->{tiles}} ];
 
 state $session_config = { map {
-    ( $_->{count}, SessionConfig->new( $_ ) )
+    ( $_->{count}, TwilightImperiumMapper::Model::SessionConfig->new( $_ ) )
 } @{YAML::LoadFile('./data/session_conf.yml')} };
 
 sub create_session {
@@ -43,7 +43,7 @@ sub create_session {
 
     my ($home, $red, $blue) = partition(
 	sub { $_[0]->type eq 'home' },
-	\&Tiles::red_backed,
+	\&red_backed,
 	@$deck
     );
 
@@ -57,7 +57,7 @@ sub create_session {
 	($t, $blue) = draw_tiles($conf->blue_tiles, $blue);
 	push @$hand, @$t;
 
-	push @players, Player->new(
+	push @players, TwilightImperiumMapper::Model::Player->new(
 	    id	    => get_tag,
 	    name    => $names[$n],
 	    view    => $conf->view($n),
@@ -82,14 +82,14 @@ sub create_session {
         	($t, $blue) = draw_tiles($shadow_players[$i]{blue_tiles}, $blue);
         	push @$hand, @$t;
             }
-            $players[$i] = ShadowPlayer->new(
+            $players[$i] = TwilightImperiumMapper::Model::ShadowPlayer->new(
         	player	=> $players[$i],
 		hand	=> $hand
 	    );
         }
     }
 
-    return Session->new(
+    return TwilightImperiumMapper::Model::Session->new(
 	map => $map,
 	players => \@players,
 	id => get_tag,
@@ -101,7 +101,7 @@ sub build_player_order {
     my $conf = shift;
     my @players = @_;
 
-    my $num_spots = Map::PLAYABLE_SPOTS - ($conf->players + $conf->non_map + $conf->num_shadow_tiles);
+    my $num_spots = TwilightImperiumMapper::Model::Map::PLAYABLE_SPOTS - ($conf->players + $conf->non_map + $conf->num_shadow_tiles);
 
     my @order = map {
 	my $offset = $_ % $conf->players;
@@ -120,8 +120,8 @@ sub build_player_order {
     my $order;
     for my $id (@ids) {
 	$order = $order ? 
-	    Session::Order->new(active_id => $id, next_order => $order) :
-	    Session::Order->new(active_id => $id);
+	    TwilightImperiumMapper::Model::Session::Order->new(active_id => $id, next_order => $order) :
+	    TwilightImperiumMapper::Model::Session::Order->new(active_id => $id);
     }
 
     return $order;
@@ -135,7 +135,7 @@ sub build_map {
     my @tiles;
 
     push @tiles, [ 0, 0, $center ], map {
-	[ @{$conf->players($_)}, Tile->new(
+	[ @{$conf->players($_)}, TwilightImperiumMapper::Model::Tile->new(
 	    name	=> 'player_tile',
 	    type	=> 'home',
 	    text	=> $names[$_],
@@ -143,7 +143,7 @@ sub build_map {
 	) ]
     } ( 0 .. $#names );
 
-    return Map->new(
+    return TwilightImperiumMapper::Model::Map->new(
 	tiles => \@tiles,
 	non_map => [ $conf->non_map ],
 	$conf->adjacent ? (warps => $conf->adjacent) : ()

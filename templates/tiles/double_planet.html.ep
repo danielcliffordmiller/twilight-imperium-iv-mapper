@@ -1,11 +1,11 @@
 %
-% use TileSvg;
+% use Utils::TileSvg qw(trait_color tech_color ring_id);
 %
 % my @p = @{$tile->planets};
-% my @c = map { TileSvg::trait_color($_) || "black" } @p;
-% my @tc = map { TileSvg::tech_color($_) } @p;
+% my @c = map { trait_color($_) || "black" } @p;
+% my @tc = map { tech_color($_) } @p;
 %
-<use href="#<%= TileSvg::ring_id($tile) %>"/>
+<use href="#<%= ring_id($tile) %>"/>
 <% if (defined $tc[0]) { %><circle cx="22" cy="-13" fill="<%= $tc[0] %>" r="5"/><% } %>
 <% if (defined $tc[1]) { %><circle cx="22" cy="7" fill="<%= $tc[1] %>" r="5"/><% } %>
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c[0] %>"><%= $p[0]->resources %> / <%= $p[0]->influence %></text>

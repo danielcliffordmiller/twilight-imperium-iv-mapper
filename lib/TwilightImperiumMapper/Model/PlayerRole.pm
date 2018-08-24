@@ -1,4 +1,4 @@
-package PlayerRole;
+package TwilightImperiumMapper::Model::PlayerRole;
 
 use v5.18;
 
@@ -9,7 +9,7 @@ requires 'name';
 requires 'id';
 requires 'view';
 
-has hand => (is => 'ro', isa => 'ArrayRef[Maybe[Tile]]', required => 1 );
+has hand => (is => 'ro', isa => 'ArrayRef[Maybe[TwilightImperiumMapper::Model::Tile]]', required => 1 );
 
 around 'hand' => sub {
     my ($orig, $self, $n) = @_;

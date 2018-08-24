@@ -1,4 +1,4 @@
-package SessionConfig;
+package TwilightImperiumMapper::Model::SessionConfig;
 
 use strict;
 use warnings;

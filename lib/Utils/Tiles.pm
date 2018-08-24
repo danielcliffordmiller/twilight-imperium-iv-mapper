@@ -1,4 +1,4 @@
-package Tiles;
+package Utils::Tiles;
 
 require Exporter;
 
@@ -10,7 +10,7 @@ use Utils qw(draw partition);
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(draw_tiles draw_tile);
+our @EXPORT_OK = qw(draw_tiles draw_tile red_backed);
 
 sub red_backed {
     $_[0]->type eq 'anomaly' ||

@@ -1,4 +1,4 @@
-package PlayerLog;
+package TwilightImperiumMapper::Model::PlayerLog;
 
 use v5.18;
 
@@ -11,7 +11,7 @@ sub iterator {
     my $v = shift;
     my @a = map {
 	my ($p,$t,$r,$n) = @$_;
-	PlayerLog::Entry->new(
+	TwilightImperiumMapper::Model::PlayerLog::Entry->new(
 	    player  => $p,
 	    tile    => $t,
 	    r => $r, n => $n,
@@ -25,7 +25,7 @@ sub place {
     my $self = shift;
     my ($p, $t, $r, $n) = @_;
 
-    return PlayerLog->new( entries => [ @{ $self->_entries }, [ @_ ] ] );
+    return TwilightImperiumMapper::Model::PlayerLog->new( entries => [ @{ $self->_entries }, [ @_ ] ] );
 }
 
 sub dump {
@@ -38,19 +38,19 @@ sub dump {
     } @{$self->_entries} ] };
 }
 
-package PlayerLog::Entry;
+package TwilightImperiumMapper::Model::PlayerLog::Entry;
 
 use v5.18;
 
 use Mouse;
 
-use Player;
-use Tile;
+use TwilightImperiumMapper::Model::Player;
+use TwilightImperiumMapper::Model::Tile;
 
-has player  => (is => 'ro', required => 1, isa => 'Player');
-has tile    => (is => 'ro', required => 1, isa => 'Tile');
+has player  => (is => 'ro', required => 1, isa => 'TwilightImperiumMapper::Model::Player');
+has tile    => (is => 'ro', required => 1, isa => 'TwilightImperiumMapper::Model::Tile');
 has view    => (is => 'ro', required => 1, isa => 'Int');
 
-with 'ViewPointRole';
+with 'TwilightImperiumMapper::Model::ViewPointRole';
 
 1;

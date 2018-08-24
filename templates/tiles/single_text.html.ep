@@ -1,5 +1,5 @@
-<% use TileSvg; %>
-<use href="#<%= TileSvg::ring_id($tile) %>"/>
+<% use Utils::TileSvg qw(ring_id); %>
+<use href="#<%= ring_id($tile) %>"/>
 <text y="3" font-family="sans-serif" font-variant="small-caps" font-size="14" fill="black" text-anchor="middle">\
 <%= $tile->text %>
 </text>

@@ -1,5 +1,4 @@
-% use Tiles;
-% use TileSvg qw(xy_coords);
+% use Utils::TileSvg qw(xy_coords);
 %
 <% sub hand_coords { {
     use integer;

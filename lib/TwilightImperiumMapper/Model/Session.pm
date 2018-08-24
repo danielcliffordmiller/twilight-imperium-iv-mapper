@@ -1,4 +1,4 @@
-package Session;
+package TwilightImperiumMapper::Model::Session;
 
 use v5.18;
 
@@ -6,14 +6,14 @@ use Mouse;
 
 use Hash::MD5 qw(sum);
 
-use PlayerLog;
+use TwilightImperiumMapper::Model::PlayerLog;
 
-has map		=> (is => 'ro', required => 1, isa => 'Map', reader => '_map');
-has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[PlayerRole]');
+has map		=> (is => 'ro', required => 1, isa => 'TwilightImperiumMapper::Model::Map', reader => '_map');
+has players	=> (is => 'ro', required => 1, isa => 'ArrayRef[TwilightImperiumMapper::Model::PlayerRole]');
 has id		=> (is => 'ro', required => 1, isa => 'Str');
-has play_order	=> (is => 'ro', isa => 'Session::Order');
-has previous	=> (is => 'ro', isa => 'Session' );
-has player_log	=> (is => 'ro', isa => 'PlayerLog', default => sub { PlayerLog->new }, reader => '_player_log');
+has play_order	=> (is => 'ro', isa => 'TwilightImperiumMapper::Model::Session::Order');
+has previous	=> (is => 'ro', isa => 'TwilightImperiumMapper::Model::Session' );
+has player_log	=> (is => 'ro', isa => 'TwilightImperiumMapper::Model::PlayerLog', default => sub { TwilightImperiumMapper::Model::PlayerLog->new }, reader => '_player_log');
 
 sub dump {
     my $self = shift;
@@ -74,7 +74,7 @@ sub play {
 	if ( $self->_map->is_legal_play( $type, $r, $n ) ) {
 	    my ($tile, $player) = $self->active_player->play($i);
 	    my $active = $self->active_player;
-	    return Session->new(
+	    return TwilightImperiumMapper::Model::Session->new(
 		map	    => $self->_map->place($tile)->($r, $n),
 		players	    => [ map { $_ == $active ? $player : $_ } @{$self->players} ],
 		id	    => $self->id,
@@ -86,13 +86,13 @@ sub play {
     };
 }
 
-package Session::Order;
+package TwilightImperiumMapper::Model::Session::Order;
 
 use Mouse;
 
-use Player;
+use TwilightImperiumMapper::Model::Player;
 
 has 'active_id'	    => (isa => 'Str', is => 'ro', required => 1);
-has 'next_order'    => (isa => 'Session::Order', is => 'ro');
+has 'next_order'    => (isa => 'TwilightImperiumMapper::Model::Session::Order', is => 'ro');
 
 1;

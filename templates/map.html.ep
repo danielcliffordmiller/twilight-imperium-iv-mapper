@@ -1,5 +1,5 @@
-% use TileSvg qw(xy_coords);
-% use Map;
+% use TwilightImperiumMapper::Model::Map;
+% use Utils::TileSvg qw(xy_coords);
 %
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-280 -310 560 620">
 <% my $it = $session->map_iterator($p_id); while ( my $map_spot = $it->() ) { %>\

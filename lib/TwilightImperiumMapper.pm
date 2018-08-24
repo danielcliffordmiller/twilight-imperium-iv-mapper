@@ -5,8 +5,8 @@ use v5.18;
 use Mojo::Base 'Mojolicious';
 use Mojo::ByteStream 'b';
 
-use Session;
-use SessionBuilder qw(create_session);
+use TwilightImperiumMapper::Model::Session;
+use TwilightImperiumMapper::Model::SessionBuilder qw(create_session);
 
 use Storable;
 
@@ -16,21 +16,23 @@ sub startup {
     my $self = shift;
 
     {
-	my @players = qw(
-	    Dan
-	    Randy
-	    Rob
-	    Scott
-	    Frank
-	    Ben
-	);
+        my @players = qw(
+            Dan
+            Randy
+            Rob
+            Scott
+            Frank
+            Ben
+        );
 
-	my $s = create_session(@players);
+        my $s = create_session(@players);
 
-	say "http://localhost:3000/s/".$s->id()."/players";
+        say "http://localhost:3000/s/".$s->id()."/players";
 
-	$self->helper('state' => sub { state $state = { $s->id(), $s } });
+        $self->helper('state' => sub { state $state = { $s->id(), $s } });
     }
+
+    #$self->helper('state' => sub { state $state = {} });
 
     $self->helper('outline' => sub {
 	my $c = shift;
@@ -96,7 +98,7 @@ sub startup {
     });
 
     # remove later
-    $s->get('/load' => sub {
+    $r->get('/s/:s_id/load' => sub {
 	my $c = shift;
 	my $s_id = $c->stash('s_id');
 	eval {

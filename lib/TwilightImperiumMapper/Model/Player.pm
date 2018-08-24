@@ -1,4 +1,4 @@
-package Player;
+package TwilightImperiumMapper::Model::Player;
 
 use v5.18;
 
@@ -15,7 +15,7 @@ sub play {
 
     return (
 	$t,
-	Player->new(
+	TwilightImperiumMapper::Model::Player->new(
 	    name    => $self->name,
 	    id	    => $self->id,
 	    view    => $self->view,
@@ -24,6 +24,6 @@ sub play {
     );
 }
 
-with 'PlayerRole';
+with 'TwilightImperiumMapper::Model::PlayerRole';
 
 1;

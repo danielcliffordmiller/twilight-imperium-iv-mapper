@@ -1,4 +1,4 @@
-% use Tiles;
+% use Utils::Tiles qw(red_backed);
 <% my ($players, $active) = ($session->players(), $session->active_player); %>\
 <table style="border-collapse:collapse;border:0;margin-left:1em">
 <tbody>
@@ -12,7 +12,7 @@
 </td>\
 <% foreach my $tile (@{$player->hand}) { %>\
 <% if (defined $tile) { %>\
-<td><span class="fas fa-circle fa-sm" style="color:<%= Tiles::red_backed($tile) ? "red" : "royalblue" %>"></span></td>\
+<td><span class="fas fa-circle fa-sm" style="color:<%= red_backed($tile) ? "red" : "royalblue" %>"></span></td>\
 <% } %>\
 <% } %>\
 </tr>

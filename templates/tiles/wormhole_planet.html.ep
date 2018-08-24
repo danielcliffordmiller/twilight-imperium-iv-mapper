@@ -1,12 +1,12 @@
 %
-% use TileSvg;
+% use Utils::TileSvg qw(trait_color tech_color ring_id);
 %
 % my $p = $tile->planets->[0];
-% my $c = TileSvg::trait_color($p);
-% my $t = TileSvg::tech_color($p);
+% my $c = trait_color($p);
+% my $t = tech_color($p);
 % my $wh = $tile->wormhole;
 %
-<use href="#<%= TileSvg::ring_id($tile) %>"/>
+<use href="#<%= ring_id($tile) %>"/>
 <% if (defined $t) { %>\
 <circle cx="22" cy="-13" fill="<%= $t %>" r="5"/>
 <% } %>\

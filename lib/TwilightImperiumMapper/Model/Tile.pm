@@ -1,4 +1,4 @@
-package Tile;
+package TwilightImperiumMapper::Model::Tile;
 
 use strict;
 use warnings;
@@ -22,7 +22,7 @@ has ['name', 'type'] => (is => 'ro', isa => 'Str', required => 1);
 
 has 'template' => (is => 'ro', isa => 'Template', required => 1);
 
-has 'planets' => (is => 'ro', isa => 'ArrayRef[Tile::Planet]');
+has 'planets' => (is => 'ro', isa => 'ArrayRef[TwilightImperiumMapper::Model::Tile::Planet]');
 has 'wormhole' => (is => 'ro', isa => 'Str');
 has 'text' => (is => 'ro', isa => 'Str');
 
@@ -44,12 +44,14 @@ around 'BUILDARGS' => sub {
 
     my %params = @_;
 
-    $params{planets} = [ map { Tile::Planet->new(%$_) } @{$params{planets}} ] if exists $params{planets};
+    $params{planets} = [
+	map { TwilightImperiumMapper::Model::Tile::Planet->new(%$_) } @{$params{planets}}
+    ] if exists $params{planets};
 
     return $self->$orig(%params);
 };
 
-package Tile::Planet;
+package TwilightImperiumMapper::Model::Tile::Planet;
 
 use Mouse;
 

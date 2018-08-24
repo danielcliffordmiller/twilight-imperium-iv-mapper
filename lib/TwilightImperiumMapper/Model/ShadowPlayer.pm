@@ -1,8 +1,8 @@
-package ShadowPlayer;
+package TwilightImperiumMapper::Model::ShadowPlayer;
 
 use Mouse;
 
-has player  => (is => 'ro', isa => 'Player', required => 1);
+has player  => (is => 'ro', isa => 'TwilightImperiumMapper::Model::Player', required => 1);
 
 sub name { $_[0]->player->name; }
 sub id { $_[0]->player->id; }
@@ -25,6 +25,6 @@ sub play {
     );
 }
 
-with 'PlayerRole';
+with 'TwilightImperiumMapper::Model::PlayerRole';
 
 1;

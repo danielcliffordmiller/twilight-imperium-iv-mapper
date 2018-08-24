@@ -1,4 +1,4 @@
-package TileSvg;
+package Utils::TileSvg;
 
 require Exporter;
 
@@ -11,7 +11,7 @@ use constant LENGTH => 50;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(ring_id trait_color tech_color xy_coords);
+our @EXPORT_OK = qw(ring_id trait_color tech_color xy_coords ring_colors);
 
 my %ring_colors = (
     r_home	=> 'forestgreen',
@@ -40,7 +40,7 @@ my %tech_colors = (
     cybernetic	=> "gold"
 );
 
-sub ring_colors { \%ring_colors }
+sub ring_colors { return { %ring_colors } }
 
 sub ring_id {
     my $tile = shift;
