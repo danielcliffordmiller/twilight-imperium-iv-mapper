@@ -26,6 +26,14 @@ has 'planets' => (is => 'ro', isa => 'ArrayRef[Tile::Planet]');
 has 'wormhole' => (is => 'ro', isa => 'Str');
 has 'text' => (is => 'ro', isa => 'Str');
 
+sub dump {
+    my $self = shift;
+    return {
+	name => $self->name,
+	type => $self->type,
+    };
+}
+
 sub _check_template {
     grep { $_[0] eq $_ } @valid_templates;
 }

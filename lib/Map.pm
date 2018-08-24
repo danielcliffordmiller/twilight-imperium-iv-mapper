@@ -6,6 +6,7 @@ use strict;
 use warnings;
 
 use constant RINGS => 3;
+
 # (3 + 2 + 1) * 6; (doesn't include the center)
 use constant PLAYABLE_SPOTS => 36;
 
@@ -22,7 +23,9 @@ sub _tiles_in_ring {
 
 sub dump {
     my $self = shift;
-    return [ @{ $self->_tiles } ];
+    return [ map {
+	[ $_->[0], $_->[1], $_->[2]->dump ]
+    } @{ $self->_tiles } ];
 }
 
 sub _neighbor_coords {
