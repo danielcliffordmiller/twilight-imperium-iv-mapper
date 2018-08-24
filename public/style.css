@@ -84,7 +84,7 @@ body { margin: 0; }
   border-left: 3px double black;
   z-index: 3;
   visibility: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 #sidebar.sb-open {
