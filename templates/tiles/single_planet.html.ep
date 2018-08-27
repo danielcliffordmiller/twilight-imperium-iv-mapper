@@ -1,9 +1,7 @@
 %
-% use Utils::TileSvg qw(ring_id);
-%
 % my $planet = $tile->planets->[0];
 % 
-<use href="#<%= ring_id($tile) %>"/>
+<use href="#<%= $tile->ring_id %>"/>
 <% if ($planet->has_tech) { %>\
 <circle cx="22" cy="-3" class="<%= $planet->tech  %>" r="5"/>
 <% } %>\

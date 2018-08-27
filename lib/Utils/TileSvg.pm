@@ -11,24 +11,7 @@ use constant LENGTH => 50;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(ring_id xy_coords ring_ids);
-
-my %ring_ids = (
-    home	=> 'r_home',
-    standard	=> 'r_standard',
-    alpha	=> 'r_standard',
-    beta	=> 'r_standard',
-    anomaly	=> 'r_anomaly',
-);
-
-sub ring_colors { return { %ring_colors } }
-
-sub ring_ids { return values %ring_ids }
-
-sub ring_id {
-    my $tile = shift;
-    return $ring_ids{$tile->type};
-}
+our @EXPORT_OK = qw(xy_coords);
 
 sub xy_direction {
     my $direction = shift;

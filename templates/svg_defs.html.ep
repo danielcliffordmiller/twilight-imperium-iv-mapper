@@ -1,4 +1,5 @@
-% use Utils::TileSvg qw(ring_ids);
+%# use Utils::TileSvg qw(ring_ids);
+% use TwilightImperiumMapper::Model::Tile;
 <defs>
 %#    <pattern id="space-pattern" patternUnits="userSpaceOnUse" width="100" height="100">
 %#	<image href="http://cdn.mysitemyway.com/etc-mysitemyway/webtreats/assets/posts/857/full/tileable-classic-nebula-space-patterns-6.jpg" width="100" height="100"/>
@@ -6,7 +7,7 @@
 %#    <pattern id="nebula-pattern" width="100" height="71" x="0" y="0">
 %#	<image href="https://apod.nasa.gov/apod/image/1212/M33-Subaru-Gendler-LL.jpg" width="130" height="90" x="-18" y="0"/>
 %#    </pattern>
-<% foreach my $id (ring_ids()) { %>\
+<% foreach my $id (TwilightImperiumMapper::Model::Tile::ring_ids()) { %>\
 <path id="<%= $id %>" d="M -25 -43 l 50 0 25 43 -25 43 -50 0 -25 -43 z" fill="none" stroke-width="6" transform="scale(.93)"/>
 <% } %>\
 <%= outline id => 'outline' %>
