@@ -1,9 +1,8 @@
 % use TwilightImperiumMapper::Model::Map;
-% use Utils::TileSvg qw(xy_coords);
 %
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="-280 -310 560 620">
 <% my $it = $session->map_iterator($p_id); while ( my $map_spot = $it->() ) { %>\
-    <% my ($x, $y) = xy_coords( $map_spot->view_rn ); =%>\
+    <% my ($x, $y) = $map_spot->view_xy; =%>\
     <g transform="translate(<%= "$x,$y" %>)">
     <% if ( $map_spot->has_tile ) { =%>\
 	<%= include 'tiles/'.$map_spot->tile->template, tile => $map_spot->tile =%>
