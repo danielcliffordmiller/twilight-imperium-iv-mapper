@@ -11,7 +11,7 @@ use constant LENGTH => 50;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(ring_id trait_color tech_color xy_coords ring_colors);
+our @EXPORT_OK = qw(ring_id trait_color xy_coords ring_colors);
 
 my %ring_colors = (
     r_home	=> 'forestgreen',
@@ -33,13 +33,6 @@ my %trait_colors = (
     cultural	=> "royalblue"
 );
 
-my %tech_colors = (
-    biotic	=> "forestgreen",
-    warfare 	=> "red",
-    propulsion	=> "royalblue",
-    cybernetic	=> "gold"
-);
-
 sub ring_colors { return { %ring_colors } }
 
 sub ring_id {
@@ -49,10 +42,6 @@ sub ring_id {
 
 sub trait_color {
     return $_[0]->has_trait ? $trait_colors{$_[0]->trait} : undef;
-}
-
-sub tech_color {
-    return $_[0]->has_tech ? $tech_colors{$_[0]->tech} : undef;
 }
 
 sub xy_direction {

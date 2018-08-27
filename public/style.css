@@ -271,3 +271,7 @@ svg {
       -ms-user-select: none;
           user-select: none;
 }
+g circle.biotic { fill: forestgreen; }
+g circle.warfare { fill: red; }
+g circle.propulsion { fill: royalblue; }
+g circle.cybernetic { fill: gold; }

@@ -90,8 +90,6 @@ package TwilightImperiumMapper::Model::Session::Order;
 
 use Mouse;
 
-use TwilightImperiumMapper::Model::Player;
-
 has 'active_id'	    => (isa => 'Str', is => 'ro', required => 1);
 has 'next_order'    => (isa => 'TwilightImperiumMapper::Model::Session::Order', is => 'ro');
 

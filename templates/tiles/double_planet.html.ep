@@ -1,12 +1,11 @@
 %
-% use Utils::TileSvg qw(trait_color tech_color ring_id);
+% use Utils::TileSvg qw(trait_color ring_id);
 %
 % my @p = @{$tile->planets};
 % my @c = map { trait_color($_) || "black" } @p;
-% my @tc = map { tech_color($_) } @p;
 %
 <use href="#<%= ring_id($tile) %>"/>
-<% if (defined $tc[0]) { %><circle cx="22" cy="-13" fill="<%= $tc[0] %>" r="5"/><% } %>
-<% if (defined $tc[1]) { %><circle cx="22" cy="7" fill="<%= $tc[1] %>" r="5"/><% } %>
+<% if ($p[0]->has_tech) { %><circle cx="22" cy="-13" class="<%= $p[0]->tech %>" r="5"/><% } %>
+<% if ($p[1]->has_tech) { %><circle cx="22" cy="7" class="<%= $p[1]->tech %>" r="5"/><% } %>
 <text text-anchor="middle" y="-8" font-size="14" fill="<%= $c[0] %>"><%= $p[0]->resources %> / <%= $p[0]->influence %></text>
 <text text-anchor="middle" y="12" font-size="14" fill="<%= $c[1] %>"><%= $p[1]->resources %> / <%= $p[1]->influence %></text>
