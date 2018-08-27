@@ -15,24 +15,7 @@ use Utils qw(get_tag);
 sub startup {
     my $self = shift;
 
-    {
-        my @players = qw(
-            Dan
-            Randy
-            Rob
-            Scott
-            Frank
-            Ben
-        );
-
-        my $s = create_session(@players);
-
-        say "http://localhost:3000/s/".$s->id()."/players";
-
-        $self->helper('state' => sub { state $state = { $s->id(), $s } });
-    }
-
-    #$self->helper('state' => sub { state $state = {} });
+    $self->helper('state' => sub { state $state = {} });
 
     $self->helper('outline' => sub {
 	my $c = shift;
@@ -48,6 +31,9 @@ sub startup {
     });
 
     my $r = $self->routes;
+
+    $r->get("/")->to("session#form");
+    $r->post("/")->to("session#create");
 
     my $s = $r->under('/s/:s_id' => sub {
 	my $c = shift;

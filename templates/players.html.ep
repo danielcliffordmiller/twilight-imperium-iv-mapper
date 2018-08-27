@@ -8,7 +8,8 @@
 →\
     <% } =%>\
 </td><td>\
-<%= link_to $player->name => '/'.(join '/' => 's', $s_id, 'p', $player->id)  %>\
+<%# link_to $player->name => '/'.(join '/' => 's', $s_id, 'p', $player->id)  %>\
+<%= $player->name %>\
 </td>\
 <% foreach my $tile (@{$player->hand}) { %>\
 <% if (defined $tile) { %>\

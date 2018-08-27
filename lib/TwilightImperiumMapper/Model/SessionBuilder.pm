@@ -20,8 +20,6 @@ use Utils qw(partition get_tag random_shift);
 
 use YAML ();
 
-use List::Util qw(shuffle);
-
 our @ISA = qw(Exporter);
 
 our @EXPORT_OK = qw(create_session);
@@ -33,7 +31,7 @@ state $session_config = { map {
 } @{YAML::LoadFile('./data/session_conf.yml')} };
 
 sub create_session {
-    my @names = shuffle(@_);
+    my @names = @_;
 
     my $conf = $session_config->{ @names } or die "needs 3 to 6 players";
 
@@ -66,7 +64,7 @@ sub create_session {
     }
 
     # random_shift places the players such that the speaker is $players[0]
-    @players = random_shift(@players);
+    #@players = random_shift(@players);
 
     # this code could be cleaned up and would help from a proper shadow_conf class
     if ($conf->shadow) {

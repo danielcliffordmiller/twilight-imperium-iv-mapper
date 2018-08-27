@@ -1,0 +1,9 @@
+% my @p = @{$session->players};
+<h3>URLs</h3>
+<table>
+<% foreach my $p (@p) { %>
+<tr><td><%= $p->name %></td><td>
+<input size="40" type="text" readonly ic-trigger-on="click" ic-action="select" value="http://chezmiller.ddns.net:5050/s/<%= $session->id %>/p/<%= $p->id %>"/>
+</td></tr>
+<% } %>
+</table>

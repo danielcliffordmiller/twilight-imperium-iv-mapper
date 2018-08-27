@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twilight Imperium IV Mapper</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="/session-create-style.css" rel="stylesheet" />
+<script src="/jquery-3.3.1.min.js"></script>
+<script src="/intercooler-1.2.1.min.js"></script>
+<script src="/session-create.js"></script>
+</head>
+<body>
+<div id="content">
+<div id="form">
+<form autocomplete="off" ic-post-to="/">
+<fieldset>
+<legend>Players</legend>
+<table>
+<tr>
+<td><label class="empty" for="i1">1: </label></td>
+<td><input id="i1" type="text" name="p1" /></td>
+<td><input value="r1" checked class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+<tr>
+<td><label class="empty" for="i2">2: </label></td>
+<td><input id="i2" type="text" name="p2" /></td>
+<td><input value="r2" class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+<tr>
+<td><label class="empty" for="i3">3: </label></td>
+<td><input id="i3" ic-action="removeClass:i-hidden" ic-target="#d4" ic-trigger-on="keyup changed" type="text" name="p3" /></td>
+<td><input value="r3" class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+<tr id="d4" class="i-hidden">
+<td><label class="empty" for="i4">4: </label></td>
+<td><input id="i4" ic-action="removeClass:i-hidden" ic-target="#d5" ic-trigger-on="keyup changed" type="text" name="p4" /></td>
+<td><input value="r4" class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+<tr id="d5" class="i-hidden">
+<td><label class="empty" for="i5">5: </label></td>
+<td><input id="i5" ic-action="removeClass:i-hidden" ic-target="#d6" ic-trigger-on="keyup changed" type="text" name="p5" /></td>
+<td><input value="r5" class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+<tr id="d6" class="i-hidden">
+<td><label class="empty" for="i6">6: </label></td>
+<td><input id="i6" type="text" name="p6" /></td>
+<td><input value="r6" class="i-hidden" type="radio" name="r-speaker"/></td>
+</tr>
+</table>
+<div>
+<input id="cb-random" name="cb-random" type="checkbox" />
+<label for="cb-random">Randomize Player Order</label>
+</div>
+<div>
+<input id="cb-speaker" ic-action="toggleClass:i-hidden" ic-target="input[type=radio]" name="cb-speaker" type="checkbox" />
+<label for="cb-speaker">Designate Speaker</label>
+</div>
+</fieldset>
+<div><input type="submit" value="Create" /></div>
+</form>
+</div>
+
+</div>
+</body>
+</html>
