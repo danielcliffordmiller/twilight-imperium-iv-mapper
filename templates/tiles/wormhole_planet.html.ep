@@ -1,15 +1,14 @@
 %
-% use Utils::TileSvg qw(trait_color ring_id);
+% use Utils::TileSvg qw(ring_id);
 %
 % my $p = $tile->planets->[0];
-% my $c = trait_color($p);
 % my $wh = $tile->wormhole;
 %
 <use href="#<%= ring_id($tile) %>"/>
 <% if ($p->has_tech) { %>\
 <circle cx="22" cy="-13" class="<%= $p->tech %>" r="5"/>
 <% } %>\
-<text text-anchor="middle" y="-8" font-size="14" fill="<%= $c %>"><%= $p->resources %> / <%= $p->influence %></text>
+<text text-anchor="middle" y="-8" font-size="14" fill="black" class="<%= $p->trait %>"><%= $p->resources %> / <%= $p->influence %></text>
 <circle cx="0" cy="15" r="15" fill="none" stroke="darkgrey" stroke-width="2"/>
 <% if ($wh eq "alpha") { %>\
 <text class="wh" fill="goldenrod" text-anchor="middle" y="18">α</text>

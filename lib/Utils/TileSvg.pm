@@ -11,7 +11,7 @@ use constant LENGTH => 50;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT_OK = qw(ring_id trait_color xy_coords ring_colors);
+our @EXPORT_OK = qw(ring_id xy_coords ring_colors);
 
 my %ring_colors = (
     r_home	=> 'forestgreen',
@@ -27,21 +27,11 @@ my %ring_ids = (
     anomaly	=> 'r_anomaly',
 );
 
-my %trait_colors = (
-    industrial	=> "forestgreen",
-    hazardous	=> "red",
-    cultural	=> "royalblue"
-);
-
 sub ring_colors { return { %ring_colors } }
 
 sub ring_id {
     my $tile = shift;
     return $ring_ids{$tile->type};
-}
-
-sub trait_color {
-    return $_[0]->has_trait ? $trait_colors{$_[0]->trait} : undef;
 }
 
 sub xy_direction {

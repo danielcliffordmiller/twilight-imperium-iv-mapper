@@ -275,3 +275,6 @@ g circle.biotic { fill: forestgreen; }
 g circle.warfare { fill: red; }
 g circle.propulsion { fill: royalblue; }
 g circle.cybernetic { fill: gold; }
+g text.industrial { fill: forestgreen; }
+g text.hazardous { fill: red; }
+g text.cultural { fill: royalblue; }
