@@ -3,7 +3,13 @@
 <table>
 <% foreach my $p (@p) { %>
 <tr><td><%= $p->name %></td><td>
-<input size="40" type="text" readonly ic-trigger-on="click" ic-action="select" value="http://chezmiller.ddns.net:5050/s/<%= $session->id %>/p/<%= $p->id %>"/>
+<input id="<%= $p->id %>" size="40" type="text" readonly ic-trigger-on="click" ic-action="select"/>
+<script type="text/javascript">
+(function() {
+  const v = document.documentURI + "s/<%= $session->id %>/p/<%= $p->id %>"
+  document.getElementById("<%= $p->id %>").value=v
+})()
+</script>
 </td></tr>
 <% } %>
 </table>
