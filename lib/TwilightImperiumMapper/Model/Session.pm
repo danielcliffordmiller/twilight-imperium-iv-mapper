@@ -4,7 +4,7 @@ use v5.18;
 
 use Mouse;
 
-use Hash::MD5 qw(sum);
+use Digest::MD5 qw(md5_hex);
 
 use TwilightImperiumMapper::Model::PlayerLog;
 
@@ -28,7 +28,7 @@ sub dump {
 
 sub md5 {
     my $self = shift;
-    return sum($self->_map);
+    return md5_hex($self->_map);
 }
 
 sub player {

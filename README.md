@@ -6,7 +6,6 @@ Perl Dependencies
 -----------------
 * Mojolicious
 * YAML
-* Hash::MD5
 
 Installation
 ------------
@@ -18,11 +17,8 @@ for example:
 ```
 brew install cpanm
 cpanm Mojolicious
-cpan Mojolicious
 cpanm YAML
-cpanm Hash::MD5
 ```
-
 
 Running
 -------
