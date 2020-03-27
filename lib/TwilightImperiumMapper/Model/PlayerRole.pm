@@ -21,7 +21,7 @@ sub dump {
     return {
 	name	=> $self->name,
 	id	=> $self->id,
-	hand	=> $self->hand,
+	hand	=> [ map { $_->dump } grep { $_ } @{$self->hand} ],
 	view	=> $self->view
     };
 }
